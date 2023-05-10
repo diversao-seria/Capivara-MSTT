@@ -74,11 +74,15 @@ public class PlayerMovementController : MonoBehaviour
             movePlayer();
             playerMoved?.Invoke();
         }
+        if (Input.GetKeyDown("r"))
+        {
+            SceneManager.LoadScene(0);
+        }
 
         // Checagem do valor da c�lula atual do jogador. Nesse caso, se a c�lula atual tiver valor 1 o jogador 
         if (moveAttempt?.Invoke(gridPosition.Value.x, gridPosition.Value.y) == 1)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
     }
 

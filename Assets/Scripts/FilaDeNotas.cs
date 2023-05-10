@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 
 public class FilaDeNotas : MonoBehaviour
 {
-    // v1
     public GameObject canvas; // Canvas reference
 
     public string notes = "IOIIOOIZZZ"; // List of notes Importante terminar com 3 Zs.
