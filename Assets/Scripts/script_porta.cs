@@ -15,6 +15,10 @@ public class script_porta : MonoBehaviour
         passaros.UseConstant = true;
         passaros.Value = passaros.Value; // definindo o valor do Scriptable Object como o valor constante a ser indicado no inspetor
         passaros.UseConstant = false;
+        if (passaros.Value == 0)
+        {
+            doorUnlocked?.Invoke();  //Envia um sinal dizendo q todos os passaros foram coletados e agora a porta deve estar destrancada
+        }
     }
 
     public void OnBirdCollected() //Funcao que vai ser chamada quando o evento de coletar passaros acontecer

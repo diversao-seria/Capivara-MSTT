@@ -83,6 +83,7 @@ public class PlayerMovementController : MonoBehaviour
         if (moveAttempt?.Invoke(gridPosition.Value.x, gridPosition.Value.y) == 1)
         {
             SceneManager.LoadScene(1);
+            Debug.Log("hey");
         }
     }
 

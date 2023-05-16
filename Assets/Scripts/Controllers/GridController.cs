@@ -12,6 +12,9 @@ public class GridController : MonoBehaviour
     [SerializeField] private int gridHeight = 1;
     [SerializeField] private int cellSize = 1;
     [SerializeField] private Transform gridOrigin;
+    [SerializeField] private TextAsset levelText;
+
+    private Vector2Int portaCoords = new Vector2Int();
 
     private void OnEnable()
     {
@@ -19,8 +22,6 @@ public class GridController : MonoBehaviour
         PlayerMovementController.moveAttempt += returnValue;
 
         PlataformMovementController.PlataformMoved += OnPlataformMoved;  //Se inscreve ao evento (action) PlataformMoved, essa action passa as coordenadas antigas e novas no grid como parametro <posicaoXantiga, posicaoYantiga, posicaoXnova, posicaoYnova>
-
-
     }
 
     private void OnDisable()
@@ -28,116 +29,48 @@ public class GridController : MonoBehaviour
         // remove o evento moveAttempt do GridController (importante p/ evitar memory leaks)
         PlayerMovementController.moveAttempt -= returnValue;
 
-        PlataformMovementController.PlataformMoved -= OnPlataformMoved;  //Se inscreve ao evento (action) PlataformMoved, essa action passa as coordenadas antigas e novas no grid como parametro <posicaoXantiga, posicaoYantiga, posicaoXnova, posicaoYnova>
-
+        PlataformMovementController.PlataformMoved -= OnPlataformMoved;  // Se inscreve ao evento (action) PlataformMoved, essa action passa as coordenadas antigas e novas no grid como parametro <posicaoXantiga, posicaoYantiga, posicaoXnova, posicaoYnova>
 
     }
+
     // Start is called before the first frame update
     private void Awake()
     {
+        GridLevel level = JsonUtility.FromJson<GridLevel>(levelText.text);
+        Debug.Log(level.layers[0].height);
+        Debug.Log(level.layers[0].data[8]);
+
+        gridLength = level.layers[0].width;
+        gridHeight = level.layers[0].height;
+
         // Cria uma nova inst�ncia da grid
         grid = new Grid(gridLength, gridHeight, cellSize, gridOrigin.transform.position);
 
-        // Define valores para cada uma das c�lulas da grid
-        grid.setValue(0, 9, -1);
-        grid.setValue(0, 8, -1);
-        grid.setValue(0, 7, -1);
-        grid.setValue(0, 6, -1);
-        grid.setValue(0, 5, -1);
+        // valor a ser checado na lista dos valores dos tiles vindos do tiled
+        int ID = 0;
 
-        grid.setValue(1, 1, -1);
-        grid.setValue(1, 2, -1);
-        grid.setValue(1, 3, -1);
-
-        grid.setValue(2, 1, -1);
-        grid.setValue(2, 4, -1);
-        grid.setValue(2, 5, -1);
-        grid.setValue(2, 6, -1);
-        grid.setValue(2, 7, -1);
-        grid.setValue(2, 9, -1);
-
-        grid.setValue(3, 1, -1);
-        grid.setValue(3, 7, -1);
-        grid.setValue(3, 9, -1);
-
-        grid.setValue(4, 1, -1);
-        grid.setValue(4, 7, -1);
-        grid.setValue(4, 9, -1);
-
-        grid.setValue(5, 1, -1);
-        grid.setValue(5, 7, -1);
-        grid.setValue(5, 9, -1);
-
-        grid.setValue(6, 1, -1);
-        grid.setValue(6, 7, -1);
-        grid.setValue(6, 9, -1);
-
-        grid.setValue(7, 1, -1);
-        grid.setValue(7, 7, -1);
-        grid.setValue(7, 9, -1);
-
-        grid.setValue(8, 1, -1);
-        grid.setValue(8, 7, -1);
-
-        grid.setValue(9, 1, -1);
-        grid.setValue(9, 4, -1);
-        grid.setValue(9, 5, -1);
-        grid.setValue(9, 6, -1);
-        grid.setValue(9, 7, -1);
-        grid.setValue(9, 8, -1);
-        grid.setValue(9, 9, -1);
-
-        grid.setValue(10, 2, -1);
-        grid.setValue(10, 3, -1);
-
-        grid.setValue(11, 2, -1);
-        grid.setValue(11, 3, -1);
-        grid.setValue(11, 5, -1);
-        grid.setValue(11, 6, -1);
-        grid.setValue(11, 7, -1);
-        grid.setValue(11, 8, -1);
-
-        grid.setValue(12, 2, -1);
-        grid.setValue(12, 3, -1);
-        grid.setValue(12, 5, -1);
-        grid.setValue(12, 8, -1);
-
-        grid.setValue(13, 2, -1);
-        grid.setValue(13, 3, -1);
-        grid.setValue(13, 5, -1);
-        grid.setValue(13, 8, -1);
-
-        grid.setValue(14, 2, -1);
-        grid.setValue(14, 3, -1);
-        grid.setValue(14, 5, -1);
-        grid.setValue(14, 8, -1);
-
-        grid.setValue(14, 9, -1);
-
-        grid.setValue(15, 2, -1);
-        grid.setValue(15, 3, -1);
-        grid.setValue(15, 5, -1);
-        grid.setValue(15, 8, -1);
-        grid.setValue(15, 9, -1);
-
-        grid.setValue(16, 2, -1);
-        grid.setValue(16, 3, -1);
-
-        grid.setValue(17, 2, -1);
-        grid.setValue(17, 3, -1);
-        grid.setValue(17, 4, -1);
-        grid.setValue(17, 5, -1);
-        grid.setValue(17, 6, -1);
-        grid.setValue(17, 7, -1);
-        grid.setValue(17, 8, -1);
-
-        grid.setValue(18, 2, -1);
-        grid.setValue(18, 3, -1);
-        grid.setValue(18, 4, -1);
-        grid.setValue(18, 5, -1);
-        grid.setValue(18, 6, -1);
-        grid.setValue(18, 7, -1);
-        grid.setValue(18, 8, -1);
+        // esses dois for loops convertem o array em uma dimensão (fornecido pelo mapa do tiled) em um array de duas dimensões (usado na grid)
+        for (int i = level.layers[0].height - 1; i >= 0; i--)
+        {
+            for (int j = 0; j < level.layers[0].width; j++)
+            {
+                // converte o ID dos tiles do tiled nos números a serem usados dentro do jogo
+                switch(level.layers[0].data[ID])
+                {
+                    case 1:
+                        grid.setValue(j, i, 0);
+                        break;
+                    case 2:
+                        grid.setValue(j, i, -1);
+                        break;
+                    case 3:
+                        // armazena as coordenadas da porta para atualizar o valor quando for desbloqueada (vai dar erro! nem todos os níveis terão chaves... consertar!)
+                        portaCoords = new Vector2Int(j, i);
+                        break;
+                }
+                ID++;
+            }
+        }
     }
 
     public Vector3 getWorldPosition(int x, int y)
@@ -170,7 +103,21 @@ public class GridController : MonoBehaviour
     // Altera o valor das casa do grid ocupadas pela porta, permitindo que o jogador chegue no fim do nivel 
     public void OnDoorUnlocked()
     {
-        grid.setValue(14, 9, 1);
+        grid.setValue(portaCoords.x, portaCoords.y, 1);
         Debug.Log("Porta aberta");
     }
+}
+
+[System.Serializable]
+public class GridLevel
+{
+    public List<Layer> layers;
+}
+
+[System.Serializable]
+public class Layer
+{
+    public int[] data;
+    public int height;
+    public int width;
 }
