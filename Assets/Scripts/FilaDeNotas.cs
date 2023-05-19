@@ -5,12 +5,16 @@ using UnityEngine.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class FilaDeNotas : MonoBehaviour
 {
+    char note;
+
     public GameObject canvas; // Canvas reference
 
-    public string notes = "IOIIOOIZZZ"; // List of notes Importante terminar com 3 Zs.
+    public StringReference notesSO; // List of notes Importante terminar com 3 Zs.
+
     public int contadorNotas = 0; // contador que lida com a posicao da lista estamos
 
     public Sprite noteI; // Sprite for the I note
@@ -23,23 +27,28 @@ public class FilaDeNotas : MonoBehaviour
     // evento emitido ao tocar uma nota. Passa a nota tocada como parametro do tipo Char
     public static event Action<char> NotePlayed;
 
+
+    void Awake()
+    {
+        notesSO.UseConstant = true;
+        notesSO.Value = notesSO.Value.ToUpper(); // Make sure the notes are uppercase
+        notesSO.UseConstant = false;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         noteSprites.Add("I", noteI); // Load the I Sprite
         noteSprites.Add("O", noteO); // Load the O Sprite
         noteSprites.Add("Z", noteZ); // Load the Z Sprite
-        
-        notes.ToUpper(); // Make sure the notes are uppercase
-        UpdateNotes(); // Set the first notes on the slots
 
-        
+        UpdateNotes(); // Set the first notes on the slots     
     }
 
     // Method to listen to the event of the player moving
     public void OnPlayerMoved()
     {
-        Char note = notes[contadorNotas]; // Get the first note from the string
+        note = notesSO.Value[contadorNotas]; // Get the first note from the string
 
         //
 
@@ -63,12 +72,12 @@ public class FilaDeNotas : MonoBehaviour
     // Method to change the sprite from the slots
     private void UpdateNotes ()
     {
-        String currentNotes = notes;
+        String currentNotes = notesSO.Value;
 
         // Get the slots from canvas
-        GameObject slot1 = canvas.transform.Find("Slot1").gameObject;
+        GameObject slot3 = canvas.transform.Find("Slot1").gameObject;
         GameObject slot2 = canvas.transform.Find("Slot2").gameObject;
-        GameObject slot3 = canvas.transform.Find("Slot3").gameObject;
+        GameObject slot1 = canvas.transform.Find("Slot3").gameObject;
 
         // if the string is smaller than 3, pad it with Z
         if ((currentNotes.Length - contadorNotas) < 3)
@@ -82,6 +91,5 @@ public class FilaDeNotas : MonoBehaviour
         slot3.GetComponent<Image>().sprite = noteSprites[currentNotes[contadorNotas+2].ToString()];
 
         // Change the image of the slots based on the note string (I, O or Z)
-        
     }
 }
