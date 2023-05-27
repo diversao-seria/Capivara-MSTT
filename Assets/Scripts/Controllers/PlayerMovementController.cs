@@ -15,6 +15,9 @@ public class PlayerMovementController : MonoBehaviour
     // evento emitido ao mover o jogador
     public UnityEvent playerMoved;
 
+    // evento emitido ao passar pela porta aberta
+    public UnityEvent passouNaPorta;
+
     // coordenadas do jogador em relacao ao grid
     public Vector2Reference gridPosition;
 
@@ -76,14 +79,15 @@ public class PlayerMovementController : MonoBehaviour
         }
         if (Input.GetKeyDown("r"))
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        // Checagem do valor da c�lula atual do jogador. Nesse caso, se a c�lula atual tiver valor 1 o jogador 
+        // Checagem do valor da c�lula atual do jogador. Nesse caso, se a c�lula atual tiver valor 1 o teste MSTT é iniciado.
         if (moveAttempt?.Invoke(gridPosition.Value.x, gridPosition.Value.y) == 1)
         {
-            SceneManager.LoadScene(1);
-            Debug.Log("hey");
+            passouNaPorta?.Invoke();
+            // SceneManager.LoadScene(1);
+           // Debug.Log("hey");
         }
     }
 

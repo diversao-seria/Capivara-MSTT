@@ -37,8 +37,6 @@ public class GridController : MonoBehaviour
     private void Awake()
     {
         GridLevel level = JsonUtility.FromJson<GridLevel>(levelText.text);
-        Debug.Log(level.layers[0].height);
-        Debug.Log(level.layers[0].data[8]);
 
         gridLength = level.layers[0].width;
         gridHeight = level.layers[0].height;

@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class MSTTManager : MonoBehaviour
 {
+    public UnityEvent msttSucesso;
+
     private string s = "";
     public string resposta = "";
     public TMPro.TextMeshProUGUI textDisplay;
@@ -61,7 +64,8 @@ public class MSTTManager : MonoBehaviour
             Debug.Log("Acertou");
             // this.transform.parent.gameObject.SetActive(false);
             // exit.SetActive(true);
-            SceneManager.LoadScene(0);
+            msttSucesso?.Invoke();
+
         }
         else
         {
@@ -104,6 +108,5 @@ public class MSTTManager : MonoBehaviour
         // this.transform.parent.gameObject.SetActive(false);
         SceneManager.LoadScene(0);
     }
-
 
 }
