@@ -85,9 +85,10 @@ public class PlayerMovementController : MonoBehaviour
         // Checagem do valor da c�lula atual do jogador. Nesse caso, se a c�lula atual tiver valor 1 o teste MSTT é iniciado.
         if (moveAttempt?.Invoke(gridPosition.Value.x, gridPosition.Value.y) == 1)
         {
+            // emite o evento avisando que o jogador passou pela porta
             passouNaPorta?.Invoke();
-            // SceneManager.LoadScene(1);
-           // Debug.Log("hey");
+            // desabilita o movement controller para que o jogador não possa mais se movimentar
+            this.enabled = false;
         }
     }
 
