@@ -55,7 +55,7 @@ public class FilaDeNotas : MonoBehaviour
         if(note == 'Z') // If the note is Z, it means that the player failed to solve the puzzle
         {
             contadorNotas = 0;
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         // Muda o contador de notas para a proxima

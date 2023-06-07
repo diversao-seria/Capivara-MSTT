@@ -62,8 +62,8 @@ public class GridController : MonoBehaviour
                         grid.setValue(j, i, -1);
                         break;
                     case 3:
-                        // armazena as coordenadas da porta para atualizar o valor quando for desbloqueada (vai dar erro! nem todos os níveis terão chaves... consertar!)
                         portaCoords = new Vector2Int(j, i);
+                        grid.setValue(j, i, -1);
                         break;
                 }
                 ID++;
