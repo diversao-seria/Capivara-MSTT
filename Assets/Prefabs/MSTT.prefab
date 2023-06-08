@@ -1366,8 +1366,8 @@ MonoBehaviour:
         m_CallState: 2
   resposta: 
   textDisplay: {fileID: 6106047741568308181}
-  somFino: {fileID: 8262087387064552050}
-  somGrosso: {fileID: 3048468137855457483}
+  somFino: {fileID: 8300000, guid: 3e5dfc098b74bc047b05e48e145e4f75, type: 3}
+  somGrosso: {fileID: 8300000, guid: 92208e311eb3ec249b7bad5092767530, type: 3}
   fonteSom: {fileID: 0}
   soundButton: {fileID: 6106047740301118827}
   exit: {fileID: 6106047740710290228}

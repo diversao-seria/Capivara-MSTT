@@ -59,6 +59,8 @@ public class PlataformMovementController : MonoBehaviour
         // isso corrige um Bug que inpedia o jogador de ir para uma plataforma que estava fora da area normalmente andavel no primeiro movimento
         PlataformMoved?.Invoke(gridX, gridY, gridX, gridY);
 
+
+
          //Se inscreve ao evento (action) NotePlayed, essa action passa como parametro um char indicando o tipo de nota tocada
     }
 
@@ -141,6 +143,5 @@ public class PlataformMovementController : MonoBehaviour
     private void movePlataforma() 
     {
         transform.position = grid.getWorldPosition(gridX, gridY) + new Vector3 (0 , altura, 0);
-
     }
 }

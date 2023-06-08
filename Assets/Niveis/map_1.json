@@ -3,19 +3,19 @@
  "infinite":false,
  "layers":[
         {
-         "data":[3,
-            1,
-            1,
-            1,
-            1,
-            1],
+         "data":[2, 3, 2,
+            2, 1, 2,
+            2, 1, 2,
+            2, 1, 2,
+            2, 1, 2,
+            2, 1, 2],
          "height":6,
          "id":1,
          "name":"Tile Layer 1",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
-         "width":1,
+         "width":3,
          "x":0,
          "y":0
         }],
@@ -33,5 +33,5 @@
  "tilewidth":32,
  "type":"map",
  "version":"1.10",
- "width":1
+ "width":3
 }
