@@ -32,6 +32,7 @@ public class PlataformMovementController : MonoBehaviour
     // declara o valor que define em Vector3 (nao na grid tendo em vista que por enquanto ela e 2D) a altura plataforma
     [SerializeField] private float altura = 0;
 
+    Coroutine movedorPlataforma;
 
     // evento emitido ao mover a plataforma, passando as coordenadas antigas e novas no grid como parametro <posicaoXantiga, posicaoYantiga, posicaoXnova, posicaoYnova>
     public static event Action<int, int, int, int> PlataformMoved;
@@ -53,7 +54,7 @@ public class PlataformMovementController : MonoBehaviour
         pegaNovaPosicaoPlataforma();
 
         // atualiza a posicao com as coordenadas novas
-        movePlataforma();
+        movePlataforma(gridX, gridY, .1f);
 
         // Emite o sinal que a plataforma se moveu, mas disendo que ela foi de onde ela estava para onde ela esta
         // isso corrige um Bug que inpedia o jogador de ir para uma plataforma que estava fora da area normalmente andavel no primeiro movimento
@@ -85,7 +86,7 @@ public class PlataformMovementController : MonoBehaviour
             pegaNovaPosicaoPlataforma();
 
             //atualiza a posicao com as coordenadas novas
-            movePlataforma();
+            movePlataforma(gridXantiga, gridYantiga, 1f);
 
             //Emite o sinal que a plataforma se moveu, passanda as coordenadas do grid que ela agora ocupa
             PlataformMoved?.Invoke(gridXantiga, gridYantiga, gridX, gridY);
@@ -140,8 +141,26 @@ public class PlataformMovementController : MonoBehaviour
         tempString = "";
     }
 
-    private void movePlataforma() 
+    private void movePlataforma(int gridXantiga, int gridYantiga, float tempoDeAnimacao) 
     {
-        transform.position = grid.getWorldPosition(gridX, gridY) + new Vector3 (0 , altura, 0);
+        Vector3 posicaoAntes = grid.getWorldPosition(gridXantiga, gridYantiga) + new Vector3 (0 , altura, 0);
+        Vector3 posicaoDepois = grid.getWorldPosition(gridX, gridY) + new Vector3 (0 , altura, 0);
+        movedorPlataforma = StartCoroutine(MovedorPlataforma(posicaoAntes, posicaoDepois, tempoDeAnimacao));
+    }
+
+    IEnumerator MovedorPlataforma(Vector3 posicaoAntes, Vector3 posicaoDepois, float tempoDeAnimacao)
+    {
+        float t = 0;
+        float tempoPassado = 0;
+        Vector3 posicaoIntermediaria = new Vector3 (0,0,0);
+        while (tempoPassado <= tempoDeAnimacao)
+        {
+            t = tempoPassado / tempoDeAnimacao;
+            posicaoIntermediaria = Vector3.Lerp (posicaoAntes, posicaoDepois, t);
+            transform.position = posicaoIntermediaria;
+            tempoPassado += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = posicaoDepois;
     }
 }
