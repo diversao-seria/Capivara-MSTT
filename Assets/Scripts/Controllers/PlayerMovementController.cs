@@ -18,6 +18,9 @@ public class PlayerMovementController : MonoBehaviour
     // evento emitido ao passar pela porta aberta
     public UnityEvent passouNaPorta;
 
+    // evento emitido ao reiniciar o jogo utilizando a tecla "r"
+    public UnityEvent gameOver;
+
     // coordenadas do jogador em relacao ao grid
     public Vector2Reference gridPosition;
 
@@ -79,6 +82,7 @@ public class PlayerMovementController : MonoBehaviour
         }
         if (Input.GetKeyDown("r"))
         {
+            gameOver?.Invoke();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 

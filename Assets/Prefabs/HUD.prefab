@@ -419,6 +419,21 @@ MonoBehaviour:
   noteI: {fileID: 21300000, guid: 58846fcf1fb74874d8c4cb962447d568, type: 3}
   noteO: {fileID: 21300000, guid: a00292aab2d5f0849b2e47300d3eda81, type: 3}
   noteZ: {fileID: 21300000, guid: ef379afecc579b34d8682dca82518b3f, type: 3}
+  gameOver:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 51762127422d7564c8f95b23bc26e6d2, type: 2}
+        m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &376400191414294178
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Events;
 
 public class FilaDeNotas : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class FilaDeNotas : MonoBehaviour
 
     // evento emitido ao tocar uma nota. Passa a nota tocada como parametro do tipo Char
     public static event Action<char> NotePlayed;
+
+    // evento emitido ao reiniciar o jogo após o esgotamento da quantidade de notas disponível
+    public UnityEvent gameOver;
 
 
     void Awake()
@@ -55,6 +59,7 @@ public class FilaDeNotas : MonoBehaviour
         if(note == 'Z') // If the note is Z, it means that the player failed to solve the puzzle
         {
             contadorNotas = 0;
+            gameOver?.Invoke();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
