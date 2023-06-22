@@ -10,11 +10,11 @@ public class AudioController : MonoBehaviour
     
     void OnEnable()
     {
-        FilaDeNotas.NotePlayed += playSound;
+        GridController.NotePlayed += playSound;
     }
     void OnDisable()
     {
-        FilaDeNotas.NotePlayed -= playSound;
+        GridController.NotePlayed -= playSound;
     }
 
     void Start()
@@ -27,11 +27,11 @@ public class AudioController : MonoBehaviour
         
         if (note == 'I')
         {
-            source.clip = pink_audio.Value;
+            source.clip = blue_audio.Value;
         }
         else if (note == 'O')
         {
-            source.clip = blue_audio.Value;
+            source.clip = pink_audio.Value;
         }
         source.Play(0);      
     }

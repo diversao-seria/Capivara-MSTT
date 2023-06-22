@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60860308643a2e4a8c248f399a0d929, type: 3}
   m_Name: audio_rosa
   m_EditorClassIdentifier: 
-  Value: {fileID: 8300000, guid: 054635dd94b195d44b335d5aceb33976, type: 3}
+  Value: {fileID: 8300000, guid: 92208e311eb3ec249b7bad5092767530, type: 3}

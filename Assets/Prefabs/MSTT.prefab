@@ -592,7 +592,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 6106047740916041669}
   m_OnClick:
     m_PersistentCalls:
@@ -1079,7 +1079,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 6106047741606032868}
   m_OnClick:
     m_PersistentCalls:
@@ -1370,6 +1370,8 @@ MonoBehaviour:
   somGrosso: {fileID: 8300000, guid: 92208e311eb3ec249b7bad5092767530, type: 3}
   fonteSom: {fileID: 0}
   soundButton: {fileID: 6106047740301118827}
+  oButton: {fileID: 6106047740916041668}
+  iButton: {fileID: 6106047741606032667}
   exit: {fileID: 6106047740710290228}
 --- !u!1 &6854757441632240809
 GameObject:

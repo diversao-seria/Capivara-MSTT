@@ -16,6 +16,14 @@ public class GridController : MonoBehaviour
 
     private Vector2Int portaCoords = new Vector2Int();
 
+    public Vector2Reference playerPos;
+
+    // evento emitido quando o jogador passa pela porta aberta
+    public UnityEvent passouNaPorta;
+
+    // evento emitido ao tocar uma nota. Passa a nota tocada como parametro do tipo Char
+    public static event Action<char> NotePlayed;
+
     private void OnEnable()
     {
         // Inscreve o GridController no evento moveAttempt (usado para fazer a comunica��o entre jogador e grid)
@@ -65,6 +73,12 @@ public class GridController : MonoBehaviour
                         portaCoords = new Vector2Int(j, i);
                         grid.setValue(j, i, -1);
                         break;
+                    case 4:
+                        grid.setValue(j, i, 3);
+                        break;
+                    case 5:
+                        grid.setValue(j, i, 4);
+                        break;
                 }
                 ID++;
             }
@@ -103,6 +117,28 @@ public class GridController : MonoBehaviour
     {
         grid.setValue(portaCoords.x, portaCoords.y, 1);
         Debug.Log("Porta aberta");
+    }
+
+    // Recebe o evento "playerMoved" e checa o valor da casa em que o jogador está p/ agir de acordo
+    public void JogadorMoveu()
+    {
+        switch (returnValue(playerPos.Value.x, playerPos.Value.y))
+        {
+            case 1:
+                // emite o evento avisando que o jogador passou pela porta
+                passouNaPorta?.Invoke();
+                break;
+            case 3:
+                // emite o evento de mudar as plataformas de cor rosa de lugar
+                NotePlayed?.Invoke('I');
+                Debug.Log("I");
+                break;
+            case 4:
+                // emite o evento de mudar as plataformas de cor azul de lugar
+                NotePlayed?.Invoke('O');
+                Debug.Log("O");
+                break;
+        }       
     }
 }
 

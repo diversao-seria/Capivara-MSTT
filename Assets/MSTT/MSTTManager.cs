@@ -16,7 +16,7 @@ public class MSTTManager : MonoBehaviour
     public AudioClip somFino;
     public AudioClip somGrosso;
     public AudioSource fonteSom;
-    public Button soundButton;
+    public Button soundButton, oButton, iButton;
 
     public GameObject exit;
 
@@ -101,6 +101,9 @@ public class MSTTManager : MonoBehaviour
             fonteSom.Play();
             yield return new WaitForSeconds(0.682f);
         }
+        yield return new WaitForSeconds(0.682f * 4);
+        oButton.interactable = true;
+        iButton.interactable = true;
     }
 
     public void CloseButton()

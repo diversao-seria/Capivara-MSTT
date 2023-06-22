@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class contadorDeNotas : MonoBehaviour
 {
     public HorizontalLayoutGroup layoutGroup;
 
-    public StringReference notasSO;
+    [SerializeField] private int quantidadePassos;
 
-    private int tamanhoString;
+    public UnityEvent gameOver;
 
     private List<GameObject> partesBarra = new List<GameObject>();
     // private GameObject[] partesBarra;
@@ -20,9 +22,7 @@ public class contadorDeNotas : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //layoutGroup.enabled = true;
-        tamanhoString = notasSO.Value.Length - 3;
-        for (int i = 0; i < tamanhoString; i++)
+        for (int i = 0; i < quantidadePassos; i++)
         {
             GameObject instance = Instantiate(parteBarraPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
             instance.transform.SetParent(transform, false);
@@ -38,6 +38,11 @@ public class contadorDeNotas : MonoBehaviour
            // partesBarra[0].SetActive(false);
            partesBarra[0].GetComponent<Image>().enabled = false;
            partesBarra.Remove(partesBarra[0]);
+        }
+        else
+        {
+            gameOver?.Invoke();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

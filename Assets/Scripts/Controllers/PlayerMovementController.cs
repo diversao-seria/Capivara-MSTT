@@ -6,17 +6,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class PlayerMovementController : MonoBehaviour
 {
+    // curva de animação do jogador
+    public AnimationCurveReference animCurve;
+
     // altura do jogador em relação ao solo
     [SerializeField] private float playerHeight = 3;
 
     // evento emitido ao mover o jogador
     public UnityEvent playerMoved;
-
-    // evento emitido ao passar pela porta aberta
-    public UnityEvent passouNaPorta;
 
     // evento emitido ao reiniciar o jogo utilizando a tecla "r"
     public UnityEvent gameOver;
@@ -27,84 +28,73 @@ public class PlayerMovementController : MonoBehaviour
     // refer�ncia � grid (depend�ncia a ser investigada depois)
     [SerializeField] private GridController grid;
 
-    // evento emitido ao mover o jogador, passando as coordenadas novas no grid como parametro <posicaoXnova, posicaoYnova>
-    // public static event Action<int, int> PlayerMoved;
-
     // evento que retorna o valor armazenado em uma c�lula (X, Y) da grid (usado para checar se a casa p/ onde o jogador est� tentando se mover � v�lida ou n�o. Recebe como par�metros dois inteiros (coordenadas X e Y) e retorna um inteiro (valor guardado na c�lula (X, Y) da grid.))
     public static Func<int, int, int> moveAttempt;
 
     Coroutine movedorPlayer;
 
+    // referencia p/ as acoes do jogador (novo input system)
+    PlayerInputActions playerInputActions;
+
+    private void Awake()
+    {
+        playerInputActions = new PlayerInputActions();
+        playerInputActions.Player.Enable();
+    }
+
     void OnEnable()
     {
         PlataformMovementController.PlataformMoved += OnPlataformMoved;  //Se inscreve ao evento (action) PlataformMoved, essa action passa as coordenadas antigas e novas no grid como parametro <posicaoXantiga, posicaoYantiga, posicaoXnova, posicaoYnova>
+        playerInputActions.Player.Reiniciar.performed += Reiniciar;
+        playerInputActions.Player.Movimentacao.performed += MoverJogador;
     }
     
     void OnDisable()
     {
         PlataformMovementController.PlataformMoved -= OnPlataformMoved;
+        playerInputActions.Player.Reiniciar.performed -= Reiniciar;
+        playerInputActions.Player.Movimentacao.performed -= MoverJogador;
     }
-    
+
     void Start()
     {
         gridPosition.UseConstant = true;
-        movePlayer(gridPosition.Value.x, gridPosition.Value.y, 0.1f);
+        movePlayer(gridPosition.Value.x, gridPosition.Value.y, 0.1f, true);
         gridPosition.Value = new Vector2Int(gridPosition.Value.x, gridPosition.Value.y);
         gridPosition.UseConstant = false;   
     }
 
-    void Update()
+    public void Reiniciar(InputAction.CallbackContext context)
     {
-        int gridXantiga = gridPosition.Value.x;
-        int gridYantiga = gridPosition.Value.y;
-        // Checagem de inputs (pode mudar posteriormente para encaixar checagens de diferentes valores poss�veis p/ cada c�lula)
-        // Emitem o evento "moveAttempt" e checam a resposta. Se for diferente de -1 significa que a c�lula desejada � v�lida e o jogador pode andar sobre ela.
-        if (Input.GetKeyDown("right") && moveAttempt?.Invoke(gridPosition.Value.x + 1, gridPosition.Value.y) != -1)
-        {
-            // Se passar na checagem, atualiza as coordenadas atuais do jogador, movendo-o e emitindo o evento responsável por informar que o jogador se moveu.
-            gridPosition.Value = new Vector2Int(gridPosition.Value.x + 1, gridPosition.Value.y);
-            movePlayer(gridXantiga, gridYantiga, 0.5f);
-            playerMoved?.Invoke();
-        }
-        if (Input.GetKeyDown("left") && moveAttempt?.Invoke(gridPosition.Value.x - 1, gridPosition.Value.y) != -1)
-        {
-            gridPosition.Value = new Vector2Int(gridPosition.Value.x - 1, gridPosition.Value.y);
-            movePlayer(gridXantiga, gridYantiga, 0.5f);
-            playerMoved?.Invoke();
-        }
-        if (Input.GetKeyDown("up") && moveAttempt?.Invoke(gridPosition.Value.x, gridPosition.Value.y + 1) != -1)
-        {
-            gridPosition.Value = new Vector2Int(gridPosition.Value.x, gridPosition.Value.y + 1);
-            movePlayer(gridXantiga, gridYantiga, 0.5f);
-            playerMoved?.Invoke();
-        }
-        if (Input.GetKeyDown("down") && moveAttempt?.Invoke(gridPosition.Value.x, gridPosition.Value.y - 1) != -1)
-        {
-            gridPosition.Value = new Vector2Int(gridPosition.Value.x, gridPosition.Value.y - 1);
-            movePlayer(gridXantiga, gridYantiga, 0.5f);
-            playerMoved?.Invoke();
-        }
-        if (Input.GetKeyDown("r"))
-        {
-            gameOver?.Invoke();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-
-        // Checagem do valor da c�lula atual do jogador. Nesse caso, se a c�lula atual tiver valor 1 o teste MSTT é iniciado.
-        if (moveAttempt?.Invoke(gridPosition.Value.x, gridPosition.Value.y) == 1)
-        {
-            // emite o evento avisando que o jogador passou pela porta
-            passouNaPorta?.Invoke();
-            // desabilita o movement controller para que o jogador não possa mais se movimentar
-            this.enabled = false;
-        }
+        gameOver?.Invoke();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    private void movePlayer(int gridXantiga, int gridYantiga, float tempoDeAnimacao)
+    public void MoverJogador(InputAction.CallbackContext context)
+    {
+        Vector2Int vetorMovimentacao = Vector2Int.RoundToInt(context.ReadValue<Vector2>());
+        if (moveAttempt?.Invoke(gridPosition.Value.x + vetorMovimentacao.x, gridPosition.Value.y + vetorMovimentacao.y) != -1)
+        {
+            int gridXantiga = gridPosition.Value.x;
+            int gridYantiga = gridPosition.Value.y;
+
+            gridPosition.Value = gridPosition.Value + vetorMovimentacao;
+            movePlayer(gridXantiga, gridYantiga, 0.5f, false);
+            
+        }
+        
+    }
+
+    private void movePlayer(int gridXantiga, int gridYantiga, float tempoDeAnimacao, bool plataforma)
     {
         Vector3 posicaoAntes = grid.getWorldPosition(gridXantiga, gridYantiga) + Vector3.up * playerHeight;
         Vector3 posicaoDepois = grid.getWorldPosition(gridPosition.Value.x, gridPosition.Value.y) + Vector3.up * playerHeight;
-        movedorPlayer = StartCoroutine(MovedorPlayer(posicaoAntes, posicaoDepois, tempoDeAnimacao));
+        movedorPlayer = StartCoroutine(MovedorPlayer(posicaoAntes, posicaoDepois, tempoDeAnimacao, plataforma));
+    }
+
+    public void PassouNaPorta()
+    {
+        playerInputActions.Player.Disable();
     }
 
     private void OnPlataformMoved(int gridXAntigaPlataforma, int gridYAntigaPlataforma, int gridXNovaPlataforma, int gridYNovaPlataforma)
@@ -113,23 +103,28 @@ public class PlayerMovementController : MonoBehaviour
         {
             gridPosition.Value = new Vector2Int (gridXNovaPlataforma, gridYNovaPlataforma);
 
-            movePlayer(gridXAntigaPlataforma, gridYAntigaPlataforma, 1f);
+            movePlayer(gridXAntigaPlataforma, gridYAntigaPlataforma, 1f, true);
+            Debug.Log("moveu");
         }
     }
 
-    IEnumerator MovedorPlayer(Vector3 posicaoAntes, Vector3 posicaoDepois, float tempoDeAnimacao)
+    IEnumerator MovedorPlayer(Vector3 posicaoAntes, Vector3 posicaoDepois, float tempoDeAnimacao, bool plataforma)
     {
+        playerInputActions.Player.Disable();
         float t = 0;
         float tempoPassado = 0;
         Vector3 posicaoIntermediaria = new Vector3 (0,0,0);
         while (tempoPassado <= tempoDeAnimacao)
         {
             t = tempoPassado / tempoDeAnimacao;
+            t = animCurve.Value.Evaluate(t);
             posicaoIntermediaria = Vector3.Lerp (posicaoAntes, posicaoDepois, t);
             transform.position = posicaoIntermediaria;
             tempoPassado += Time.deltaTime;
             yield return null;
         }
         transform.position = posicaoDepois;
+        if (!plataforma) { playerMoved?.Invoke(); }
+        playerInputActions.Player.Enable();
     }
 }

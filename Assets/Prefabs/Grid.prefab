@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6884312325806956278}
   - component: {fileID: 6884312325806956279}
   - component: {fileID: 6884312325806956273}
+  - component: {fileID: 1126366699151770900}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -50,6 +51,25 @@ MonoBehaviour:
   cellSize: 1
   gridOrigin: {fileID: 0}
   levelText: {fileID: 4900000, guid: 49c0bad6bdc17014c861281bde5ee03a, type: 3}
+  playerPos:
+    UseConstant: 1
+    ConstantValue: {x: 0, y: 0}
+    Variable: {fileID: 0}
+  passouNaPorta:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 6c9e4a6174514804d9ef2c858d48ba99, type: 2}
+        m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6884312325806956273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +89,34 @@ MonoBehaviour:
       - m_Target: {fileID: 6884312325806956279}
         m_TargetAssemblyTypeName: GridController, Assembly-CSharp
         m_MethodName: OnDoorUnlocked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1126366699151770900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6884312325806956276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da61e1895c0a3f341a855d8a769789dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 2ff36affb039ac849aad11018172e161, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6884312325806956279}
+        m_TargetAssemblyTypeName: GridController, Assembly-CSharp
+        m_MethodName: JogadorMoveu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

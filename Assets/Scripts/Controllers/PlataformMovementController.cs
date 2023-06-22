@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 
 public class PlataformMovementController : MonoBehaviour
 {
+    // curva de animacao (deve ser a mesma do jogador p/ nao ficar estranho)
+    public AnimationCurveReference animCurve;
+
     // referencia a grid (dependencia a ser investigada depois)
     [SerializeField] private GridController grid;
 
@@ -32,6 +35,9 @@ public class PlataformMovementController : MonoBehaviour
     // declara o valor que define em Vector3 (nao na grid tendo em vista que por enquanto ela e 2D) a altura plataforma
     [SerializeField] private float altura = 0;
 
+    // posicao do jogador
+    public Vector2Reference playerPos;
+
     Coroutine movedorPlataforma;
 
     // evento emitido ao mover a plataforma, passando as coordenadas antigas e novas no grid como parametro <posicaoXantiga, posicaoYantiga, posicaoXnova, posicaoYnova>
@@ -39,11 +45,11 @@ public class PlataformMovementController : MonoBehaviour
 
     void OnEnable()
     {
-        FilaDeNotas.NotePlayed += OnNotePlayed;
+        GridController.NotePlayed += OnNotePlayed;
     }
     void OnDisable()
     {
-        FilaDeNotas.NotePlayed -= OnNotePlayed;
+        GridController.NotePlayed -= OnNotePlayed;
     }
 
     // Start is called before the first frame update
@@ -141,6 +147,15 @@ public class PlataformMovementController : MonoBehaviour
         tempString = "";
     }
 
+    public void JogadorMoveu()
+    {
+        if (gridX == playerPos.Value.x && gridY == playerPos.Value.y)
+        {
+            OnNotePlayed(notaMexe);
+        }
+        
+    }
+
     private void movePlataforma(int gridXantiga, int gridYantiga, float tempoDeAnimacao) 
     {
         Vector3 posicaoAntes = grid.getWorldPosition(gridXantiga, gridYantiga) + new Vector3 (0 , altura, 0);
@@ -156,6 +171,7 @@ public class PlataformMovementController : MonoBehaviour
         while (tempoPassado <= tempoDeAnimacao)
         {
             t = tempoPassado / tempoDeAnimacao;
+            t = animCurve.Value.Evaluate(t);
             posicaoIntermediaria = Vector3.Lerp (posicaoAntes, posicaoDepois, t);
             transform.position = posicaoIntermediaria;
             tempoPassado += Time.deltaTime;

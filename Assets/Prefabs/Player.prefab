@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7964565096403690880}
   - component: {fileID: 7964565096403690883}
   - component: {fileID: 7964565096403690910}
+  - component: {fileID: 6628409739512821687}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -97,26 +98,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872b4eaae80f99e4eaa60da579f5364e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animCurve:
+    UseConstant: 0
+    ConstantValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    Variable: {fileID: 11400000, guid: d5b3cc0e69470b74c836bfac76f312a2, type: 2}
   playerHeight: 0
   playerMoved:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 2ff36affb039ac849aad11018172e161, type: 2}
-        m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
-        m_MethodName: Raise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  passouNaPorta:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 6c9e4a6174514804d9ef2c858d48ba99, type: 2}
         m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
         m_MethodName: Raise
         m_Mode: 1
@@ -148,6 +143,34 @@ MonoBehaviour:
     ConstantValue: {x: 1, y: 1}
     Variable: {fileID: 11400000, guid: fa895b1f7dc8cee4387ddceac019519b, type: 2}
   grid: {fileID: 0}
+--- !u!114 &6628409739512821687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7964565096403690884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da61e1895c0a3f341a855d8a769789dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 6c9e4a6174514804d9ef2c858d48ba99, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7964565096403690910}
+        m_TargetAssemblyTypeName: PlayerMovementController, Assembly-CSharp
+        m_MethodName: PassouNaPorta
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &7964565096307008508
 PrefabInstance:
   m_ObjectHideFlags: 0
