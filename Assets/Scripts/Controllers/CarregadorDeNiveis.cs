@@ -10,6 +10,17 @@ public class CarregadorDeNiveis : MonoBehaviour
 
     public void jogadorPassouNaPorta()
     {
+        StartCoroutine(Espera(1)); 
+    }
+
+    public void carregarProximaCena()
+    {
+        SceneManager.LoadScene(proximaCena.name.ToString());
+    }
+
+    IEnumerator Espera(int tempo)
+    {
+        yield return new WaitForSeconds(tempo);
         if (MSTT != null)
         {
             MSTT.SetActive(true);
@@ -17,11 +28,6 @@ public class CarregadorDeNiveis : MonoBehaviour
         else
         {
             carregarProximaCena();
-        }      
-    }
-
-    public void carregarProximaCena()
-    {
-        SceneManager.LoadScene(proximaCena.name.ToString());
+        }
     }
 }

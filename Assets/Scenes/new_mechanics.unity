@@ -735,7 +735,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1160867718}
   - component: {fileID: 1160867717}
+  - component: {fileID: 1160867720}
   - component: {fileID: 1160867716}
+  - component: {fileID: 1160867719}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -809,6 +811,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1160867719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160867715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da61e1895c0a3f341a855d8a769789dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 6c9e4a6174514804d9ef2c858d48ba99, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1160867720}
+        m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
+        m_MethodName: preMSTTMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: CameraController.preMSTTMove
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1160867720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160867715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 328a65869271e1847af1dd61ba0c656a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animCurve:
+    UseConstant: 0
+    ConstantValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    Variable: {fileID: 11400000, guid: d5b3cc0e69470b74c836bfac76f312a2, type: 2}
 --- !u!1001 &1299698299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -835,6 +886,10 @@ PrefabInstance:
     - target: {fileID: 2778509058882221576, guid: ca96f7ce6f75e304bb16749fe96493f2, type: 3}
       propertyPath: posicoesDaPlataforma
       value: 3,1 2,1#
+      objectReference: {fileID: 0}
+    - target: {fileID: 2778509058882221576, guid: ca96f7ce6f75e304bb16749fe96493f2, type: 3}
+      propertyPath: animCurve.UseConstant
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2778509058882221576, guid: ca96f7ce6f75e304bb16749fe96493f2, type: 3}
       propertyPath: playerPos.UseConstant
@@ -1303,6 +1358,10 @@ PrefabInstance:
     - target: {fileID: 7964565096403690881, guid: 6a2edae267d56744f94356f31b55d577, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7964565096403690884, guid: 6a2edae267d56744f94356f31b55d577, type: 3}
+      propertyPath: m_Icon
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7964565096403690884, guid: 6a2edae267d56744f94356f31b55d577, type: 3}
       propertyPath: m_Name
