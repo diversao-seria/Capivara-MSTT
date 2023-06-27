@@ -52,9 +52,9 @@ MonoBehaviour:
   gridOrigin: {fileID: 0}
   levelText: {fileID: 4900000, guid: 49c0bad6bdc17014c861281bde5ee03a, type: 3}
   playerPos:
-    UseConstant: 1
+    UseConstant: 0
     ConstantValue: {x: 0, y: 0}
-    Variable: {fileID: 0}
+    Variable: {fileID: 11400000, guid: fa895b1f7dc8cee4387ddceac019519b, type: 2}
   passouNaPorta:
     m_PersistentCalls:
       m_Calls:

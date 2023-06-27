@@ -79,10 +79,20 @@ public class PlayerMovementController : MonoBehaviour
             int gridYantiga = gridPosition.Value.y;
 
             gridPosition.Value = gridPosition.Value + vetorMovimentacao;
-            movePlayer(gridXantiga, gridYantiga, 0.5f, false);
+            movePlayer(gridXantiga, gridYantiga, .5f, false);
             
         }
         
+    }
+    
+    private void OnPlataformMoved(int gridXAntigaPlataforma, int gridYAntigaPlataforma, int gridXNovaPlataforma, int gridYNovaPlataforma)
+    {
+        if (gridPosition.Value.x == gridXAntigaPlataforma && gridPosition.Value.y == gridYAntigaPlataforma)
+        {
+            gridPosition.Value = new Vector2Int (gridXNovaPlataforma, gridYNovaPlataforma);
+
+            movePlayer(gridXAntigaPlataforma, gridYAntigaPlataforma, 1f, true);
+        }
     }
 
     private void movePlayer(int gridXantiga, int gridYantiga, float tempoDeAnimacao, bool plataforma)
@@ -97,16 +107,6 @@ public class PlayerMovementController : MonoBehaviour
         playerInputActions.Player.Disable();
     }
 
-    private void OnPlataformMoved(int gridXAntigaPlataforma, int gridYAntigaPlataforma, int gridXNovaPlataforma, int gridYNovaPlataforma)
-    {
-        if (gridPosition.Value.x == gridXAntigaPlataforma && gridPosition.Value.y == gridYAntigaPlataforma)
-        {
-            gridPosition.Value = new Vector2Int (gridXNovaPlataforma, gridYNovaPlataforma);
-
-            movePlayer(gridXAntigaPlataforma, gridYAntigaPlataforma, 1f, true);
-            Debug.Log("moveu");
-        }
-    }
 
     IEnumerator MovedorPlayer(Vector3 posicaoAntes, Vector3 posicaoDepois, float tempoDeAnimacao, bool plataforma)
     {

@@ -37,7 +37,7 @@ public class GridController : MonoBehaviour
         // remove o evento moveAttempt do GridController (importante p/ evitar memory leaks)
         PlayerMovementController.moveAttempt -= returnValue;
 
-        PlataformMovementController.PlataformMoved -= OnPlataformMoved;  // Se inscreve ao evento (action) PlataformMoved, essa action passa as coordenadas antigas e novas no grid como parametro <posicaoXantiga, posicaoYantiga, posicaoXnova, posicaoYnova>
+        PlataformMovementController.PlataformMoved -= OnPlataformMoved;  // Se desinscreve ao evento (action) PlataformMoved, essa action passa as coordenadas antigas e novas no grid como parametro <posicaoXantiga, posicaoYantiga, posicaoXnova, posicaoYnova>
 
     }
 
