@@ -6,28 +6,28 @@ using UnityEngine.SceneManagement;
 public class CarregadorDeNiveis : MonoBehaviour
 {
     public GameObject MSTT;
-    public Object proximaCena;
+    public string proximaCena;
 
     public void jogadorPassouNaPorta()
     {
-        StartCoroutine(Espera(1)); 
-    }
-
-    public void carregarProximaCena()
-    {
-        SceneManager.LoadScene(proximaCena.name.ToString());
-    }
-
-    IEnumerator Espera(int tempo)
-    {
-        yield return new WaitForSeconds(tempo);
         if (MSTT != null)
         {
-            MSTT.SetActive(true);
+            StartCoroutine(Espera(1));
         }
         else
         {
             carregarProximaCena();
         }
+    }
+
+    public void carregarProximaCena()
+    {
+        SceneManager.LoadScene(proximaCena);
+    }
+
+    IEnumerator Espera(int tempo)
+    {
+        yield return new WaitForSeconds(tempo);
+        MSTT.SetActive(true);
     }
 }

@@ -372,6 +372,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6106047741568308181, guid: 99d335176880b164c96336106cb37fb6, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6106047741984649177, guid: 99d335176880b164c96336106cb37fb6, type: 3}
       propertyPath: fonteSom
       value: 
@@ -593,6 +597,10 @@ PrefabInstance:
       propertyPath: MSTT
       value: 
       objectReference: {fileID: 1044451806}
+    - target: {fileID: 6015395516740833136, guid: e24a163f7cdb99e49a9048c8565ee698, type: 3}
+      propertyPath: proximaCena
+      value: new_mechanics
+      objectReference: {fileID: 0}
     - target: {fileID: 6015395516740833138, guid: e24a163f7cdb99e49a9048c8565ee698, type: 3}
       propertyPath: m_Name
       value: CarregadorDeNiveis

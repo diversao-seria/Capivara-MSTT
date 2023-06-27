@@ -36,14 +36,18 @@ public class CameraController : MonoBehaviour
         float t = 0;
         float tempoPassado = 0;
         Vector3 posicaoIntermediaria = new Vector3 (0,0,0);
+        Quaternion rotacaoIntermediaria = new Quaternion(0, 0, 0, 0);
         while (tempoPassado <= tempoDeAnimacao)
         {
             t = tempoPassado / tempoDeAnimacao;
             t = animCurve.Value.Evaluate(t);
             posicaoIntermediaria = Vector3.Lerp (posicaoAntes, posicaoDepois, t);
             transform.position = posicaoIntermediaria;
+            rotacaoIntermediaria = Quaternion.Lerp(new Quaternion(0.9f, 0, 0, 1), new Quaternion(0, 0, 0, 1), t);
+            transform.rotation = rotacaoIntermediaria;
             tempoPassado += Time.deltaTime;
-            transform.Rotate(-0.1f, 0, 0, Space.Self);
+            
+            Debug.Log(transform.rotation);
             yield return null;
         }
         transform.position = posicaoDepois;

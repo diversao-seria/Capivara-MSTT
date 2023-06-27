@@ -79,7 +79,7 @@ public class PlayerMovementController : MonoBehaviour
             int gridYantiga = gridPosition.Value.y;
 
             gridPosition.Value = gridPosition.Value + vetorMovimentacao;
-            movePlayer(gridXantiga, gridYantiga, .5f, false);
+            movePlayer(gridXantiga, gridYantiga, 0.5f, false);
             
         }
         
