@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class MSTTManager : MonoBehaviour
 {
@@ -18,16 +19,55 @@ public class MSTTManager : MonoBehaviour
     public AudioSource fonteSom;
     public Button soundButton, oButton, iButton;
 
+    [SerializeField] private Sprite spriteAcerto, spriteErro;
+    [SerializeField] private Image spriteFeedback;
+
     public GameObject exit;
+
+    [SerializeField] private bool MSTTAleatorio = true;
+    [SerializeField] private List<string> sequenciasMSTT = new List<string>();
+
+    [SerializeField] private int quantidadeTestes = 1;
+
+    // referencia p/ as acoes do jogador (novo input system)
+    PlayerInputActions playerInputActions;
+
+    private void Awake()
+    {
+        playerInputActions = new PlayerInputActions();
+    }
 
     void OnEnable()
     {
-        string s = RandomString();
+        string s;
+        if (!MSTTAleatorio)
+        {
+            s = sequenciasMSTT[0];
+            quantidadeTestes = sequenciasMSTT.Count;
+        }
+        else
+        {
+            s = RandomString();
+        }
+        
         Debug.Log("Enable");
         PlayerPrefs.SetString("sequence", s);
-        PlaySound();
+
+        playerInputActions.MSTT.InputI.performed += IInput;
+        playerInputActions.MSTT.InputO.performed += OInput;
     }
 
+    void OnDisable()
+    {
+        playerInputActions.MSTT.InputI.performed -= IInput;
+        playerInputActions.MSTT.InputO.performed -= OInput;
+    }
+
+    void Start()
+    {       
+
+        PlaySound();
+    }
     
     // Update is called once per frame
     void Update()
@@ -57,20 +97,19 @@ public class MSTTManager : MonoBehaviour
         resposta += 'I';
     }
 
+    public void OInput(InputAction.CallbackContext context)
+    {
+        OButton();
+    }
+
+    public void IInput(InputAction.CallbackContext context)
+    {
+        IButton();
+    }
+
     public void Confirma()
     {
-        if(resposta.Equals(s))
-        {
-            Debug.Log("Acertou");
-            // this.transform.parent.gameObject.SetActive(false);
-            // exit.SetActive(true);
-            msttSucesso?.Invoke();
-
-        }
-        else
-        {
-            Debug.Log("Errou");
-        }
+        StartCoroutine(FeedbackCoroutine());
     }
 
     public void Cancela()
@@ -80,6 +119,7 @@ public class MSTTManager : MonoBehaviour
 
     public void PlaySound()
     {
+        playerInputActions.MSTT.Disable();
         s = PlayerPrefs.GetString("sequence");
         Debug.Log(s);
         StartCoroutine(PlaySoundCoroutine());
@@ -87,6 +127,8 @@ public class MSTTManager : MonoBehaviour
 
     IEnumerator PlaySoundCoroutine()
     {
+        oButton.interactable = false;
+        iButton.interactable = false;
         for (int i = 0; i < s.Length; i++)
         {
             if(s[i] == 'I')
@@ -101,15 +143,56 @@ public class MSTTManager : MonoBehaviour
             fonteSom.Play();
             yield return new WaitForSeconds(0.682f);
         }
-        yield return new WaitForSeconds(0.682f * 4);
+        yield return new WaitForSeconds(0.682f * s.Length);
+        playerInputActions.MSTT.Enable();
         oButton.interactable = true;
         iButton.interactable = true;
     }
 
+    IEnumerator FeedbackCoroutine()
+    {
+        spriteFeedback.enabled = true;
+
+        if (resposta.Equals(s))
+        {
+            spriteFeedback.sprite = spriteAcerto;
+            yield return new WaitForSeconds(2f);
+            Debug.Log("Acertou");
+
+
+            if (quantidadeTestes <= 1)
+            {
+                msttSucesso?.Invoke();
+                yield break;
+            }
+            else if (MSTTAleatorio)
+            {
+                s = RandomString();               
+                quantidadeTestes -= 1;
+            }
+            else
+            {
+                sequenciasMSTT.RemoveAt(0);
+                s = sequenciasMSTT[0];
+                quantidadeTestes = sequenciasMSTT.Count;
+            }
+            PlayerPrefs.SetString("sequence", s);
+
+        }
+        else
+        {
+            spriteFeedback.sprite = spriteErro;
+            yield return new WaitForSeconds(2f);
+        }
+        
+        spriteFeedback.enabled = false;
+        Cancela();
+        PlaySound();
+    }
+
     public void CloseButton()
     {
-        // this.transform.parent.gameObject.SetActive(false);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }

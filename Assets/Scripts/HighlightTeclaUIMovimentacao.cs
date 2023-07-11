@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class HighlitTeclaUI : MonoBehaviour
+public class HighlightTeclaUIMovimentacao : MonoBehaviour
 {
     public Sprite normal, highlight;
     private Image image;

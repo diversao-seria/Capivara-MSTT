@@ -114,6 +114,54 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""MSTT"",
+            ""id"": ""e1cb488c-842c-4e64-a846-0a109337e035"",
+            ""actions"": [
+                {
+                    ""name"": ""InputO"",
+                    ""type"": ""Button"",
+                    ""id"": ""cb25f573-3900-416c-a5bf-e21f93a68b0e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""InputI"",
+                    ""type"": ""Button"",
+                    ""id"": ""347dec6f-e6f1-415f-a607-646416d0c20f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""cf3545fd-6380-43c6-838a-55ec7027805a"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InputO"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""13567281-98bd-4b6b-baf7-3b024f7090c1"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InputI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -134,6 +182,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Reiniciar = m_Player.FindAction("Reiniciar", throwIfNotFound: true);
         m_Player_Movimentacao = m_Player.FindAction("Movimentacao", throwIfNotFound: true);
+        // MSTT
+        m_MSTT = asset.FindActionMap("MSTT", throwIfNotFound: true);
+        m_MSTT_InputO = m_MSTT.FindAction("InputO", throwIfNotFound: true);
+        m_MSTT_InputI = m_MSTT.FindAction("InputI", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -245,6 +297,60 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // MSTT
+    private readonly InputActionMap m_MSTT;
+    private List<IMSTTActions> m_MSTTActionsCallbackInterfaces = new List<IMSTTActions>();
+    private readonly InputAction m_MSTT_InputO;
+    private readonly InputAction m_MSTT_InputI;
+    public struct MSTTActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public MSTTActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @InputO => m_Wrapper.m_MSTT_InputO;
+        public InputAction @InputI => m_Wrapper.m_MSTT_InputI;
+        public InputActionMap Get() { return m_Wrapper.m_MSTT; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MSTTActions set) { return set.Get(); }
+        public void AddCallbacks(IMSTTActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MSTTActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MSTTActionsCallbackInterfaces.Add(instance);
+            @InputO.started += instance.OnInputO;
+            @InputO.performed += instance.OnInputO;
+            @InputO.canceled += instance.OnInputO;
+            @InputI.started += instance.OnInputI;
+            @InputI.performed += instance.OnInputI;
+            @InputI.canceled += instance.OnInputI;
+        }
+
+        private void UnregisterCallbacks(IMSTTActions instance)
+        {
+            @InputO.started -= instance.OnInputO;
+            @InputO.performed -= instance.OnInputO;
+            @InputO.canceled -= instance.OnInputO;
+            @InputI.started -= instance.OnInputI;
+            @InputI.performed -= instance.OnInputI;
+            @InputI.canceled -= instance.OnInputI;
+        }
+
+        public void RemoveCallbacks(IMSTTActions instance)
+        {
+            if (m_Wrapper.m_MSTTActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMSTTActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MSTTActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MSTTActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MSTTActions @MSTT => new MSTTActions(this);
     private int m_NewcontrolschemeSchemeIndex = -1;
     public InputControlScheme NewcontrolschemeScheme
     {
@@ -258,5 +364,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         void OnReiniciar(InputAction.CallbackContext context);
         void OnMovimentacao(InputAction.CallbackContext context);
+    }
+    public interface IMSTTActions
+    {
+        void OnInputO(InputAction.CallbackContext context);
+        void OnInputI(InputAction.CallbackContext context);
     }
 }

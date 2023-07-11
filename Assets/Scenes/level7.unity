@@ -1088,6 +1088,10 @@ PrefabInstance:
       propertyPath: MSTT
       value: 
       objectReference: {fileID: 2127368925}
+    - target: {fileID: 6015395516740833136, guid: e24a163f7cdb99e49a9048c8565ee698, type: 3}
+      propertyPath: proximaCena
+      value: Level1
+      objectReference: {fileID: 0}
     - target: {fileID: 6015395516740833138, guid: e24a163f7cdb99e49a9048c8565ee698, type: 3}
       propertyPath: m_Name
       value: CarregadorDeNiveis
