@@ -29,6 +29,8 @@ public class MSTTManager : MonoBehaviour
 
     [SerializeField] private int quantidadeTestes = 1;
 
+    public UnityEvent ultimoMSTT;
+
     // referencia p/ as acoes do jogador (novo input system)
     PlayerInputActions playerInputActions;
 
@@ -119,6 +121,7 @@ public class MSTTManager : MonoBehaviour
 
     public void PlaySound()
     {
+        StartCoroutine(DelayDoInicio());
         playerInputActions.MSTT.Disable();
         s = PlayerPrefs.GetString("sequence");
         Debug.Log(s);
@@ -185,6 +188,10 @@ public class MSTTManager : MonoBehaviour
             yield return new WaitForSeconds(2f);
         }
         
+        if (quantidadeTestes == 2)
+        {
+            ultimoMSTT?.Invoke();
+        }
         spriteFeedback.enabled = false;
         Cancela();
         PlaySound();
@@ -193,6 +200,11 @@ public class MSTTManager : MonoBehaviour
     public void CloseButton()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    IEnumerator DelayDoInicio()
+    {
+        yield return new WaitForSeconds(1f);
     }
 
 }

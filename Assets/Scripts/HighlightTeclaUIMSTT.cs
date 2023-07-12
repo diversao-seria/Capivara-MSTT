@@ -42,7 +42,6 @@ public class HighlightTeclaUIMSTT : MonoBehaviour
 
     public void TeclaPressionada(InputAction.CallbackContext context)
     {
-        Debug.Log(context);
         if ("Key:/Keyboard/" + tecla == context.control.ToString())
         {
             image.sprite = highlight;
@@ -55,5 +54,10 @@ public class HighlightTeclaUIMSTT : MonoBehaviour
         {
             image.sprite = normal;
         }
+    }
+
+    public void ApagarPrompt()
+    {
+        Destroy(gameObject);
     }
 }

@@ -487,6 +487,34 @@ MonoBehaviour:
   normal: {fileID: 21300000, guid: 89d60c434d615bc4795a718522ee8f9d, type: 3}
   highlight: {fileID: 21300000, guid: 561dd0d7e500d70418e4bdaf67c773f5, type: 3}
   tecla: o
+--- !u!114 &1115993654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115993648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da61e1895c0a3f341a855d8a769789dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: d9e233206c1f7994e84e5c156f544d1a, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1115993653}
+        m_TargetAssemblyTypeName: HighlightTeclaUIMSTT, Assembly-CSharp
+        m_MethodName: ApagarPrompt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1120464882
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,7 +810,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6106047741530534261, guid: 99d335176880b164c96336106cb37fb6, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6106047741530534262, guid: 99d335176880b164c96336106cb37fb6, type: 3}
       propertyPath: m_RootOrder
@@ -836,6 +864,62 @@ PrefabInstance:
       propertyPath: fonteSom
       value: 
       objectReference: {fileID: 795933342}
+    - target: {fileID: 6106047741984649177, guid: 99d335176880b164c96336106cb37fb6, type: 3}
+      propertyPath: MSTTAleatorio
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106047741984649177, guid: 99d335176880b164c96336106cb37fb6, type: 3}
+      propertyPath: quantidadeTestes
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106047741984649177, guid: 99d335176880b164c96336106cb37fb6, type: 3}
+      propertyPath: sequenciasMSTT.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106047741984649177, guid: 99d335176880b164c96336106cb37fb6, type: 3}
+      propertyPath: sequenciasMSTT.Array.data[0]
+      value: OO
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106047741984649177, guid: 99d335176880b164c96336106cb37fb6, type: 3}
+      propertyPath: sequenciasMSTT.Array.data[1]
+      value: II
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106047741984649177, guid: 99d335176880b164c96336106cb37fb6, type: 3}
+      propertyPath: sequenciasMSTT.Array.data[2]
+      value: IOI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106047741984649177, guid: 99d335176880b164c96336106cb37fb6, type: 3}
+      propertyPath: sequenciasMSTT.Array.data[3]
+      value: OIIO
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106047741984649177, guid: 99d335176880b164c96336106cb37fb6, type: 3}
+      propertyPath: ultimoMSTT.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106047741984649177, guid: 99d335176880b164c96336106cb37fb6, type: 3}
+      propertyPath: ultimoMSTT.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106047741984649177, guid: 99d335176880b164c96336106cb37fb6, type: 3}
+      propertyPath: ultimoMSTT.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: d9e233206c1f7994e84e5c156f544d1a, type: 2}
+    - target: {fileID: 6106047741984649177, guid: 99d335176880b164c96336106cb37fb6, type: 3}
+      propertyPath: ultimoMSTT.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106047741984649177, guid: 99d335176880b164c96336106cb37fb6, type: 3}
+      propertyPath: ultimoMSTT.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Raise
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106047741984649177, guid: 99d335176880b164c96336106cb37fb6, type: 3}
+      propertyPath: ultimoMSTT.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameEvent, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106047741984649177, guid: 99d335176880b164c96336106cb37fb6, type: 3}
+      propertyPath: ultimoMSTT.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99d335176880b164c96336106cb37fb6, type: 3}
 --- !u!224 &1618302146 stripped
@@ -985,6 +1069,34 @@ MonoBehaviour:
   normal: {fileID: 21300000, guid: e43548251d4a50048a814d2a29278614, type: 3}
   highlight: {fileID: 21300000, guid: 017e8dab7cb4fbd439cfab2cad326fc1, type: 3}
   tecla: i
+--- !u!114 &1767526058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767526052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da61e1895c0a3f341a855d8a769789dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: d9e233206c1f7994e84e5c156f544d1a, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1767526057}
+        m_TargetAssemblyTypeName: HighlightTeclaUIMSTT, Assembly-CSharp
+        m_MethodName: ApagarPrompt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1800444773
 PrefabInstance:
   m_ObjectHideFlags: 0
