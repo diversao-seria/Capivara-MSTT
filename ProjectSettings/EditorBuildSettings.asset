@@ -26,13 +26,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/level5.unity
     guid: 08736c321c56fde4d87927f7b65c94e0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/level6.unity
     guid: 9b1ae60932f139c41914f47aebb73efb
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/level7.unity
     guid: 9196b18d782b74e489ed251a35b21b79
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/new_mechanics.unity
     guid: d17c4d62816cf9e42a22cb8df523b603
   m_configObjects: {}
