@@ -7,6 +7,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Threading;
 
 public class PlayerMovementController : MonoBehaviour
 {
@@ -31,10 +34,17 @@ public class PlayerMovementController : MonoBehaviour
     // evento que retorna o valor armazenado em uma c�lula (X, Y) da grid (usado para checar se a casa p/ onde o jogador est� tentando se mover � v�lida ou n�o. Recebe como par�metros dois inteiros (coordenadas X e Y) e retorna um inteiro (valor guardado na c�lula (X, Y) da grid.))
     public static Func<int, int, int> moveAttempt;
 
-    Coroutine movedorPlayer;
-
     // referencia p/ as acoes do jogador (novo input system)
     PlayerInputActions playerInputActions;
+
+    // checa se o jogador está se movendo
+    private bool movendo = false;
+
+    // Lista dos inputs
+    private List<Vector2Int> listaInputsMovimentacao = new List<Vector2Int>();
+
+    // Token p/ cancelar a função async "MovedorPlayer"
+    CancellationTokenSource tks = null;
 
     private void Awake()
     {
@@ -44,7 +54,7 @@ public class PlayerMovementController : MonoBehaviour
 
     void OnEnable()
     {
-        PlataformMovementController.PlataformMoved += OnPlataformMoved;  //Se inscreve ao evento (action) PlataformMoved, essa action passa as coordenadas antigas e novas no grid como parametro <posicaoXantiga, posicaoYantiga, posicaoXnova, posicaoYnova>
+        PlataformMovementController.PlataformMoved += OnPlataformMoved;  // Se inscreve ao evento (action) PlataformMoved, essa action passa as coordenadas antigas e novas no grid como parametro <posicaoXantiga, posicaoYantiga, posicaoXnova, posicaoYnova>
         playerInputActions.Player.Reiniciar.performed += Reiniciar;
         playerInputActions.Player.Movimentacao.performed += MoverJogador;
     }
@@ -54,52 +64,84 @@ public class PlayerMovementController : MonoBehaviour
         PlataformMovementController.PlataformMoved -= OnPlataformMoved;
         playerInputActions.Player.Reiniciar.performed -= Reiniciar;
         playerInputActions.Player.Movimentacao.performed -= MoverJogador;
+        // tks.Dispose();
     }
 
     void Start()
     {
         gridPosition.UseConstant = true;
-        movePlayer(gridPosition.Value.x, gridPosition.Value.y, 0.1f, true);
+        // movePlayer(new Vector2Int(gridPosition.Value.x, gridPosition.Value.y), 0.1f, true);
         gridPosition.Value = new Vector2Int(gridPosition.Value.x, gridPosition.Value.y);
-        gridPosition.UseConstant = false;   
+        transform.position = grid.getWorldPosition(gridPosition.Value.x, gridPosition.Value.y);
+        gridPosition.UseConstant = false;
     }
 
     public void Reiniciar(InputAction.CallbackContext context)
     {
         gameOver?.Invoke();
+    }
+
+    public void FimDeJogo()
+    {
+        tks.Cancel();
+        tks.Dispose();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void MoverJogador(InputAction.CallbackContext context)
     {
         Vector2Int vetorMovimentacao = Vector2Int.RoundToInt(context.ReadValue<Vector2>());
-        if (moveAttempt?.Invoke(gridPosition.Value.x + vetorMovimentacao.x, gridPosition.Value.y + vetorMovimentacao.y) != -1)
-        {
-            int gridXantiga = gridPosition.Value.x;
-            int gridYantiga = gridPosition.Value.y;
 
-            gridPosition.Value = gridPosition.Value + vetorMovimentacao;
-            movePlayer(gridXantiga, gridYantiga, 0.5f, false);
-            
+        Vector2Int somaListaInputs = listaInputsMovimentacao.Aggregate(new Vector2Int(0, 0), (s, v) => s + v) + vetorMovimentacao;
+
+        int? casa = moveAttempt?.Invoke(gridPosition.Value.x + somaListaInputs.x, gridPosition.Value.y + somaListaInputs.y);
+
+        if (movendo)
+        {
+            if (casa != -1 && casa != 2)
+            {
+                AdicionarInput(vetorMovimentacao);
+            }
         }
-        
+        else if (casa != -1)
+        {
+            AdicionarInput(vetorMovimentacao);
+            movePlayer((new Vector2Int(gridPosition.Value.x + vetorMovimentacao.x, gridPosition.Value.y + vetorMovimentacao.y)), 0.5f, false);
+        }               
     }
     
     private void OnPlataformMoved(int gridXAntigaPlataforma, int gridYAntigaPlataforma, int gridXNovaPlataforma, int gridYNovaPlataforma)
-    {
+    {        
         if (gridPosition.Value.x == gridXAntigaPlataforma && gridPosition.Value.y == gridYAntigaPlataforma)
         {
             gridPosition.Value = new Vector2Int (gridXNovaPlataforma, gridYNovaPlataforma);
 
-            movePlayer(gridXAntigaPlataforma, gridYAntigaPlataforma, 1f, true);
+            listaInputsMovimentacao.Clear();
+            movendo = true;
+            movePlayer(new Vector2Int(gridXNovaPlataforma, gridYNovaPlataforma), 1f, true);
         }
     }
 
-    private void movePlayer(int gridXantiga, int gridYantiga, float tempoDeAnimacao, bool plataforma)
+    private async void movePlayer(Vector2Int novasCoordenadas, float tempoDeAnimacao, bool plataforma)
     {
-        Vector3 posicaoAntes = grid.getWorldPosition(gridXantiga, gridYantiga) + Vector3.up * playerHeight;
-        Vector3 posicaoDepois = grid.getWorldPosition(gridPosition.Value.x, gridPosition.Value.y) + Vector3.up * playerHeight;
-        movedorPlayer = StartCoroutine(MovedorPlayer(posicaoAntes, posicaoDepois, tempoDeAnimacao, plataforma));
+        tks = new CancellationTokenSource();
+        var token = tks.Token;
+
+        Vector3 posicaoAntes = transform.position;
+        Vector3 posicaoDepois = grid.getWorldPosition(novasCoordenadas.x, novasCoordenadas.y) + Vector3.up * playerHeight;
+        if (plataforma) { playerInputActions.Player.Disable(); }
+
+        await MovedorPlayer(posicaoAntes, posicaoDepois, tempoDeAnimacao, plataforma, token);
+
+        if (!plataforma)
+        {
+            FinalizarMovimentacao();
+        }
+        else
+        {
+            listaInputsMovimentacao.Clear();
+            playerInputActions.Player.Enable();
+        }
     }
 
     public void PassouNaPorta()
@@ -107,24 +149,47 @@ public class PlayerMovementController : MonoBehaviour
         playerInputActions.Player.Disable();
     }
 
-
-    IEnumerator MovedorPlayer(Vector3 posicaoAntes, Vector3 posicaoDepois, float tempoDeAnimacao, bool plataforma)
+    private async Task MovedorPlayer(Vector3 posicaoAntes, Vector3 posicaoDepois, float tempoDeAnimacao, bool plataforma, CancellationToken token)
     {
-        playerInputActions.Player.Disable();
+        movendo = true;
         float t = 0;
         float tempoPassado = 0;
-        Vector3 posicaoIntermediaria = new Vector3 (0,0,0);
+        Vector3 posicaoIntermediaria = new Vector3(0, 0, 0);
         while (tempoPassado <= tempoDeAnimacao)
         {
             t = tempoPassado / tempoDeAnimacao;
             t = animCurve.Value.Evaluate(t);
-            posicaoIntermediaria = Vector3.Lerp (posicaoAntes, posicaoDepois, t);
+            posicaoIntermediaria = Vector3.Lerp(posicaoAntes, posicaoDepois, t);
             transform.position = posicaoIntermediaria;
             tempoPassado += Time.deltaTime;
-            yield return null;
+            await Task.Yield();
+
+            if (token.IsCancellationRequested)
+            {
+                return;
+            }
         }
-        transform.position = posicaoDepois;
-        if (!plataforma) { playerMoved?.Invoke(); }
-        playerInputActions.Player.Enable();
+        transform.position = posicaoDepois; 
+    }
+
+    private void AdicionarInput(Vector2Int input)
+    {
+        if (listaInputsMovimentacao.Count < 2)
+        {
+            listaInputsMovimentacao.Add(input);
+        }
+    }
+
+    private void FinalizarMovimentacao()
+    {
+        gridPosition.Value = gridPosition.Value + listaInputsMovimentacao[0];
+        listaInputsMovimentacao.RemoveAt(0);
+        playerMoved?.Invoke();
+        if (listaInputsMovimentacao.Count > 0) 
+        {
+            movePlayer(gridPosition.Value + listaInputsMovimentacao[0], 0.5f, false);
+            return;
+        }
+        movendo = false;
     }
 }
