@@ -64,13 +64,11 @@ public class PlayerMovementController : MonoBehaviour
         PlataformMovementController.PlataformMoved -= OnPlataformMoved;
         playerInputActions.Player.Reiniciar.performed -= Reiniciar;
         playerInputActions.Player.Movimentacao.performed -= MoverJogador;
-        // tks.Dispose();
     }
 
     void Start()
     {
         gridPosition.UseConstant = true;
-        // movePlayer(new Vector2Int(gridPosition.Value.x, gridPosition.Value.y), 0.1f, true);
         gridPosition.Value = new Vector2Int(gridPosition.Value.x, gridPosition.Value.y);
         transform.position = grid.getWorldPosition(gridPosition.Value.x, gridPosition.Value.y);
         gridPosition.UseConstant = false;
@@ -83,8 +81,12 @@ public class PlayerMovementController : MonoBehaviour
 
     public void FimDeJogo()
     {
+        // Cancela a função async MovedorPlayer
         tks.Cancel();
+
+        // Se livra do token
         tks.Dispose();
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -92,8 +94,10 @@ public class PlayerMovementController : MonoBehaviour
     {
         Vector2Int vetorMovimentacao = Vector2Int.RoundToInt(context.ReadValue<Vector2>());
 
+        // soma de todos os inputs armazenados no buffer
         Vector2Int somaListaInputs = listaInputsMovimentacao.Aggregate(new Vector2Int(0, 0), (s, v) => s + v) + vetorMovimentacao;
 
+        // recebe o valor correspondente à casa do próximo input
         int? casa = moveAttempt?.Invoke(gridPosition.Value.x + somaListaInputs.x, gridPosition.Value.y + somaListaInputs.y);
 
         if (movendo)
