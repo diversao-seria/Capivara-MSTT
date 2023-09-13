@@ -9,7 +9,6 @@ using UnityEngine.InputSystem;
 public class MSTTManager : MonoBehaviour
 {
     public UnityEvent msttSucesso;
-
     private string s = "";
     public string resposta = "";
     public TMPro.TextMeshProUGUI textDisplay;
@@ -30,6 +29,9 @@ public class MSTTManager : MonoBehaviour
     [SerializeField] private int quantidadeTestes = 1;
 
     public UnityEvent ultimoMSTT;
+
+    // evento que sinaliza o fim da sequência de sons do mstt
+    public UnityEvent somParou;
 
     // referencia p/ as acoes do jogador (novo input system)
     PlayerInputActions playerInputActions;
@@ -66,8 +68,7 @@ public class MSTTManager : MonoBehaviour
     }
 
     void Start()
-    {       
-
+    {         
         PlaySound();
     }
     
@@ -150,6 +151,8 @@ public class MSTTManager : MonoBehaviour
         playerInputActions.MSTT.Enable();
         oButton.interactable = true;
         iButton.interactable = true;
+
+        somParou?.Invoke();
     }
 
     IEnumerator FeedbackCoroutine()

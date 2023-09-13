@@ -755,7 +755,7 @@ PrefabInstance:
       objectReference: {fileID: 8142566}
     - target: {fileID: 7964565096403690910, guid: 6a2edae267d56744f94356f31b55d577, type: 3}
       propertyPath: gridPosition.ConstantValue.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7964565096403690910, guid: 6a2edae267d56744f94356f31b55d577, type: 3}
       propertyPath: gridPosition.ConstantValue.y
