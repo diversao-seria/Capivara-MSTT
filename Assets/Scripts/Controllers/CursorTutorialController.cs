@@ -18,6 +18,9 @@ public class CursorTutorialController : MonoBehaviour
 
     public void SomTerminou()
     {
+
+        // teste de commit no git do lab
+
         if (posicoesFinais.Count > 0)
         {
             // StartCoroutine(TimerTutorial());
@@ -43,7 +46,7 @@ public class CursorTutorialController : MonoBehaviour
         else
         {
             // decidir se devo continuar ou interromper o tutorial após o clique
-            // posicaoAtual++;
+            posicaoAtual++;
             tempoAtual = esperaCursor;
         }    
     }
@@ -55,6 +58,7 @@ public class CursorTutorialController : MonoBehaviour
         posicaoAtual = 0;
         tempoAtual = esperaCursor;
         timerRodando = true;
+        Debug.Log(posicaoAtual);
     }
 
 
