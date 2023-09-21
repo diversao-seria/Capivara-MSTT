@@ -12,32 +12,72 @@ public class CursorTutorialController : MonoBehaviour
     [SerializeField] private AnimationCurveReference animCurve;
     [SerializeField] private Image componenteImagem;
     private bool spriteAtualClique = false;
-
+    private bool timerRodando = true;
+    private float tempoAtual;
+    private int posicaoAtual = 0;
 
     public void SomTerminou()
     {
         if (posicoesFinais.Count > 0)
         {
-            StartCoroutine(TimerTutorial());
+            // StartCoroutine(TimerTutorial());
+            Debug.Log("Sicke :P");
         } 
     }
 
     public void ClicouNaInterface()
     {
         StopAllCoroutines();
-        //StopCoroutine(MoveCursor());
-        // StopCoroutine(PiscarCursor());
-        posicoesFinais.RemoveAt(0);
-        if (posicoesFinais.Count > 0)
+        
+        if (!timerRodando)
         {
-            StartCoroutine(MoveCursor());
+            if (posicaoAtual < posicoesFinais.Count)
+            {
+                StartCoroutine(MoveCursor());
+            }
+            else
+            {
+                componenteImagem.enabled = false;
+            }
         }
         else
         {
-            componenteImagem.enabled = false;
-        }
+            // decidir se devo continuar ou interromper o tutorial após o clique
+            // posicaoAtual++;
+            tempoAtual = esperaCursor;
+        }    
     }
 
+    public void ErrouMSTT()
+    {
+        componenteImagem.enabled = false;
+        StopAllCoroutines();
+        posicaoAtual = 0;
+        tempoAtual = esperaCursor;
+        timerRodando = true;
+    }
+
+
+    void Start()
+    {
+        tempoAtual = esperaCursor;
+    }
+    void Update()
+    {
+        if (timerRodando)
+        {         
+            if (tempoAtual > 0)
+            {
+                tempoAtual -= Time.deltaTime;
+            }
+            else
+            {
+                componenteImagem.enabled = true;
+                timerRodando = false;
+                StartCoroutine(MoveCursor());
+            }
+        }         
+    }
 
     // TODO: TROCAR A CORROTINA POR UM TIMER PRA EVITAR INTERRUPÇÕES E MANTER O TUTORIAL ATIVO MESMO SE O JOGADOR CLICAR EM ALGUM BOTÃO ANTES DO TÉRMINO DO TIMER
     IEnumerator TimerTutorial()
@@ -48,8 +88,7 @@ public class CursorTutorialController : MonoBehaviour
     }
 
     IEnumerator MoveCursor()
-    {
-        Debug.Log("OOOO");
+    {     
         spriteAtualClique = false;
         componenteImagem.sprite = spritePadrao;
 
@@ -61,13 +100,31 @@ public class CursorTutorialController : MonoBehaviour
         {
             t = tempoPassado / tempoDeAnimacao;
             t = animCurve.Value.Evaluate(t);
-            posicaoIntermediaria = Vector3.Lerp(posicaoAntes, posicoesFinais[0].position, t);
+            posicaoIntermediaria = Vector3.Lerp(posicaoAntes, posicoesFinais[posicaoAtual].position, t);
             transform.position = posicaoIntermediaria;
             tempoPassado += Time.deltaTime;
             yield return null;
         }
+        posicaoAtual++;
+        
         yield return new WaitForSeconds(0.3f);
-        StartCoroutine(PiscarCursor());      
+        
+
+        while (true)
+        {           
+            if (spriteAtualClique)
+            {
+                componenteImagem.sprite = spritePadrao;
+            }
+            else
+            {
+                componenteImagem.sprite = spriteClique;
+            }
+            spriteAtualClique = !spriteAtualClique;
+            yield return new WaitForSeconds(1f);
+        }
+
+        // StartCoroutine(PiscarCursor());      
     }
 
     IEnumerator PiscarCursor()

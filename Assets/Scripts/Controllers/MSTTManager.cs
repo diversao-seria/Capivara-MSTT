@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public class MSTTManager : MonoBehaviour
 {
-    public UnityEvent msttSucesso;
+    public UnityEvent msttSucesso, msttErro;
     private string s = "";
     public string resposta = "";
     public TMPro.TextMeshProUGUI textDisplay;
@@ -188,6 +188,7 @@ public class MSTTManager : MonoBehaviour
         else
         {
             spriteFeedback.sprite = spriteErro;
+            msttErro?.Invoke();
             yield return new WaitForSeconds(2f);
         }
         
