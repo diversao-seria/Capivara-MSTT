@@ -13,6 +13,8 @@ public class GridController : MonoBehaviour
     [SerializeField] private int cellSize = 1;
     [SerializeField] private Transform gridOrigin;
     [SerializeField] private TextAsset levelText;
+    [SerializeField] private GameObject emissorDeParticulasBotoes;
+    private GameObject instanciaPrefabEmissor;
 
     private Vector2Int portaCoords = new Vector2Int();
 
@@ -55,6 +57,9 @@ public class GridController : MonoBehaviour
         // valor a ser checado na lista dos valores dos tiles vindos do tiled
         int ID = 0;
 
+        // instancia do script do emissor de particulas
+        EmissorParticulasBotoesController controller = null;
+
         // esses dois for loops convertem o array em uma dimensão (fornecido pelo mapa do tiled) em um array de duas dimensões (usado na grid)
         for (int i = level.layers[0].height - 1; i >= 0; i--)
         {
@@ -75,9 +80,23 @@ public class GridController : MonoBehaviour
                         break;
                     case 4:
                         grid.setValue(j, i, 3);
+
+                        // Instanciando emissor de partículas
+                        instanciaPrefabEmissor = Instantiate(emissorDeParticulasBotoes, getWorldPosition(j, i), Quaternion.identity);
+                        controller = instanciaPrefabEmissor.GetComponent<EmissorParticulasBotoesController>();
+                        controller.posicao = new Vector2(j, i);
+                        controller.notaMexe = 'I';
+
                         break;
                     case 5:
                         grid.setValue(j, i, 4);
+
+                        // Instanciando emissor de partículas
+                        instanciaPrefabEmissor = Instantiate(emissorDeParticulasBotoes, getWorldPosition(j, i), Quaternion.identity);
+                        controller = instanciaPrefabEmissor.GetComponent<EmissorParticulasBotoesController>();
+                        controller.posicao = new Vector2(j, i);
+                        controller.notaMexe = 'O';
+
                         break;
                 }
                 ID++;
