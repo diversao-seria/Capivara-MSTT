@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7725692248850299875}
   - component: {fileID: 8683312170817008293}
   - component: {fileID: 7725692248850299874}
+  - component: {fileID: 3735312636272284963}
   m_Layer: 5
   m_Name: CursorTutorial
   m_TagString: Untagged
@@ -107,6 +108,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     Variable: {fileID: 11400000, guid: d5b3cc0e69470b74c836bfac76f312a2, type: 2}
   componenteImagem: {fileID: 7725692248850299869}
+  cursorTutorialPrefab: {fileID: 7725692248850299864}
 --- !u!114 &7725692248850299875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +184,34 @@ MonoBehaviour:
       - m_Target: {fileID: 7725692248850299870}
         m_TargetAssemblyTypeName: CursorTutorialController, Assembly-CSharp
         m_MethodName: ClicouNaInterface
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3735312636272284963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7725692248850299864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da61e1895c0a3f341a855d8a769789dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: bbabd1c1a8e89744486881a5f0f58b0a, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7725692248850299870}
+        m_TargetAssemblyTypeName: CursorTutorialController, Assembly-CSharp
+        m_MethodName: MSTTAcerto
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
