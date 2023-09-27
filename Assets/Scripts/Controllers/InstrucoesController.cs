@@ -7,23 +7,51 @@ public class InstrucoesController : MonoBehaviour
     // Scriptable Object que conta a quantidade de tentativas
     public IntReference tentativas;
 
-    // essa variável define a partir de qual tentativa as instruções devem ser seguidas
+    // essa variï¿½vel define a partir de qual tentativa as instruï¿½ï¿½es devem ser seguidas
     public int inicioDasInstrucoes = 1;
+
+    [SerializeField] private AudioClip somInicio;
+    [SerializeField] private List<AudioClip> sonsBotaoGrave, sonsBotaoAgudo;
+    private AudioSource fonteSom;
 
     // Start is called before the first frame update
     void Start()
     {
+        fonteSom = this.GetComponent<AudioSource>();
+        fonteSom.clip = somInicio;
         Debug.Log("tentativa" + tentativas.Value.ToString());
-        // Garante que a instrução será reproduzida a cada três tentativas
+        // Garante que a instruï¿½ï¿½o serï¿½ reproduzida a cada trï¿½s tentativas
         if (tentativas.Value == inicioDasInstrucoes || (tentativas.Value % 3) == 0)
         {
-            this.GetComponent<AudioSource>().Play();
+            fonteSom.Play();
         }    
+    }
+
+    void OnEnable()
+    {
+        GridController.NotePlayed += ReproduzirSomBotao;
+    }
+    void OnDisable()
+    {
+        GridController.NotePlayed -= ReproduzirSomBotao;
     }
 
     public void InterrompeNarracao()
     {
-        // interrompe as instruções caso o jogador chegue ao final do nível
-        this.GetComponent<AudioSource>().Stop();
+        // interrompe as instruï¿½ï¿½es caso o jogador chegue ao final do nï¿½vel
+        fonteSom.Stop();
+    }
+
+    public void ReproduzirSomBotao(char notaEvento)
+    {
+        if (notaEvento == 'O')
+        {
+            fonteSom.clip = sonsBotaoGrave[Random.Range (0, sonsBotaoGrave.Count)];
+        }
+        else if (notaEvento == 'I')
+        {
+            fonteSom.clip = sonsBotaoAgudo[Random.Range (0, sonsBotaoAgudo.Count)];
+        }
+        fonteSom.Play();
     }
 }
