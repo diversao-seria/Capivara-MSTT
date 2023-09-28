@@ -51,6 +51,7 @@ MonoBehaviour:
   cellSize: 1
   gridOrigin: {fileID: 0}
   levelText: {fileID: 4900000, guid: 49c0bad6bdc17014c861281bde5ee03a, type: 3}
+  emissorDeParticulasBotoes: {fileID: 35546096398958134, guid: c6e599be3e07fa34c9004a19e9e102af, type: 3}
   playerPos:
     UseConstant: 0
     ConstantValue: {x: 0, y: 0}

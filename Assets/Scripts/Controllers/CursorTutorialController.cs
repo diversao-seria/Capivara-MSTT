@@ -8,48 +8,104 @@ public class CursorTutorialController : MonoBehaviour
 {
     [SerializeField] private List<Transform> posicoesFinais = new List<Transform>();
     [SerializeField] private Sprite spriteClique, spritePadrao;
-    [SerializeField] private float tempoDeAnimacao = 0.5f, esperaCursor = 5f;
+    [SerializeField] private float tempoDeAnimacao = 0.5f, esperaCursor = 2f;
     [SerializeField] private AnimationCurveReference animCurve;
     [SerializeField] private Image componenteImagem;
+    [SerializeField] private GameObject cursorTutorialPrefab;
     private bool spriteAtualClique = false;
-
+    private bool timerRodando = false;
+    private float tempoAtual;
+    private int posicaoAtual = 0;
+    private bool cursorPiscando = false; 
 
     public void SomTerminou()
     {
         if (posicoesFinais.Count > 0)
         {
-            StartCoroutine(TimerTutorial());
+            tempoAtual = esperaCursor;
+            timerRodando = true;
+            posicaoAtual = 0;
         } 
     }
 
     public void ClicouNaInterface()
     {
         StopAllCoroutines();
-        //StopCoroutine(MoveCursor());
-        // StopCoroutine(PiscarCursor());
-        posicoesFinais.RemoveAt(0);
-        if (posicoesFinais.Count > 0)
+        
+        if (!timerRodando)
         {
-            StartCoroutine(MoveCursor());
+            if (posicaoAtual < posicoesFinais.Count)
+            {
+                StartCoroutine(ControladorAnimacaoCursor());
+            }
+            else
+            {
+                componenteImagem.enabled = false;
+            }
         }
         else
         {
-            componenteImagem.enabled = false;
-        }
+            posicaoAtual++;
+            tempoAtual = esperaCursor;
+        }    
+    }
+
+    public void ErrouMSTT()
+    {
+        StopAllCoroutines(); 
+
+        componenteImagem.enabled = false;
+        cursorPiscando = false;
+
+        tempoAtual = esperaCursor;  
+        
+        timerRodando = true;
+    }
+
+    public void MSTTAcerto()
+    {
+        componenteImagem.enabled = false;
+        cursorPiscando = false;
+        timerRodando = false;
     }
 
 
-    // TODO: TROCAR A CORROTINA POR UM TIMER PRA EVITAR INTERRUPÇÕES E MANTER O TUTORIAL ATIVO MESMO SE O JOGADOR CLICAR EM ALGUM BOTÃO ANTES DO TÉRMINO DO TIMER
-    IEnumerator TimerTutorial()
+    void Start()
     {
-        yield return new WaitForSeconds(esperaCursor);
-        componenteImagem.enabled = true;
-        StartCoroutine(MoveCursor());
+        tempoAtual = esperaCursor;
+    }
+    void Update()
+    {
+        if (timerRodando)
+        {         
+            if (tempoAtual > 0)
+            {
+                tempoAtual -= Time.deltaTime;
+            }
+            else
+            {
+                Debug.Log(posicaoAtual);
+                componenteImagem.enabled = true;
+                timerRodando = false;
+                cursorPiscando = true;
+                StartCoroutine(ControladorAnimacaoCursor());
+            }
+        }         
+    }
+
+    IEnumerator ControladorAnimacaoCursor()
+    {
+        yield return MoveCursor();
+
+        posicaoAtual++;
+
+        yield return new WaitForSeconds(0.3f);
+
+        yield return PiscarCursor();
     }
 
     IEnumerator MoveCursor()
-    {
-        Debug.Log("OOOO");
+    {   
         spriteAtualClique = false;
         componenteImagem.sprite = spritePadrao;
 
@@ -61,18 +117,16 @@ public class CursorTutorialController : MonoBehaviour
         {
             t = tempoPassado / tempoDeAnimacao;
             t = animCurve.Value.Evaluate(t);
-            posicaoIntermediaria = Vector3.Lerp(posicaoAntes, posicoesFinais[0].position, t);
+            posicaoIntermediaria = Vector3.Lerp(posicaoAntes, posicoesFinais[posicaoAtual].position, t);
             transform.position = posicaoIntermediaria;
             tempoPassado += Time.deltaTime;
             yield return null;
-        }
-        yield return new WaitForSeconds(0.3f);
-        StartCoroutine(PiscarCursor());      
+        }        
     }
 
     IEnumerator PiscarCursor()
     {
-        while (true)
+        while (cursorPiscando)
         {           
             if (spriteAtualClique)
             {
