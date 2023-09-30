@@ -6,11 +6,13 @@ public class Guardioes_controler : MonoBehaviour
 
 {
     [SerializeField] private char notaMexe;
-    [SerializeField] private ParticleSystem sistema_particulas;
+    private ParticleSystem sistema_particulas;
     [SerializeField] private Sprite spriteO, spriteI;
     // Start is called before the first frame update
     void Start()
     {
+        sistema_particulas = this.GetComponent<ParticleSystem>();
+
         if (notaMexe == 'I') {
             sistema_particulas.textureSheetAnimation.SetSprite(0, spriteI);
         }
@@ -18,7 +20,7 @@ public class Guardioes_controler : MonoBehaviour
         else if (notaMexe == 'O')
         {
             sistema_particulas.textureSheetAnimation.SetSprite(0, spriteO);
-        }
+        }        
     }
     void OnEnable()
 
