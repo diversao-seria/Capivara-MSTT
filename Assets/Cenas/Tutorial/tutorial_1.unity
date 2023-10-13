@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -485,11 +485,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 230243055852126198, guid: e23532fcb19494d498a2154ad8dd95b8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -231
+      value: -395
       objectReference: {fileID: 0}
     - target: {fileID: 230243055852126198, guid: e23532fcb19494d498a2154ad8dd95b8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -61
+      value: -181
       objectReference: {fileID: 0}
     - target: {fileID: 230243055852126198, guid: e23532fcb19494d498a2154ad8dd95b8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -827,11 +827,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 230243055852126198, guid: e23532fcb19494d498a2154ad8dd95b8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -231
+      value: -395
       objectReference: {fileID: 0}
     - target: {fileID: 230243055852126198, guid: e23532fcb19494d498a2154ad8dd95b8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -120.37236
+      value: -240.37236
       objectReference: {fileID: 0}
     - target: {fileID: 230243055852126198, guid: e23532fcb19494d498a2154ad8dd95b8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1183,11 +1183,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 230243055852126198, guid: e23532fcb19494d498a2154ad8dd95b8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -171.62766
+      value: -335.62766
       objectReference: {fileID: 0}
     - target: {fileID: 230243055852126198, guid: e23532fcb19494d498a2154ad8dd95b8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -120.37236
+      value: -240.37236
       objectReference: {fileID: 0}
     - target: {fileID: 230243055852126198, guid: e23532fcb19494d498a2154ad8dd95b8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1472,11 +1472,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 230243055852126198, guid: e23532fcb19494d498a2154ad8dd95b8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -290.37238
+      value: -454.37238
       objectReference: {fileID: 0}
     - target: {fileID: 230243055852126198, guid: e23532fcb19494d498a2154ad8dd95b8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -120.37236
+      value: -240.37236
       objectReference: {fileID: 0}
     - target: {fileID: 230243055852126198, guid: e23532fcb19494d498a2154ad8dd95b8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
