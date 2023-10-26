@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public class MSTTManager : MonoBehaviour
 {
-    public UnityEvent msttSucesso, msttErro;
+    public UnityEvent msttSucesso, msttErro, msttInicio;
     private string s = "";
     public string resposta = "";
     public TMPro.TextMeshProUGUI textDisplay;
@@ -16,14 +16,15 @@ public class MSTTManager : MonoBehaviour
     public AudioClip somFino;
     public AudioClip somGrosso;
     public AudioSource fonteSom;
-    public Button soundButton, oButton, iButton;
+    public Button soundButton, oButton, iButton, confirmButton;
 
     [SerializeField] private Sprite spriteAcerto, spriteErro;
     [SerializeField] private Image spriteFeedback;
+    [SerializeField] private GameObject AmpulhetaPanel;
 
     public GameObject exit;
 
-    [SerializeField] private bool MSTTAleatorio = true;
+    [SerializeField] private bool MSTTAleatorio = true, testeInstruido = false, tocandoInstrucoes = true;
     [SerializeField] private List<string> sequenciasMSTT = new List<string>();
 
     [SerializeField] private int quantidadeTestes = 1;
@@ -122,15 +123,13 @@ public class MSTTManager : MonoBehaviour
 
     public void PlaySound()
     {
+        msttInicio?.Invoke();
         StartCoroutine(DelayDoInicio());
-        playerInputActions.MSTT.Disable();
-        s = PlayerPrefs.GetString("sequence");
-        Debug.Log(s);
-        StartCoroutine(PlaySoundCoroutine());
     }    
 
     IEnumerator PlaySoundCoroutine()
     {
+        confirmButton.interactable = false;
         oButton.interactable = false;
         iButton.interactable = false;
         for (int i = 0; i < s.Length; i++)
@@ -147,10 +146,19 @@ public class MSTTManager : MonoBehaviour
             fonteSom.Play();
             yield return new WaitForSeconds(0.682f);
         }
-        yield return new WaitForSeconds(0.682f * s.Length);
+
+        fonteSom.Stop();
+        AmpulhetaPanel.SetActive(true);
+        yield return new WaitForSeconds(0.682f * /*s.Length*/ 4);
+        AmpulhetaPanel.SetActive(false);
+
         playerInputActions.MSTT.Enable();
-        oButton.interactable = true;
-        iButton.interactable = true;
+        
+        if (!testeInstruido)
+        {
+            oButton.interactable = true;
+            iButton.interactable = true;
+        }       
 
         somParou?.Invoke();
     }
@@ -208,7 +216,30 @@ public class MSTTManager : MonoBehaviour
 
     IEnumerator DelayDoInicio()
     {
-        yield return new WaitForSeconds(1f);
+        if (testeInstruido)
+        {
+            yield return new WaitWhile (()=> tocandoInstrucoes);
+        }
+        else
+        {
+            yield return new WaitForSeconds(1f);
+        }        
+        playerInputActions.MSTT.Disable();
+        s = PlayerPrefs.GetString("sequence");
+        Debug.Log(s);
+        StartCoroutine(PlaySoundCoroutine());
+    }
+
+    public void fimInstrucoesPreSom()
+    {
+        tocandoInstrucoes = false;
+    }
+
+    public void fimInstrucoesPosSom()
+    {
+        confirmButton.interactable = true;
+        oButton.interactable = true;
+        iButton.interactable = true;
     }
 
 }

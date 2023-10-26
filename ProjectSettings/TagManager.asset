@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ampulheta
+    uniqueID: 2335819739
+    locked: 0

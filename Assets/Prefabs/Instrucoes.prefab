@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6411118110983911922}
   - component: {fileID: 6411118110983911923}
   - component: {fileID: 6411118110983911920}
+  - component: {fileID: 5278669403908863436}
+  - component: {fileID: 7037773658780903654}
   m_Layer: 0
   m_Name: Instrucoes
   m_TagString: Untagged
@@ -46,13 +48,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da61e1895c0a3f341a855d8a769789dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 6c9e4a6174514804d9ef2c858d48ba99, type: 2}
+  Event: {fileID: 11400000, guid: d2c5aa2bd94823247908c166368d1004, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6411118110983911923}
         m_TargetAssemblyTypeName: InstrucoesController, Assembly-CSharp
         m_MethodName: InterrompeNarracao
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5278669403908863436}
+        m_TargetAssemblyTypeName: InstrucoesMSTT, Assembly-CSharp
+        m_MethodName: instrucoesPreSom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -78,6 +92,10 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 104cb587df66d1841b8ceb97700d839c, type: 2}
+  inicioDasInstrucoes: 1
+  somInicio: {fileID: 0}
+  sonsBotaoGrave: []
+  sonsBotaoAgudo: []
 --- !u!82 &6411118110983911920
 AudioSource:
   m_ObjectHideFlags: 0
@@ -174,3 +192,75 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5278669403908863436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6411118110983911926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ba3aced56380844abaf12bb782b90f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPreSom: {fileID: 0}
+  audioPosSom: {fileID: 0}
+  fimInstrucoesPreSom:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: bb2cf9fc23a21ba48a3f7f9fcb0a605d, type: 2}
+        m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  fimInstrucoesPosSom:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: d80d5bb6e0d998d4eb9e71545c69befa, type: 2}
+        m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7037773658780903654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6411118110983911926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da61e1895c0a3f341a855d8a769789dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: aac0868adab0c9d46ba7a06e0d833a4d, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5278669403908863436}
+        m_TargetAssemblyTypeName: InstrucoesMSTT, Assembly-CSharp
+        m_MethodName: instrucoesPosSom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -7,13 +7,13 @@ public class GameEventListener : MonoBehaviour
 {
     // ouve qualquer evento
 
-    // cria uma referência a um scriptableObject da classe "GameEvent"
+    // cria uma referï¿½ncia a um scriptableObject da classe "GameEvent"
     public GameEvent Event;
 
-    // cria um UnityEvent responsável por determinar a resposta ao evento. A criação de um UnityEvent permite que o designer escolha qual função vai ser rodada em resposta ao evento direto da interface, sem precisar mexer no código.
+    // cria um UnityEvent responsï¿½vel por determinar a resposta ao evento. A criaï¿½ï¿½o de um UnityEvent permite que o designer escolha qual funï¿½ï¿½o vai ser rodada em resposta ao evento direto da interface, sem precisar mexer no cï¿½digo.
     public UnityEvent Response;
 
-    // adiciona o objeto à lista de inscritos no evento
+    // adiciona o objeto ï¿½ lista de inscritos no evento
     private void OnEnable()
     {
         Event.RegisterListener(this);
@@ -25,7 +25,7 @@ public class GameEventListener : MonoBehaviour
         Event.UnregisterListener(this);
     }
 
-    // chama a função-resposta ao evento, que pode estar em qualquer outro script desse objeto e deve ser selecionada através do inspetor
+    // chama a funï¿½ï¿½o-resposta ao evento, que pode estar em qualquer outro script desse objeto e deve ser selecionada atravï¿½s do inspetor
     public void OnEventRaised()
     {
         Response.Invoke();

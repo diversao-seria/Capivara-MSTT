@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -206,6 +206,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5278669403908863436, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
+      propertyPath: audioPosSom
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f2be122a1ed9f7468a27f63313d2f28, type: 3}
+    - target: {fileID: 5278669403908863436, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
+      propertyPath: audioPreSom
+      value: 
+      objectReference: {fileID: 8300000, guid: e56a5674038982d48866518fcdb8f6ff, type: 3}
     - target: {fileID: 6411118110983911921, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -252,7 +260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6411118110983911922, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: somInicio
@@ -260,44 +268,44 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: d3170d194acd73b47a522603643a5d60, type: 3}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoAgudo.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoGrave.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoAgudo.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: a0834a67e23fc974f850a934094609e6, type: 3}
+      objectReference: {fileID: 8300000, guid: f43d45175392e1b4da86c68d046f227d, type: 3}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoAgudo.Array.data[1]
       value: 
-      objectReference: {fileID: 8300000, guid: f43d45175392e1b4da86c68d046f227d, type: 3}
+      objectReference: {fileID: 8300000, guid: e97db07d89237484f8c23881ca99cadc, type: 3}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoAgudo.Array.data[2]
       value: 
-      objectReference: {fileID: 8300000, guid: e97db07d89237484f8c23881ca99cadc, type: 3}
+      objectReference: {fileID: 8300000, guid: 0baf196935ddd9848bb363a0de6f0a6d, type: 3}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoAgudo.Array.data[3]
       value: 
-      objectReference: {fileID: 8300000, guid: 0baf196935ddd9848bb363a0de6f0a6d, type: 3}
+      objectReference: {fileID: 8300000, guid: a0834a67e23fc974f850a934094609e6, type: 3}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoGrave.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 038fc24947470fe46bf5658fa886f23b, type: 3}
+      objectReference: {fileID: 8300000, guid: 7f26ee9d85f2fb44a91ee28ecc47cfde, type: 3}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoGrave.Array.data[1]
       value: 
-      objectReference: {fileID: 8300000, guid: 7f26ee9d85f2fb44a91ee28ecc47cfde, type: 3}
+      objectReference: {fileID: 8300000, guid: 9d678292f1650224987ba13e78c827f6, type: 3}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoGrave.Array.data[2]
       value: 
-      objectReference: {fileID: 8300000, guid: 9d678292f1650224987ba13e78c827f6, type: 3}
+      objectReference: {fileID: 8300000, guid: d1077a50f0fa6634d8a11d1b98e2c4e5, type: 3}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoGrave.Array.data[3]
       value: 
-      objectReference: {fileID: 8300000, guid: d1077a50f0fa6634d8a11d1b98e2c4e5, type: 3}
+      objectReference: {fileID: 8300000, guid: 038fc24947470fe46bf5658fa886f23b, type: 3}
     - target: {fileID: 6411118110983911926, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: m_Name
       value: Instrucoes
@@ -728,6 +736,10 @@ PrefabInstance:
     - target: {fileID: 6106047741984649177, guid: 99d335176880b164c96336106cb37fb6, type: 3}
       propertyPath: MSTTAleatorio
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106047741984649177, guid: 99d335176880b164c96336106cb37fb6, type: 3}
+      propertyPath: testeInstruido
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6106047741984649177, guid: 99d335176880b164c96336106cb37fb6, type: 3}
       propertyPath: sequenciasMSTT.Array.size
