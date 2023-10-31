@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ using UnityEngine.InputSystem;
 
 public class MSTTManager : MonoBehaviour
 {
+    public static event Action<int> CodigoErroMSTT;
     public UnityEvent msttSucesso, msttErro, msttInicio;
     private string s = "";
     public string resposta = "";
@@ -86,7 +88,7 @@ public class MSTTManager : MonoBehaviour
         string t = "";
         for(int i = 0; i < 4; i++)
         {
-            t += chars[Random.Range(0, 2)];
+            t += chars[UnityEngine.Random.Range(0, 2)];
         }
         return t;
     }
@@ -167,10 +169,19 @@ public class MSTTManager : MonoBehaviour
     {
         spriteFeedback.enabled = true;
 
-        if (resposta.Equals(s))
+        if (Truncate(resposta, 11).Equals(s))
         {
             spriteFeedback.sprite = spriteAcerto;
-            yield return new WaitForSeconds(2f);
+
+            // checa se deve esperar o audio de feedback
+            if (testeInstruido)
+            {
+                yield return new WaitForSeconds(2f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(2f);
+            }   
             Debug.Log("Acertou");
 
 
@@ -195,6 +206,8 @@ public class MSTTManager : MonoBehaviour
         }
         else
         {
+            CodigoErroMSTT?.Invoke(checarErro(resposta));
+            tocandoInstrucoes = true;
             spriteFeedback.sprite = spriteErro;
             msttErro?.Invoke();
             yield return new WaitForSeconds(2f);
@@ -241,5 +254,22 @@ public class MSTTManager : MonoBehaviour
         oButton.interactable = true;
         iButton.interactable = true;
     }
+
+    private int checarErro(string respostaMSTT)
+    {
+        if (string.IsNullOrEmpty(respostaMSTT)) return 1;
+        else if (respostaMSTT.Length < s.Length) return 2;
+        else if (respostaMSTT.Length > s.Length) return 3;
+        else if (!respostaMSTT.Equals(s)) return 4;
+        else return 10;
+    }
+
+    public static string Truncate(string value, int maxLength)
+    {
+        if (string.IsNullOrEmpty(value)) return value;
+        return value.Length <= maxLength ? value : value.Substring(0, maxLength); 
+    }
+
+
 
 }
