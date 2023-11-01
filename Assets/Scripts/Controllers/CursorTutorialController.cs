@@ -20,6 +20,14 @@ public class CursorTutorialController : MonoBehaviour
 
 
 
+    void OnEnable()
+    {
+        MSTTManager.CodigoErroMSTT += Reset;
+    }
+    void OnDisable()
+    {
+        MSTTManager.CodigoErroMSTT -= Reset;
+    }
     public void SomTerminou()
     {
         if (posicoesFinais.Count > 0)
@@ -58,10 +66,10 @@ public class CursorTutorialController : MonoBehaviour
 
         componenteImagem.enabled = false;
         cursorPiscando = false;
-
+        posicaoAtual = 0;
         tempoAtual = esperaCursor;  
-        
-        timerRodando = true;
+        Debug.Log("Errou");
+        timerRodando = false;
     }
 
     public void MSTTAcerto()
@@ -141,5 +149,10 @@ public class CursorTutorialController : MonoBehaviour
             spriteAtualClique = !spriteAtualClique;
             yield return new WaitForSeconds(1f);
         }
+    }
+
+    public void Reset(int codigoErro)
+    {
+        componenteImagem.enabled = false;
     }
 }

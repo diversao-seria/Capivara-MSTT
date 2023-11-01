@@ -15,7 +15,7 @@ public class InstrucoesController : MonoBehaviour
     [SerializeField] private List<AudioClip> sonsBotaoGrave, sonsBotaoAgudo;
     private AudioSource fonteSom;
     
-
+    
     // Start is called before the first frame update
     void Start()
     {
