@@ -1117,7 +1117,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -131.00008, y: 379.99997}
+  m_AnchoredPosition: {x: -136, y: 364}
   m_SizeDelta: {x: 700, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6106047741568308182
@@ -1569,6 +1569,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6106047741984649178}
   - component: {fileID: 6106047741984649177}
+  - component: {fileID: 3252354394397469881}
   - component: {fileID: 8277949243103099605}
   - component: {fileID: 9030493249051123061}
   m_Layer: 0
@@ -1652,8 +1653,8 @@ MonoBehaviour:
         m_CallState: 2
   resposta: 
   textDisplay: {fileID: 6106047741568308181}
-  somFino: {fileID: 8300000, guid: 3e5dfc098b74bc047b05e48e145e4f75, type: 3}
-  somGrosso: {fileID: 8300000, guid: 92208e311eb3ec249b7bad5092767530, type: 3}
+  somFino: {fileID: 8300000, guid: 11619759e5ca9b44db665cb52b28574d, type: 3}
+  somGrosso: {fileID: 8300000, guid: fd0a74c79cff84f4895103d84607ed7a, type: 3}
   fonteSom: {fileID: 0}
   soundButton: {fileID: 6106047740301118827}
   oButton: {fileID: 6106047740916041668}
@@ -1687,6 +1688,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3252354394397469881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6106047741984649176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef0d116bbe34e52419c8f472f4028122, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteFeedback: {fileID: 438291678083624844}
+  spriteAcerto: {fileID: 21300000, guid: 5eb32de33c36b4a4d8bb100473106e26, type: 3}
+  spriteErro: {fileID: 21300000, guid: ce10467ac8631014abdd73dd557a0a0b, type: 3}
+  sonsFeedback:
+  - {fileID: 8300000, guid: defe7b18ddd7ea547886c0a67481bd9f, type: 3}
+  - {fileID: 8300000, guid: d381ad4d85da9df41a26efa7d38f07da, type: 3}
+  - {fileID: 8300000, guid: 5d2fd4b0928b083419e4f5143406d20d, type: 3}
+  - {fileID: 8300000, guid: e0547b4014ce0a040b6a61a5a5a37b3e, type: 3}
+  - {fileID: 8300000, guid: 54852a701434ddb469f2ef95b8c8a0c2, type: 3}
+  fonteSom: {fileID: 3048468137855457483}
 --- !u!114 &8277949243103099605
 MonoBehaviour:
   m_ObjectHideFlags: 0

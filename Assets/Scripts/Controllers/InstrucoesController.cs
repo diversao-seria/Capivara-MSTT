@@ -31,12 +31,12 @@ public class InstrucoesController : MonoBehaviour
     void OnEnable()
     {
         GridController.NotePlayed += ReproduzirSomBotao;
-        MSTTManager.CodigoErroMSTT += ReproduzirNarracaoFeedback;
+        
     }
     void OnDisable()
     {
         GridController.NotePlayed -= ReproduzirSomBotao;
-        MSTTManager.CodigoErroMSTT -= ReproduzirNarracaoFeedback;
+        
     }
 
     public void InterrompeNarracao()
@@ -56,27 +56,5 @@ public class InstrucoesController : MonoBehaviour
             fonteSom.clip = sonsBotaoAgudo[Random.Range (0, sonsBotaoAgudo.Count)];
         }
         fonteSom.Play();
-    }
-
-    public void ReproduzirNarracaoFeedback(int codigoErroMstt)
-    {
-        switch (codigoErroMstt)
-        {
-            case 1:
-                fonteSom.clip = sonsFeedback[0];
-                break;
-            case 2:
-                fonteSom.clip = sonsFeedback[1];
-                break;
-            case 3:
-                fonteSom.clip = sonsFeedback[2];
-                break;
-            case 4:
-                fonteSom.clip = sonsFeedback[3];
-                break;
-            case 10:
-                fonteSom.clip = sonsFeedback[4];    
-                break;            
-        }
     }
 }

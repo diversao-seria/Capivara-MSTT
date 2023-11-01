@@ -38,6 +38,7 @@ public class MSTTManager : MonoBehaviour
 
     // referencia p/ as acoes do jogador (novo input system)
     PlayerInputActions playerInputActions;
+    private bool feedbackTerminou = false;
 
     private void Awake()
     {
@@ -60,12 +61,14 @@ public class MSTTManager : MonoBehaviour
         Debug.Log("Enable");
         PlayerPrefs.SetString("sequence", s);
 
+        MSTTFeedback.feedbackTerminou += FimDoFeedback;
         playerInputActions.MSTT.InputI.performed += IInput;
         playerInputActions.MSTT.InputO.performed += OInput;
     }
 
     void OnDisable()
     {
+        MSTTFeedback.feedbackTerminou -= FimDoFeedback;
         playerInputActions.MSTT.InputI.performed -= IInput;
         playerInputActions.MSTT.InputO.performed -= OInput;
     }
@@ -167,26 +170,20 @@ public class MSTTManager : MonoBehaviour
 
     IEnumerator FeedbackCoroutine()
     {
-        spriteFeedback.enabled = true;
+        // se o teste tiver instruções, emitir o evento de feedback
+        if (testeInstruido)
+        {
+            AlterarEstadosBotoes(false);
+            feedbackTerminou = true;
+            CodigoErroMSTT?.Invoke(checarErro(resposta));
+            yield return new WaitWhile (()=> feedbackTerminou);
+        }        
 
         if (Truncate(resposta, 11).Equals(s))
         {
-            spriteFeedback.sprite = spriteAcerto;
-
-            // checa se deve esperar o audio de feedback
-            if (testeInstruido)
-            {
-                yield return new WaitForSeconds(2f);
-            }
-            else
-            {
-                yield return new WaitForSeconds(2f);
-            }   
-            Debug.Log("Acertou");
-
-
             if (quantidadeTestes <= 1)
             {
+                
                 msttSucesso?.Invoke();
                 yield break;
             }
@@ -202,22 +199,18 @@ public class MSTTManager : MonoBehaviour
                 quantidadeTestes = sequenciasMSTT.Count;
             }
             PlayerPrefs.SetString("sequence", s);
-
         }
         else
         {
-            CodigoErroMSTT?.Invoke(checarErro(resposta));
             tocandoInstrucoes = true;
-            spriteFeedback.sprite = spriteErro;
             msttErro?.Invoke();
-            yield return new WaitForSeconds(2f);
+            
         }
         
         if (quantidadeTestes == 2)
         {
             ultimoMSTT?.Invoke();
         }
-        spriteFeedback.enabled = false;
         Cancela();
         PlaySound();
     }
@@ -243,6 +236,11 @@ public class MSTTManager : MonoBehaviour
         StartCoroutine(PlaySoundCoroutine());
     }
 
+    public void FimDoFeedback()
+    {
+        feedbackTerminou = false;
+    }
+
     public void fimInstrucoesPreSom()
     {
         tocandoInstrucoes = false;
@@ -255,13 +253,22 @@ public class MSTTManager : MonoBehaviour
         iButton.interactable = true;
     }
 
+    public void AlterarEstadosBotoes(bool estado)
+    {
+        confirmButton.interactable = estado;
+        oButton.interactable = estado;
+        iButton.interactable = estado;
+    }
+
     private int checarErro(string respostaMSTT)
     {
+
         if (string.IsNullOrEmpty(respostaMSTT)) return 1;
         else if (respostaMSTT.Length < s.Length) return 2;
         else if (respostaMSTT.Length > s.Length) return 3;
         else if (!respostaMSTT.Equals(s)) return 4;
-        else return 10;
+        else if (Truncate(respostaMSTT, 11).Equals(s)) return 10;
+        else return 404;
     }
 
     public static string Truncate(string value, int maxLength)

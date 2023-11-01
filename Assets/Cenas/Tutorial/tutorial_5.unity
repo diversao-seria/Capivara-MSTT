@@ -358,6 +358,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3252354394397469881, guid: 99d335176880b164c96336106cb37fb6, type: 3}
+      propertyPath: fonteSom
+      value: 
+      objectReference: {fileID: 1825159668}
     - target: {fileID: 6106047741530534261, guid: 99d335176880b164c96336106cb37fb6, type: 3}
       propertyPath: m_Name
       value: MSTT
