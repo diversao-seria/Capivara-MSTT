@@ -9,9 +9,10 @@ public class InstrucoesController : MonoBehaviour
 
     // essa vari�vel define a partir de qual tentativa as instru��es devem ser seguidas
     public int inicioDasInstrucoes = 1;
-
+    
+    [SerializeField] private bool tocarInstrucoesBotoes = true;
     [SerializeField] private AudioClip somInicio;
-    [SerializeField] private List<AudioClip> sonsBotaoGrave, sonsBotaoAgudo, sonsFeedback;
+    [SerializeField] private List<AudioClip> sonsBotaoGrave, sonsBotaoAgudo;
     private AudioSource fonteSom;
     
 
@@ -47,14 +48,18 @@ public class InstrucoesController : MonoBehaviour
 
     public void ReproduzirSomBotao(char notaEvento)
     {
-        if (notaEvento == 'O')
+        if (tocarInstrucoesBotoes)
         {
-            fonteSom.clip = sonsBotaoGrave[Random.Range (0, sonsBotaoGrave.Count)];
+            if (notaEvento == 'O')
+            {
+                fonteSom.clip = sonsBotaoGrave[Random.Range (0, sonsBotaoGrave.Count)];
+            }
+            else if (notaEvento == 'I')
+            {
+                fonteSom.clip = sonsBotaoAgudo[Random.Range (0, sonsBotaoAgudo.Count)];
+            }
+            fonteSom.Play();
         }
-        else if (notaEvento == 'I')
-        {
-            fonteSom.clip = sonsBotaoAgudo[Random.Range (0, sonsBotaoAgudo.Count)];
-        }
-        fonteSom.Play();
+        
     }
 }

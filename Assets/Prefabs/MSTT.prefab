@@ -1704,11 +1704,11 @@ MonoBehaviour:
   spriteAcerto: {fileID: 21300000, guid: 5eb32de33c36b4a4d8bb100473106e26, type: 3}
   spriteErro: {fileID: 21300000, guid: ce10467ac8631014abdd73dd557a0a0b, type: 3}
   sonsFeedback:
-  - {fileID: 8300000, guid: defe7b18ddd7ea547886c0a67481bd9f, type: 3}
-  - {fileID: 8300000, guid: d381ad4d85da9df41a26efa7d38f07da, type: 3}
-  - {fileID: 8300000, guid: 5d2fd4b0928b083419e4f5143406d20d, type: 3}
-  - {fileID: 8300000, guid: e0547b4014ce0a040b6a61a5a5a37b3e, type: 3}
-  - {fileID: 8300000, guid: 54852a701434ddb469f2ef95b8c8a0c2, type: 3}
+  - {fileID: 8300000, guid: ae9ea0f9d64c68a458ed1c7623f85f74, type: 3}
+  - {fileID: 8300000, guid: fccc296a4f6ac9e45ad9c7957051eea9, type: 3}
+  - {fileID: 8300000, guid: ce19d0d44f653ef4eb7f986e09b8c38c, type: 3}
+  - {fileID: 8300000, guid: a2cc763f9dff9cc4c80f18496d40a81c, type: 3}
+  - {fileID: 8300000, guid: d7e7f2865ff7e134db67d9905b73b071, type: 3}
   fonteSom: {fileID: 3048468137855457483}
 --- !u!114 &8277949243103099605
 MonoBehaviour:

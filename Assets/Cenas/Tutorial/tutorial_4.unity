@@ -267,17 +267,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: d3170d194acd73b47a522603643a5d60, type: 3}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
+      propertyPath: tocarSonsBotoes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
+      propertyPath: tocarInstrucoesBotoes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoAgudo.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoGrave.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoAgudo.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: f43d45175392e1b4da86c68d046f227d, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoAgudo.Array.data[1]
       value: 
@@ -293,7 +301,7 @@ PrefabInstance:
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoGrave.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 7f26ee9d85f2fb44a91ee28ecc47cfde, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoGrave.Array.data[1]
       value: 

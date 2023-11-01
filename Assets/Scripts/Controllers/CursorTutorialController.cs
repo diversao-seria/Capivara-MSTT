@@ -18,6 +18,8 @@ public class CursorTutorialController : MonoBehaviour
     private int posicaoAtual = 0;
     private bool cursorPiscando = false; 
 
+
+
     public void SomTerminou()
     {
         if (posicoesFinais.Count > 0)
