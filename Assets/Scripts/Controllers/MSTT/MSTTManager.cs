@@ -263,10 +263,10 @@ public class MSTTManager : MonoBehaviour
     private int checarErro(string respostaMSTT)
     {
 
-        if (string.IsNullOrEmpty(respostaMSTT)) return 1;
-        else if (respostaMSTT.Length < s.Length) return 2;
-        else if (respostaMSTT.Length > s.Length) return 3;
-        else if (!respostaMSTT.Equals(s)) return 4;
+        if (string.IsNullOrEmpty(respostaMSTT)) return 0;
+        else if (respostaMSTT.Length < s.Length) return 1;
+        else if (respostaMSTT.Length > s.Length) return 2;
+        else if (!respostaMSTT.Equals(s)) return 3;
         else if (Truncate(respostaMSTT, 11).Equals(s)) return 10;
         else return 404;
     }

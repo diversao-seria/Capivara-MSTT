@@ -617,6 +617,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1244829601796749884, guid: 99d335176880b164c96336106cb37fb6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343426104227204233, guid: 99d335176880b164c96336106cb37fb6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2941240738348240748, guid: 99d335176880b164c96336106cb37fb6, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -649,6 +657,10 @@ PrefabInstance:
       propertyPath: sonsFeedback.Array.data[4]
       value: 
       objectReference: {fileID: 8300000, guid: d7e7f2865ff7e134db67d9905b73b071, type: 3}
+    - target: {fileID: 5209819095482805162, guid: 99d335176880b164c96336106cb37fb6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6106047740916041668, guid: 99d335176880b164c96336106cb37fb6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2

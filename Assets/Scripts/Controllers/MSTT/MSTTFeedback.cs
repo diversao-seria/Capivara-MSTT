@@ -28,21 +28,21 @@ public class MSTTFeedback : MonoBehaviour
     {
         switch (codigoErro)
         {
-            case 1:
+            case 0:
                 spriteFeedback.sprite = spriteErro;
-                fonteSom.clip = sonsFeedback[0];
+                fonteSom.clip = sonsFeedback[codigoErro];
+                break;
+            case 1:
+                spriteFeedback.sprite = spriteErro; 
+                fonteSom.clip = sonsFeedback[codigoErro];
                 break;
             case 2:
-                spriteFeedback.sprite = spriteErro; 
-                fonteSom.clip = sonsFeedback[1];
+                spriteFeedback.sprite = spriteErro;
+                fonteSom.clip = sonsFeedback[codigoErro];
                 break;
             case 3:
                 spriteFeedback.sprite = spriteErro;
-                fonteSom.clip = sonsFeedback[2];
-                break;
-            case 4:
-                spriteFeedback.sprite = spriteErro;
-                fonteSom.clip = sonsFeedback[3];
+                fonteSom.clip = sonsFeedback[codigoErro];
                 break;
             case 10:
                 fonteSom.clip = sonsFeedback[4]; 
