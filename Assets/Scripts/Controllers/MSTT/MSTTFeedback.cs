@@ -44,8 +44,12 @@ public class MSTTFeedback : MonoBehaviour
                 spriteFeedback.sprite = spriteErro;
                 fonteSom.clip = sonsFeedback[codigoErro];
                 break;
+            case 4:
+                spriteFeedback.sprite = spriteErro;
+                fonteSom.clip = sonsFeedback[codigoErro];
+                break;
             case 10:
-                fonteSom.clip = sonsFeedback[4]; 
+                fonteSom.clip = sonsFeedback[5]; 
                 spriteFeedback.sprite = spriteAcerto;   
                 break; 
             default:

@@ -40,6 +40,8 @@ public class MSTTManager : MonoBehaviour
     PlayerInputActions playerInputActions;
     private bool feedbackTerminou = false;
 
+    private Vector2Int quantidadeSimbolosMSTT = new Vector2Int(0, 0);
+
     private void Awake()
     {
         playerInputActions = new PlayerInputActions();
@@ -64,6 +66,7 @@ public class MSTTManager : MonoBehaviour
         MSTTFeedback.feedbackTerminou += FimDoFeedback;
         playerInputActions.MSTT.InputI.performed += IInput;
         playerInputActions.MSTT.InputO.performed += OInput;
+        Debug.Log(s);
     }
 
     void OnDisable()
@@ -74,7 +77,7 @@ public class MSTTManager : MonoBehaviour
     }
 
     void Start()
-    {         
+    {          
         PlaySound();
     }
     
@@ -232,7 +235,7 @@ public class MSTTManager : MonoBehaviour
         }        
         playerInputActions.MSTT.Disable();
         s = PlayerPrefs.GetString("sequence");
-        Debug.Log(s);
+        quantidadeSimbolosMSTT = ContarSimbolosMSTT(s);
         StartCoroutine(PlaySoundCoroutine());
     }
 
@@ -262,14 +265,52 @@ public class MSTTManager : MonoBehaviour
 
     private int checarErro(string respostaMSTT)
     {
+        bool diferencaOrdemSequencia = CompararRespostaMSTT(respostaMSTT);
+        
+        quantidadeSimbolosMSTT = ContarSimbolosMSTT(s);
 
         if (string.IsNullOrEmpty(respostaMSTT)) return 0;
         else if (respostaMSTT.Length < s.Length) return 1;
         else if (respostaMSTT.Length > s.Length) return 2;
-        else if (!respostaMSTT.Equals(s)) return 3;
+        else if (!respostaMSTT.Equals(s) && !diferencaOrdemSequencia) return 3;
+        else if (!respostaMSTT.Equals(s) && diferencaOrdemSequencia) return 4;
         else if (Truncate(respostaMSTT, 11).Equals(s)) return 10;
         else return 404;
     }
+
+    private Vector2Int ContarSimbolosMSTT(string stringMSTT)
+    {
+        int quantidadeO = 0, quantidadeI = 0;
+   
+        foreach (char c in stringMSTT)
+        {
+            if (c.Equals('O'))
+            {
+                quantidadeO++;
+            }
+            else if (c.Equals('I'))
+            {
+                quantidadeI++;
+            }
+        }
+
+        return new Vector2Int(quantidadeO, quantidadeI);
+    }
+
+    private bool CompararRespostaMSTT(string respostaMSTT)
+    {
+        Vector2Int quantidadeResposta = ContarSimbolosMSTT(respostaMSTT);
+        Debug.Log("MSTT: " + quantidadeSimbolosMSTT + " | Resposta: " + quantidadeResposta);
+
+        if (quantidadeResposta == quantidadeSimbolosMSTT)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }   
 
     public static string Truncate(string value, int maxLength)
     {
