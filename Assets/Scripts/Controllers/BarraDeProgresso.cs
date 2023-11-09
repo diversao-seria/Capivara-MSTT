@@ -9,26 +9,25 @@ public class BarraDeProgresso : MonoBehaviour
     [SerializeField] private float tempoPreenchimento = 2.728f;
     private float valorAlvo = 0f, velocidadePreenchimento = 0.5f;
 
-    public void SomParou()
+    void OnEnable()
     {
-        
+        slider.value = 0;
     }
 
     void Start()
-    {
-        MudarValor(100f);
-        // Debug.Log(Time.fixedDeltaTime);
-        velocidadePreenchimento = (valorAlvo / 100) / tempoPreenchimento;
-        // Debug.Log("velocidade " + velocidadePreenchimento);
+    {    
+        slider.value = 0;
+        MudarValor(1f);
+        velocidadePreenchimento = (valorAlvo) / tempoPreenchimento;
     }
 
     void FixedUpdate()
     {
         if(slider.value < valorAlvo)
         {
-            // Debug.Log(slider.value);
             slider.value += velocidadePreenchimento * Time.fixedDeltaTime;
         }
+        
     }
 
     void MudarValor(float valorNovo)
