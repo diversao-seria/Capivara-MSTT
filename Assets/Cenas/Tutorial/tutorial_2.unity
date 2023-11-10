@@ -209,11 +209,11 @@ PrefabInstance:
     - target: {fileID: 5278669403908863436, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: audioPosSom
       value: 
-      objectReference: {fileID: 8300000, guid: b6518422d9db6b74b91d477541dfcd7f, type: 3}
+      objectReference: {fileID: 8300000, guid: bac3b390ce6450b4ca5450d98f0e5b1a, type: 3}
     - target: {fileID: 5278669403908863436, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: audioPreSom
       value: 
-      objectReference: {fileID: 8300000, guid: 56b01b1fe97847c419b184196dcaa683, type: 3}
+      objectReference: {fileID: 8300000, guid: a00dc6d7377819e4e96d0282370d89a0, type: 3}
     - target: {fileID: 5278669403908863436, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: fimInstrucoesPosSom.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -349,7 +349,7 @@ PrefabInstance:
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: somInicio
       value: 
-      objectReference: {fileID: 8300000, guid: 90eefd574d901b84db37cd00f132e80b, type: 3}
+      objectReference: {fileID: 8300000, guid: 995a506893edd334fa6a12f0318ecc26, type: 3}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoGrave.Array.size
       value: 3
@@ -357,15 +357,15 @@ PrefabInstance:
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoGrave.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 82615a8c3ea2c1c4caa4856d1e13b98d, type: 3}
+      objectReference: {fileID: 8300000, guid: a3a627c1e9af97a448a09ec681c3fcd0, type: 3}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoGrave.Array.data[1]
       value: 
-      objectReference: {fileID: 8300000, guid: 5248e7cb3dbfbf14cb99db80934faea4, type: 3}
+      objectReference: {fileID: 8300000, guid: faf35f7ae5d52a64fac3cc3cbd0ecd80, type: 3}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoGrave.Array.data[2]
       value: 
-      objectReference: {fileID: 8300000, guid: d6807eb523b7a6541aed6c7455f6769f, type: 3}
+      objectReference: {fileID: 8300000, guid: 46807d7467c01d04ca6c77b8b15f008a, type: 3}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoGrave.Array.data[3]
       value: 

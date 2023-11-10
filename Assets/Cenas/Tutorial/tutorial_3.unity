@@ -318,11 +318,11 @@ PrefabInstance:
     - target: {fileID: 5278669403908863436, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: audioPosSom
       value: 
-      objectReference: {fileID: 8300000, guid: ac877308bd305c146abdf28fde50cd56, type: 3}
+      objectReference: {fileID: 8300000, guid: 35f80b763ab1b2b41bfec19d31afe0b5, type: 3}
     - target: {fileID: 5278669403908863436, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: audioPreSom
       value: 
-      objectReference: {fileID: 8300000, guid: 2b0cee7004ada3b42b4a9b152e36acf8, type: 3}
+      objectReference: {fileID: 8300000, guid: d9466010620ea5f4cb83dd18ab344232, type: 3}
     - target: {fileID: 6411118110983911921, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -370,7 +370,7 @@ PrefabInstance:
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: somInicio
       value: 
-      objectReference: {fileID: 8300000, guid: 06fc8ecbe1eaf664e9e5f00c242749f7, type: 3}
+      objectReference: {fileID: 8300000, guid: 1a0dfe2103329634a961953193e6973f, type: 3}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoAgudo.Array.size
       value: 3
@@ -382,15 +382,15 @@ PrefabInstance:
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoAgudo.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: f43d45175392e1b4da86c68d046f227d, type: 3}
+      objectReference: {fileID: 8300000, guid: ba6f0569c05a8054883920d1a1f6df4c, type: 3}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoAgudo.Array.data[1]
       value: 
-      objectReference: {fileID: 8300000, guid: e97db07d89237484f8c23881ca99cadc, type: 3}
+      objectReference: {fileID: 8300000, guid: 0c7d4b54225f6e1428c296dd90776978, type: 3}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoAgudo.Array.data[2]
       value: 
-      objectReference: {fileID: 8300000, guid: 0baf196935ddd9848bb363a0de6f0a6d, type: 3}
+      objectReference: {fileID: 8300000, guid: a2cfb7bcf33f79f408bdf61a8e1c42c0, type: 3}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: sonsBotaoAgudo.Array.data[3]
       value: 

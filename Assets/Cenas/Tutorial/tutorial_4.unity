@@ -265,7 +265,7 @@ PrefabInstance:
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: somInicio
       value: 
-      objectReference: {fileID: 8300000, guid: d3170d194acd73b47a522603643a5d60, type: 3}
+      objectReference: {fileID: 8300000, guid: 1c2c22ef01ba80d44b8e7b505424278e, type: 3}
     - target: {fileID: 6411118110983911923, guid: 92c10e5fc0fb24649a1f178ca39d5ab7, type: 3}
       propertyPath: tocarSonsBotoes
       value: 0
