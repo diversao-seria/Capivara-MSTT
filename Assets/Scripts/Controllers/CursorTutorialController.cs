@@ -8,110 +8,37 @@ public class CursorTutorialController : MonoBehaviour
 {
     [SerializeField] private List<Transform> posicoesFinais = new List<Transform>();
     [SerializeField] private Sprite spriteClique, spritePadrao;
-    [SerializeField] private float tempoDeAnimacao = 0.5f, esperaCursor = 2f;
+    [SerializeField] private float tempoDeAnimacao = 0.5f;
     [SerializeField] private AnimationCurveReference animCurve;
     [SerializeField] private Image componenteImagem;
-    [SerializeField] private GameObject cursorTutorialPrefab;
     private bool spriteAtualClique = false;
-    private bool timerRodando = false;
-    private float tempoAtual;
     private int posicaoAtual = 0;
-    private bool cursorPiscando = false; 
-
-
+    private Coroutine moveCursor, piscarCursor;
 
     void OnEnable()
     {
-        MSTTManager.CodigoErroMSTT += Reset;
+        MSTTFeedback.feedbackTerminou += Reset;
     }
     void OnDisable()
     {
-        MSTTManager.CodigoErroMSTT -= Reset;
-    }
+        MSTTFeedback.feedbackTerminou -= Reset;
+    } 
+
     public void SomTerminou()
     {
-        if (posicoesFinais.Count > 0)
-        {
-            tempoAtual = esperaCursor;
-            timerRodando = true;
-            posicaoAtual = 0;
-        } 
+        componenteImagem.enabled = true;
+        moveCursor = StartCoroutine(MoveCursor());       
     }
 
     public void ClicouNaInterface()
     {
-        StopAllCoroutines();
-        
-        if (!timerRodando)
-        {
-            if (posicaoAtual < posicoesFinais.Count)
-            {
-                StartCoroutine(ControladorAnimacaoCursor());
-            }
-            else
-            {
-                componenteImagem.enabled = false;
-            }
-        }
-        else
-        {
+       if (posicaoAtual < posicoesFinais.Count - 1)
+       {
+            StopCoroutine(piscarCursor); 
+            
             posicaoAtual++;
-            tempoAtual = esperaCursor;
-        }    
-    }
-
-    public void ErrouMSTT()
-    {
-        StopAllCoroutines(); 
-
-        componenteImagem.enabled = false;
-        cursorPiscando = false;
-        posicaoAtual = 0;
-        tempoAtual = esperaCursor;  
-        Debug.Log("Errou");
-        timerRodando = false;
-    }
-
-    public void MSTTAcerto()
-    {
-        componenteImagem.enabled = false;
-        cursorPiscando = false;
-        timerRodando = false;
-    }
-
-
-    void Start()
-    {
-        tempoAtual = esperaCursor;
-    }
-    void Update()
-    {
-        if (timerRodando)
-        {         
-            if (tempoAtual > 0)
-            {
-                tempoAtual -= Time.deltaTime;
-            }
-            else
-            {
-                Debug.Log(posicaoAtual);
-                componenteImagem.enabled = true;
-                timerRodando = false;
-                cursorPiscando = true;
-                StartCoroutine(ControladorAnimacaoCursor());
-            }
-        }         
-    }
-
-    IEnumerator ControladorAnimacaoCursor()
-    {
-        yield return MoveCursor();
-
-        posicaoAtual++;
-
-        yield return new WaitForSeconds(0.3f);
-
-        yield return PiscarCursor();
+            moveCursor = StartCoroutine(MoveCursor());
+       }
     }
 
     IEnumerator MoveCursor()
@@ -131,12 +58,16 @@ public class CursorTutorialController : MonoBehaviour
             transform.position = posicaoIntermediaria;
             tempoPassado += Time.deltaTime;
             yield return null;
-        }        
+        }
+
+        yield return new WaitForSeconds(0.3f); 
+        piscarCursor = StartCoroutine(PiscarCursor()); 
+        Debug.Log("Done");      
     }
 
     IEnumerator PiscarCursor()
     {
-        while (cursorPiscando)
+        while (true)
         {           
             if (spriteAtualClique)
             {
@@ -151,8 +82,12 @@ public class CursorTutorialController : MonoBehaviour
         }
     }
 
-    public void Reset(int codigoErro)
+    public void Reset()
     {
+        StopCoroutine(piscarCursor);
+
         componenteImagem.enabled = false;
+        posicaoAtual = 0;
+        Debug.Log(posicaoAtual);
     }
 }

@@ -18,6 +18,6 @@ public class BotaoMenuStartController : MonoBehaviour
     {
         mensagemAudio.SetActive(true);
         yield return new WaitForSeconds(4);
-        SceneManager.LoadScene("tutorial_1");
+        SceneManager.LoadScene("associacao - sons");
     }
 }

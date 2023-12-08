@@ -50,4 +50,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Cenas/Tutorial/tutorial_5.unity
     guid: 5be19b7dfb92ea94b8cd478110edb437
+  - enabled: 1
+    path: Assets/Cenas/Tutorial/Associacao - Sons.unity
+    guid: 9fabdd39d785b4d478974a213a9fd576
   m_configObjects: {}
