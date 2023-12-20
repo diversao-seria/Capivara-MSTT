@@ -18,7 +18,7 @@ public class MSTTManager : MonoBehaviour
     public AudioClip somFino;
     public AudioClip somGrosso;
     public AudioSource fonteSom;
-    public Button soundButton, oButton, iButton, confirmButton;
+    public Button soundButton, oButton, iButton, confirmButton, deleteButton;
 
     [SerializeField] private Sprite spriteAcerto, spriteErro;
     [SerializeField] private Image spriteFeedback;
@@ -41,6 +41,8 @@ public class MSTTManager : MonoBehaviour
     private bool feedbackTerminou = false;
 
     private Vector2Int quantidadeSimbolosMSTT = new Vector2Int(0, 0);
+
+    public bool temNarracao = false;
 
     private void Awake()
     {
@@ -85,6 +87,15 @@ public class MSTTManager : MonoBehaviour
     void Update()
     {
         textDisplay.text = resposta;
+
+        if (resposta.Length > 0)
+        {
+            deleteButton.interactable = true;
+        }
+        else
+        {
+            deleteButton.interactable = false;
+        }
 
     }
 
@@ -140,6 +151,16 @@ public class MSTTManager : MonoBehaviour
         confirmButton.interactable = false;
         oButton.interactable = false;
         iButton.interactable = false;
+        
+        // Se não tem narração aguarda um tempo antes de tocar o som
+        if(!temNarracao)
+        {
+            AmpulhetaPanel.SetActive(true);
+            yield return new WaitForSeconds(0.682f * 4);
+            AmpulhetaPanel.SetActive(false);
+        }
+
+
         for (int i = 0; i < s.Length; i++)
         {
             if(s[i] == 'I')
@@ -318,6 +339,24 @@ public class MSTTManager : MonoBehaviour
         return value.Length <= maxLength ? value : value.Substring(0, maxLength); 
     }
 
+    public void ActivateDeleteButton()
+    {
+        if(resposta.Length > 0)
+        {
+            deleteButton.interactable = true;
+        }
+        else
+        {
+            deleteButton.interactable = false;
+        }
+    }
 
+    public void DeleteLastChar()
+    {
+        if (resposta.Length > 0)
+        {
+            resposta = resposta.Remove(resposta.Length - 1);
+        }
+    }
 
 }
