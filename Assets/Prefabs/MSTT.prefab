@@ -81,7 +81,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1269393931425361648}
   m_FillRect: {fileID: 1244829601796749884}
   m_HandleRect: {fileID: 2343426104227204233}
@@ -2224,6 +2224,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  temNarracao: 0
 --- !u!114 &3252354394397469881
 MonoBehaviour:
   m_ObjectHideFlags: 0

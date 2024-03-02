@@ -34,7 +34,16 @@ public class CursorTutorialController : MonoBehaviour
     {
        if (posicaoAtual < posicoesFinais.Count - 1)
        {
-            StopCoroutine(piscarCursor); 
+            if (moveCursor != null)
+            {
+                StopCoroutine(moveCursor);
+                moveCursor = null;
+            }
+            if (piscarCursor != null)
+            {
+                StopCoroutine(piscarCursor);
+                piscarCursor = null;
+            }           
             
             posicaoAtual++;
             moveCursor = StartCoroutine(MoveCursor());
@@ -61,8 +70,7 @@ public class CursorTutorialController : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.3f); 
-        piscarCursor = StartCoroutine(PiscarCursor()); 
-        Debug.Log("Done");      
+        piscarCursor = StartCoroutine(PiscarCursor());      
     }
 
     IEnumerator PiscarCursor()
@@ -89,5 +97,10 @@ public class CursorTutorialController : MonoBehaviour
         componenteImagem.enabled = false;
         posicaoAtual = 0;
         Debug.Log(posicaoAtual);
+    }
+
+    public void Teste(Button botao)
+    {
+        Debug.Log(botao.gameObject.name);
     }
 }
