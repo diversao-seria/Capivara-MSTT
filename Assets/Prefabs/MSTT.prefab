@@ -2209,6 +2209,21 @@ MonoBehaviour:
   ultimoMSTT:
     m_PersistentCalls:
       m_Calls: []
+  FimMSTTUN:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: ef805deabef51dd46b2360f41d4ba1f0, type: 2}
+        m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   somParou:
     m_PersistentCalls:
       m_Calls:
@@ -2225,6 +2240,10 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   temNarracao: 0
+  respostaMSTT:
+    UseConstant: 0
+    ConstantValue: 
+    Variable: {fileID: 11400000, guid: 1350fb6df2bfa524ab4de97648f8b827, type: 2}
 --- !u!114 &3252354394397469881
 MonoBehaviour:
   m_ObjectHideFlags: 0

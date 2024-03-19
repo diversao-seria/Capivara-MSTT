@@ -26,6 +26,9 @@ public class GridController : MonoBehaviour
     // evento emitido ao tocar uma nota. Passa a nota tocada como parametro do tipo Char
     public static event Action<char> NotePlayed;
 
+    // evento emitido ao finalizar o carregamento do nivel
+    public UnityEvent carregouNivel;
+
     private void OnEnable()
     {
         // Inscreve o GridController no evento moveAttempt (usado para fazer a comunica��o entre jogador e grid)
@@ -102,6 +105,7 @@ public class GridController : MonoBehaviour
                 ID++;
             }
         }
+        carregouNivel?.Invoke();
     }
 
     public Vector3 getWorldPosition(int x, int y)

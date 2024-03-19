@@ -32,6 +32,7 @@ public class MSTTManager : MonoBehaviour
     [SerializeField] private int quantidadeTestes = 1;
 
     public UnityEvent ultimoMSTT;
+    public UnityEvent FimMSTTUN;
 
     // evento que sinaliza o fim da sequência de sons do mstt
     public UnityEvent somParou;
@@ -43,6 +44,7 @@ public class MSTTManager : MonoBehaviour
     private Vector2Int quantidadeSimbolosMSTT = new Vector2Int(0, 0);
 
     public bool temNarracao = false;
+    public StringReference respostaMSTT;
 
     private void Awake()
     {
@@ -132,6 +134,7 @@ public class MSTTManager : MonoBehaviour
 
     public void Confirma()
     {
+        respostaMSTT.Value = resposta;
         StartCoroutine(FeedbackCoroutine());
     }
 
@@ -148,6 +151,7 @@ public class MSTTManager : MonoBehaviour
 
     IEnumerator PlaySoundCoroutine()
     {
+        
         confirmButton.interactable = false;
         oButton.interactable = false;
         iButton.interactable = false;
@@ -194,6 +198,8 @@ public class MSTTManager : MonoBehaviour
 
     IEnumerator FeedbackCoroutine()
     {
+        FimMSTTUN?.Invoke();
+
         // se o teste tiver instruções, emitir o evento de feedback
         if (testeInstruido)
         {
@@ -229,8 +235,8 @@ public class MSTTManager : MonoBehaviour
             tocandoInstrucoes = true;
             msttErro?.Invoke();
             
-        }
-        
+        } 
+
         if (quantidadeTestes == 2)
         {
             ultimoMSTT?.Invoke();
