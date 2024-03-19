@@ -241,6 +241,12 @@ public class MSTTManager : MonoBehaviour
         {
             ultimoMSTT?.Invoke();
         }
+        else if (quantidadeTestes <= 1)
+        {
+            
+            msttSucesso?.Invoke();
+            yield break;
+        }
         Cancela();
         PlaySound();
     }
