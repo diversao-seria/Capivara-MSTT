@@ -70,7 +70,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         gridPosition.UseConstant = true;
         gridPosition.Value = new Vector2Int(gridPosition.Value.x, gridPosition.Value.y);
-        transform.position = grid.getWorldPosition(gridPosition.Value.x, gridPosition.Value.y);
+        transform.position = grid.getWorldPosition(gridPosition.Value.x, gridPosition.Value.y) + Vector3.up * playerHeight;
         gridPosition.UseConstant = false;
     }
 
