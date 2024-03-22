@@ -1,0 +1,42 @@
+{ "compressionlevel":-1,
+ "height":2,
+ "infinite":false,
+ "layers":[
+        {
+         "data":[1, 1, 2, 2, 2, 1, 1, 1,
+            1, 1, 4, 2, 2, 2, 1, 3],
+         "height":2,
+         "id":1,
+         "name":"Tile Layer 1",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":8,
+         "x":0,
+         "y":0
+        }],
+ "nextlayerid":2,
+ "nextobjectid":1,
+ "orientation":"orthogonal",
+ "renderorder":"right-down",
+ "tiledversion":"1.10.1",
+ "tileheight":32,
+ "tilesets":[
+        {
+         "columns":5,
+         "firstgid":1,
+         "image":"..\/..\/..\/..\/..\/..\/..\/TiledProjects\/Spritesheets\/Spritesheet -.png",
+         "imageheight":32,
+         "imagewidth":160,
+         "margin":0,
+         "name":"Spritesheet -",
+         "spacing":0,
+         "tilecount":5,
+         "tileheight":32,
+         "tilewidth":32
+        }],
+ "tilewidth":32,
+ "type":"map",
+ "version":"1.10",
+ "width":8
+}
