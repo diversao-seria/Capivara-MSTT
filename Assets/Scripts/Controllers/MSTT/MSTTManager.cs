@@ -189,8 +189,7 @@ public class MSTTManager : MonoBehaviour
         
         if (!testeInstruido)
         {
-            oButton.interactable = true;
-            iButton.interactable = true;
+            AlterarEstadosBotoes(true);
         }       
 
         somParou?.Invoke();
@@ -205,15 +204,40 @@ public class MSTTManager : MonoBehaviour
         {
             AlterarEstadosBotoes(false);
             feedbackTerminou = true;
-            CodigoErroMSTT?.Invoke(checarErro(resposta));
+            int codigoErro = checarErro(resposta);
+            CodigoErroMSTT?.Invoke(codigoErro);
             yield return new WaitWhile (()=> feedbackTerminou);
-        }        
 
-        if (Truncate(resposta, 11).Equals(s))
+            if (codigoErro == 10)
+            {
+                if (quantidadeTestes <= 1)
+                {
+                    msttSucesso?.Invoke();
+                    yield break;
+                }
+                else if (MSTTAleatorio)
+                {
+                    s = RandomString();               
+                    quantidadeTestes -= 1;
+                }
+                else
+                {
+                    sequenciasMSTT.RemoveAt(0);
+                    s = sequenciasMSTT[0];
+                    quantidadeTestes = sequenciasMSTT.Count;
+                }
+                PlayerPrefs.SetString("sequence", s);
+            }
+            else
+            {
+                tocandoInstrucoes = true;
+                msttErro?.Invoke();               
+            }
+        }
+        else
         {
             if (quantidadeTestes <= 1)
             {
-                
                 msttSucesso?.Invoke();
                 yield break;
             }
@@ -229,24 +253,8 @@ public class MSTTManager : MonoBehaviour
                 quantidadeTestes = sequenciasMSTT.Count;
             }
             PlayerPrefs.SetString("sequence", s);
-        }
-        else
-        {
-            tocandoInstrucoes = true;
-            msttErro?.Invoke();
-            
-        } 
-
-        if (quantidadeTestes == 2)
-        {
-            ultimoMSTT?.Invoke();
-        }
-        else if (quantidadeTestes <= 1)
-        {
-            
-            msttSucesso?.Invoke();
-            yield break;
-        }
+        }        
+ 
         Cancela();
         PlaySound();
     }
