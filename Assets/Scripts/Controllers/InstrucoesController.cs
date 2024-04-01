@@ -52,13 +52,15 @@ public class InstrucoesController : MonoBehaviour
         {
             if (notaEvento == 'O')
             {
-                fonteSom.clip = sonsBotaoGrave[Random.Range (0, sonsBotaoGrave.Count)];
+                // fonteSom.clip = sonsBotaoGrave[Random.Range (0, sonsBotaoGrave.Count)];
+                AudioController.instance.tocarOneShot(FMODEvents.instance.feedbackBotaoFaseGrave);
             }
             else if (notaEvento == 'I')
             {
-                fonteSom.clip = sonsBotaoAgudo[Random.Range (0, sonsBotaoAgudo.Count)];
+                // fonteSom.clip = sonsBotaoAgudo[Random.Range (0, sonsBotaoAgudo.Count)];
+                AudioController.instance.tocarOneShot(FMODEvents.instance.feedbackBotaoFaseAgudo);
             }
-            fonteSom.Play();
+            // fonteSom.Play();
         }
         
     }

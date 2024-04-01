@@ -397,9 +397,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1436565064}
     m_Modifications:
+    - target: {fileID: -6196884471782329160, guid: 9774e27e6e1e01e47968dda4eed5e1ef, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -6196884471782329160, guid: 9774e27e6e1e01e47968dda4eed5e1ef, type: 3}
+      propertyPath: OverrideMinDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1994755453039313278, guid: 9774e27e6e1e01e47968dda4eed5e1ef, type: 3}
       propertyPath: m_Name
       value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1994755453039313278, guid: 9774e27e6e1e01e47968dda4eed5e1ef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1994755453039313279, guid: 9774e27e6e1e01e47968dda4eed5e1ef, type: 3}
       propertyPath: m_RootOrder
@@ -461,11 +473,6 @@ GameObject:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6106047741530534262, guid: 99d335176880b164c96336106cb37fb6, type: 3}
   m_PrefabInstance: {fileID: 1618302145}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &795933342 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 1994755453039313274, guid: 9774e27e6e1e01e47968dda4eed5e1ef, type: 3}
-  m_PrefabInstance: {fileID: 425638990}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1115993648 stripped
 GameObject:
@@ -863,7 +870,7 @@ PrefabInstance:
     - target: {fileID: 6106047741984649177, guid: 99d335176880b164c96336106cb37fb6, type: 3}
       propertyPath: fonteSom
       value: 
-      objectReference: {fileID: 795933342}
+      objectReference: {fileID: 0}
     - target: {fileID: 6106047741984649177, guid: 99d335176880b164c96336106cb37fb6, type: 3}
       propertyPath: MSTTAleatorio
       value: 0

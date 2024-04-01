@@ -78,10 +78,13 @@ public class MSTTManager : MonoBehaviour
         MSTTFeedback.feedbackTerminou -= FimDoFeedback;
         playerInputActions.MSTT.InputI.performed -= IInput;
         playerInputActions.MSTT.InputO.performed -= OInput;
+        AudioController.instance.PausaMusica(false);
+
     }
 
     void Start()
     {          
+        AudioController.instance.PausaMusica(true);
         PlaySound();
     }
     
@@ -169,18 +172,23 @@ public class MSTTManager : MonoBehaviour
         {
             if(s[i] == 'I')
             {
-                fonteSom.clip = somFino;
+                AudioController.instance.tocarOneShotMSTT(FMODEvents.instance.MSTTAgudo);
+                // fonteSom.clip = somFino;
             }
             else
             {
-                fonteSom.clip = somGrosso;
+                AudioController.instance.tocarOneShotMSTT(FMODEvents.instance.MSTTGrave);
+                // fonteSom.clip = somGrosso;
             }
-
-            fonteSom.Play();
+            // AudioController.instance.tocarOneShotMSTT(FMODEvents.instance.MSTTAgudo);
+            // fonteSom.Play();
             yield return new WaitForSeconds(0.682f);
+            AudioController.instance.pararOneShotMSTT();
         }
 
-        fonteSom.Stop();
+        // "libera" a instância de som referente ao MSTT. Importante para economia de memória
+        AudioController.instance.liberarOneShotMSTT();
+        // fonteSom.Stop();
         AmpulhetaPanel.SetActive(true);
         yield return new WaitForSeconds(0.682f * /*s.Length*/ 4);
         AmpulhetaPanel.SetActive(false);

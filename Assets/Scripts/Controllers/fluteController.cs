@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class fluteController : MonoBehaviour
 {
-    // este script só deve ser utilizado uma vez ao longo do jogo. Por este motivo, não é necessário fazer a integração com os unityevents.
-    // será responsável por ativar a fila de notas, dando início à trilha da flauta
+    // este script sï¿½ deve ser utilizado uma vez ao longo do jogo. Por este motivo, nï¿½o ï¿½ necessï¿½rio fazer a integraï¿½ï¿½o com os unityevents.
+    // serï¿½ responsï¿½vel por ativar a fila de notas, dando inï¿½cio ï¿½ trilha da flauta
     [SerializeField] private GridController grid;
     [SerializeField] private Vector2Int coordenadasGrid;
-    [SerializeField] private GameObject hud;
+    [Header("Mudanca de Parametro")]
+    [SerializeField] private string nomeParametro;
+    [SerializeField] private float valorParametro;
+
     public Vector2Reference coordenadasJogador;
 
     void Start()
     {
-        // definir posição inicial com base na variável coordenadasGrid, que pode ser editada no inspetor.
+        // definir posiï¿½ï¿½o inicial com base na variï¿½vel coordenadasGrid, que pode ser editada no inspetor.
         transform.position = grid.getWorldPosition(coordenadasGrid.x, coordenadasGrid.y);
     }
 
     public void jogadorMoveu()
     {
-        // Semp´re que o jogador se move, checa se as coordenadas atuais do jogador são iguais às coordenadas atuais da flauta. Se for true, ativa a hud e destói o objeto flauta.
+        // Sempï¿½re que o jogador se move, checa se as coordenadas atuais do jogador sï¿½o iguais ï¿½s coordenadas atuais da flauta. Se for true, ativa a hud e destï¿½i o objeto flauta.
         if (coordenadasJogador.Value == coordenadasGrid)
         {
-            hud.SetActive(true);
+            AudioController.instance.DefinirParametrosMusica(nomeParametro, valorParametro);
             Destroy(this.gameObject);
         }
     }
