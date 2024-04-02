@@ -46,6 +46,12 @@ public class PlayerMovementController : MonoBehaviour
     // Token p/ cancelar a função async "MovedorPlayer"
     CancellationTokenSource tks = null;
 
+    // ultimo input do jogador
+    Vector2Int ultimoInput;
+
+    // angulo de rotação da capivara
+    float angulo = 0f;
+
     private void Awake()
     {
         playerInputActions = new PlayerInputActions();
@@ -72,6 +78,7 @@ public class PlayerMovementController : MonoBehaviour
         gridPosition.Value = new Vector2Int(gridPosition.Value.x, gridPosition.Value.y);
         transform.position = grid.getWorldPosition(gridPosition.Value.x, gridPosition.Value.y) + Vector3.up * playerHeight;
         gridPosition.UseConstant = false;
+        ultimoInput = new Vector2Int(1, 0); // Inicializa a variaval e define o valor padrão para a orientação definida no prefab (! ALTERAÇÕES NO PREFAB PODEM GERAR PROBLMEAS NA SINCRONIA DA ROTAÇÃO !)
     }
 
     public void Reiniciar(InputAction.CallbackContext context)
@@ -93,6 +100,20 @@ public class PlayerMovementController : MonoBehaviour
     public void MoverJogador(InputAction.CallbackContext context)
     {
         Vector2Int vetorMovimentacao = Vector2Int.RoundToInt(context.ReadValue<Vector2>());
+
+        // Calcula a rotação do jogador baseado no input inserido e no input anterior e rotaciona a capivara de acordo
+        if (!movendo)
+        {
+            angulo = Vector2.SignedAngle(ultimoInput, vetorMovimentacao);
+            
+            if (angulo == 90 || angulo == -90)
+            {
+                angulo = -1 * angulo;
+            }
+            Debug.Log(angulo);
+            transform.Rotate(0, angulo, 0, Space.Self);
+            ultimoInput = vetorMovimentacao;
+        }
 
         // soma de todos os inputs armazenados no buffer
         Vector2Int somaListaInputs = listaInputsMovimentacao.Aggregate(new Vector2Int(0, 0), (s, v) => s + v) + vetorMovimentacao;
@@ -128,6 +149,17 @@ public class PlayerMovementController : MonoBehaviour
 
     private async void movePlayer(Vector2Int novasCoordenadas, float tempoDeAnimacao, bool plataforma)
     {
+        // Calcula a rotação do jogador baseado no input inserido e no input anterior e rotaciona a capivara de acordo
+        angulo = Vector2.SignedAngle(ultimoInput, listaInputsMovimentacao[0]);
+
+        if (angulo == 90 || angulo == -90)
+        {
+            angulo = -1 * angulo;
+        }
+        Debug.Log(angulo);
+        transform.Rotate(0, angulo, 0, Space.Self);
+        ultimoInput = listaInputsMovimentacao[0];
+
         tks = new CancellationTokenSource();
         var token = tks.Token;
 
@@ -195,5 +227,14 @@ public class PlayerMovementController : MonoBehaviour
             return;
         }
         movendo = false;
+    }
+
+    private int valorNaoNuloV2(Vector2Int vetor)
+    {
+        if (vetor.x != 0)
+        {
+            return vetor.x;
+        }
+        return vetor.y;
     }
 }
