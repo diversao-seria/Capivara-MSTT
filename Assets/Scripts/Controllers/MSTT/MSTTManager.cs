@@ -15,23 +15,14 @@ public class MSTTManager : MonoBehaviour
     public string resposta = "";
     public TMPro.TextMeshProUGUI textDisplay;
 
-    public AudioClip somFino;
-    public AudioClip somGrosso;
-    public AudioSource fonteSom;
-    public Button soundButton, oButton, iButton, confirmButton, deleteButton;
-
-    [SerializeField] private Sprite spriteAcerto, spriteErro;
-    [SerializeField] private Image spriteFeedback;
+    public Button oButton, iButton, confirmButton, deleteButton;
     [SerializeField] private GameObject AmpulhetaPanel;
-
-    public GameObject exit;
 
     [SerializeField] private bool MSTTAleatorio = true, testeInstruido = false, tocandoInstrucoes = true;
     [SerializeField] private List<string> sequenciasMSTT = new List<string>();
 
     [SerializeField] private int quantidadeTestes = 1;
-
-    public UnityEvent ultimoMSTT;
+    
     public UnityEvent FimMSTTUN;
 
     // evento que sinaliza o fim da sequência de sons do mstt
@@ -173,22 +164,15 @@ public class MSTTManager : MonoBehaviour
             if(s[i] == 'I')
             {
                 AudioController.instance.tocarOneShotMSTT(FMODEvents.instance.MSTTAgudo);
-                // fonteSom.clip = somFino;
             }
             else
             {
                 AudioController.instance.tocarOneShotMSTT(FMODEvents.instance.MSTTGrave);
-                // fonteSom.clip = somGrosso;
             }
-            // AudioController.instance.tocarOneShotMSTT(FMODEvents.instance.MSTTAgudo);
-            // fonteSom.Play();
             yield return new WaitForSeconds(0.682f);
             AudioController.instance.pararOneShotMSTT();
         }
 
-        // "libera" a instância de som referente ao MSTT. Importante para economia de memória
-        AudioController.instance.liberarOneShotMSTT();
-        // fonteSom.Stop();
         AmpulhetaPanel.SetActive(true);
         yield return new WaitForSeconds(0.682f * /*s.Length*/ 4);
         AmpulhetaPanel.SetActive(false);
@@ -276,6 +260,7 @@ public class MSTTManager : MonoBehaviour
     {
         if (testeInstruido)
         {
+            tocandoInstrucoes = true;
             yield return new WaitWhile (()=> tocandoInstrucoes);
         }
         else
@@ -349,8 +334,7 @@ public class MSTTManager : MonoBehaviour
     private bool CompararRespostaMSTT(string respostaMSTT)
     {
         Vector2Int quantidadeResposta = ContarSimbolosMSTT(respostaMSTT);
-        Debug.Log("MSTT: " + quantidadeSimbolosMSTT + " | Resposta: " + quantidadeResposta);
-
+        
         if (quantidadeResposta == quantidadeSimbolosMSTT)
         {
             return true;

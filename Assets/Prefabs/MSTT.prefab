@@ -2188,9 +2188,6 @@ MonoBehaviour:
         m_CallState: 2
   resposta: 
   textDisplay: {fileID: 6106047741568308181}
-  somFino: {fileID: 8300000, guid: 11619759e5ca9b44db665cb52b28574d, type: 3}
-  somGrosso: {fileID: 8300000, guid: fd0a74c79cff84f4895103d84607ed7a, type: 3}
-  fonteSom: {fileID: 0}
   soundButton: {fileID: 6106047740301118827}
   oButton: {fileID: 6106047740916041668}
   iButton: {fileID: 6106047741606032667}
@@ -2260,12 +2257,12 @@ MonoBehaviour:
   spriteAcerto: {fileID: 21300000, guid: 5eb32de33c36b4a4d8bb100473106e26, type: 3}
   spriteErro: {fileID: 21300000, guid: ce10467ac8631014abdd73dd557a0a0b, type: 3}
   sonsFeedback:
-  - {fileID: 8300000, guid: ae9ea0f9d64c68a458ed1c7623f85f74, type: 3}
-  - {fileID: 8300000, guid: fccc296a4f6ac9e45ad9c7957051eea9, type: 3}
-  - {fileID: 8300000, guid: ce19d0d44f653ef4eb7f986e09b8c38c, type: 3}
-  - {fileID: 8300000, guid: a2cc763f9dff9cc4c80f18496d40a81c, type: 3}
-  - {fileID: 8300000, guid: 598ab055359f0204299c9d835756a7f8, type: 3}
-  - {fileID: 8300000, guid: d7e7f2865ff7e134db67d9905b73b071, type: 3}
+  - Feedbacks/feedback_00
+  - Feedbacks/feedback_01
+  - Feedbacks/feedback_02
+  - Feedbacks/feedback_03
+  - Feedbacks/feedback_04
+  - Feedbacks/feedback_10
   fonteSom: {fileID: 0}
 --- !u!114 &8277949243103099605
 MonoBehaviour:

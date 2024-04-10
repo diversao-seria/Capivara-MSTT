@@ -9,8 +9,7 @@ public class MSTTFeedback : MonoBehaviour
 {
     [SerializeField] private Image spriteFeedback;
     [SerializeField] private Sprite spriteAcerto, spriteErro;
-    [SerializeField] private List<AudioClip> sonsFeedback;
-    [SerializeField] private AudioSource fonteSom;
+    [SerializeField] private List<String> sonsFeedback;
     public static event Action feedbackTerminou;
 
     void OnEnable()
@@ -30,30 +29,30 @@ public class MSTTFeedback : MonoBehaviour
         {
             case 0:
                 spriteFeedback.sprite = spriteErro;
-                fonteSom.clip = sonsFeedback[codigoErro];
+                AudioController.instance.PlayDialogue(sonsFeedback[codigoErro]);
                 break;
             case 1:
                 spriteFeedback.sprite = spriteErro; 
-                fonteSom.clip = sonsFeedback[codigoErro];
+                AudioController.instance.PlayDialogue(sonsFeedback[codigoErro]);
                 break;
             case 2:
                 spriteFeedback.sprite = spriteErro;
-                fonteSom.clip = sonsFeedback[codigoErro];
+                AudioController.instance.PlayDialogue(sonsFeedback[codigoErro]);
                 break;
             case 3:
                 spriteFeedback.sprite = spriteErro;
-                fonteSom.clip = sonsFeedback[codigoErro];
+                AudioController.instance.PlayDialogue(sonsFeedback[codigoErro]);
                 break;
             case 4:
                 spriteFeedback.sprite = spriteErro;
-                fonteSom.clip = sonsFeedback[codigoErro];
+                AudioController.instance.PlayDialogue(sonsFeedback[codigoErro]);
                 break;
             case 10:
-                fonteSom.clip = sonsFeedback[5]; 
+                AudioController.instance.PlayDialogue(sonsFeedback[5]);
                 spriteFeedback.sprite = spriteAcerto;   
                 break; 
             default:
-                fonteSom.clip = sonsFeedback[0]; 
+                AudioController.instance.PlayDialogue(sonsFeedback[0]);
                 spriteFeedback.sprite = spriteErro;   
                 break;           
         }
@@ -63,8 +62,7 @@ public class MSTTFeedback : MonoBehaviour
     IEnumerator SequenciaDeFeedback()
     {      
         spriteFeedback.enabled = true;
-        fonteSom.Play();
-        yield return new WaitWhile (()=> fonteSom.isPlaying);
+        yield return new WaitWhile (()=> AudioController.instance.IsDialoguePlaying());
         yield return new WaitForSeconds(0.5f);
         spriteFeedback.enabled = false;
         feedbackTerminou?.Invoke();

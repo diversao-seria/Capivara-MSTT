@@ -17,6 +17,7 @@ public class FMODEvents : MonoBehaviour
     [field: Header("Narrações")]
     [field: SerializeField] public EventReference feedbackBotaoFaseGrave { get; private set; }
     [field: SerializeField] public EventReference feedbackBotaoFaseAgudo { get; private set; }
+    [field: SerializeField] public EventReference fala { get; private set; }
 
 
 
@@ -24,9 +25,12 @@ public class FMODEvents : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogError("Mais de um FMODEvents na cena.");
+            Debug.LogError("Mais de um Audio Controller na cena.");
         }
-        instance = this;
+        else
+        {
+            instance = this;
+        }
     }
 
 

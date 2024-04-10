@@ -1,5 +1,91 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1615056874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1615056875}
+  - component: {fileID: 1615056876}
+  m_Layer: 0
+  m_Name: FMODEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1615056875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615056874}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1994755453039313279}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1615056876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615056874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79d438eb3eb59eb4d9ac09d949059c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <musica>k__BackingField:
+    Guid:
+      Data1: 1869547450
+      Data2: 1182002043
+      Data3: 1870822050
+      Data4: -767442493
+    Path: event:/Musica/Musica
+  <MSTTGrave>k__BackingField:
+    Guid:
+      Data1: 919025988
+      Data2: 1097333236
+      Data3: -1055723865
+      Data4: -926718738
+    Path: event:/MSTT/MSTTGrave
+  <MSTTAgudo>k__BackingField:
+    Guid:
+      Data1: -422478742
+      Data2: 1082431136
+      Data3: -1602053196
+      Data4: 1579608969
+    Path: event:/MSTT/MSTTAgudo
+  <feedbackBotaoFaseGrave>k__BackingField:
+    Guid:
+      Data1: -1533299008
+      Data2: 1100424328
+      Data3: 1870165380
+      Data4: -1509967166
+    Path: event:/Instrucoes/SonsGraves/SomGraveNivel
+  <feedbackBotaoFaseAgudo>k__BackingField:
+    Guid:
+      Data1: -930955940
+      Data2: 1148682299
+      Data3: 572485021
+      Data4: 389550933
+    Path: event:/Instrucoes/SonsAgudos/SomAgudoNivel
+  <fala>k__BackingField:
+    Guid:
+      Data1: 1091937285
+      Data2: 1157782003
+      Data3: -296799575
+      Data4: 1833389731
+    Path: event:/Instrucoes/Instrucao
 --- !u!1 &1994755453039313278
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1994755453039313279}
   - component: {fileID: 1994755453039313277}
-  - component: {fileID: -6196884471782329160}
+  - component: {fileID: 1488946190}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -25,14 +111,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1994755453039313278}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -5.6742277, y: 1.6401157, z: 5.3499994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1615056875}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!114 &1994755453039313277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,15 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4abfc7563fde70c448f3424ddb3ba257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pink_audio:
-    UseConstant: 0
-    ConstantValue: {fileID: 0}
-    Variable: {fileID: 11400000, guid: c3e8bc27a5f3d8f49a1416d00f5b8506, type: 2}
-  blue_audio:
-    UseConstant: 0
-    ConstantValue: {fileID: 0}
-    Variable: {fileID: 11400000, guid: f29b54bb35c4348439c57a3e2ea1a57d, type: 2}
---- !u!114 &-6196884471782329160
+--- !u!114 &1488946190
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,25 +141,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1994755453039313278}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: b9468c5f457ace64f8d4df6d642b107f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LoadEvent: 1
+  UnloadEvent: 2
+  Banks:
+  - Musica
+  - Instrucoes
+  - MSTT
   CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  Event: 
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  AllowNonRigidbodyDoppler: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
+  PreloadSamples: 0
