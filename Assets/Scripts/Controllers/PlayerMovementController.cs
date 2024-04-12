@@ -104,13 +104,7 @@ public class PlayerMovementController : MonoBehaviour
         // Calcula a rotação do jogador baseado no input inserido e no input anterior e rotaciona a capivara de acordo
         if (!movendo)
         {
-            angulo = Vector2.SignedAngle(ultimoInput, vetorMovimentacao);
-            
-            if (angulo == 90 || angulo == -90)
-            {
-                angulo = -1 * angulo;
-            }
-            Debug.Log(angulo);
+            angulo = Vector2.SignedAngle(ultimoInput, vetorMovimentacao) * -1;
             transform.Rotate(0, angulo, 0, Space.Self);
             ultimoInput = vetorMovimentacao;
         }
@@ -149,16 +143,13 @@ public class PlayerMovementController : MonoBehaviour
 
     private async void movePlayer(Vector2Int novasCoordenadas, float tempoDeAnimacao, bool plataforma)
     {
-        // Calcula a rotação do jogador baseado no input inserido e no input anterior e rotaciona a capivara de acordo
-        angulo = Vector2.SignedAngle(ultimoInput, listaInputsMovimentacao[0]);
-
-        if (angulo == 90 || angulo == -90)
+        if (!plataforma)
         {
-            angulo = -1 * angulo;
+            // Calcula a rotação do jogador baseado no input inserido e no input anterior e rotaciona a capivara de acordo
+            angulo = Vector2.SignedAngle(ultimoInput, listaInputsMovimentacao[0]) * -1;
+            transform.Rotate(0, angulo, 0, Space.Self);
+            ultimoInput = listaInputsMovimentacao[0];
         }
-        Debug.Log(angulo);
-        transform.Rotate(0, angulo, 0, Space.Self);
-        ultimoInput = listaInputsMovimentacao[0];
 
         tks = new CancellationTokenSource();
         var token = tks.Token;
@@ -187,6 +178,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private async Task MovedorPlayer(Vector3 posicaoAntes, Vector3 posicaoDepois, float tempoDeAnimacao, bool plataforma, CancellationToken token)
     {
+        Debug.Log("oi");
         movendo = true;
         float t = 0;
         float tempoPassado = 0;
