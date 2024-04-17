@@ -4,8 +4,11 @@ using UnityEngine;
 using MongoDB.Driver;
 using MongoDB.Bson;
 using System;
-using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
+
+// Desabilitamos essa biblioteca por causar erros na build. Habilitar caso dê problemas.
+// using UnityEditor.SearchService;
+
 
 public class BaseDeDados : MonoBehaviour
 {
@@ -29,7 +32,7 @@ public class BaseDeDados : MonoBehaviour
     public StringReference RespostaMSTT;
     public string TempoDeRespostaMSTT;
 
-    # region CRONOMETROS
+#region CRONOMETROS
     //cronometro Geral
     public bool Cronometro;
     float segundos;
@@ -51,7 +54,7 @@ public class BaseDeDados : MonoBehaviour
     // Gerenciar cenas
     private string nomeCenaAnterior;
 
-    # endregion
+#endregion
 
     
     
@@ -90,7 +93,7 @@ public class BaseDeDados : MonoBehaviour
 
     void FixedUpdate()
     {
-        # region Cronometro
+#region Cronometro
         if (Cronometro)
         {
             segundos += Time.deltaTime;
@@ -106,9 +109,9 @@ public class BaseDeDados : MonoBehaviour
             horas++;
             min = 0;
         }
-        #endregion
+#endregion
 
-        # region CronometroMSTT
+#region CronometroMSTT
         if (CronometroMSTT)
         {
             segundosMSTT += Time.deltaTime;
@@ -124,9 +127,9 @@ public class BaseDeDados : MonoBehaviour
             horasMSTT++;
             minMSTT = 0;
         }
-        #endregion
+#endregion
 
-        # region CronometroFase
+#region CronometroFase
         if (CronometroFase)
         {
             segundosFase += Time.deltaTime;
@@ -142,7 +145,7 @@ public class BaseDeDados : MonoBehaviour
             horasFase++;
             minFase = 0;
         }
-        #endregion
+#endregion
 
     }
 
@@ -155,7 +158,7 @@ public class BaseDeDados : MonoBehaviour
         ZerarCronometro();
     }
 
-    #region Controle Cronometro
+#region Controle Cronometro
     private void ZerarCronometro()
     {
         segundos = 0;
@@ -171,9 +174,9 @@ public class BaseDeDados : MonoBehaviour
     {
         Cronometro = true;
     }
-    #endregion
+#endregion
 
-    #region Controle CronometroMSTT
+#region Controle CronometroMSTT
     private void ZerarCronometroMSTT()
     {
         segundosMSTT = 0;
@@ -189,9 +192,9 @@ public class BaseDeDados : MonoBehaviour
     {
         CronometroMSTT = true;
     }
-    #endregion
+#endregion
 
-    #region Controle CronometroFase
+#region Controle CronometroFase
     private void ZerarCronometroFase()
     {
         segundosFase = 0;
@@ -207,9 +210,9 @@ public class BaseDeDados : MonoBehaviour
     {
         CronometroFase = true;
     }
-    #endregion
+#endregion
 
-    #region Atualizar tempos
+#region Atualizar tempos
     private void AtualizarTempoTotal()
     {
         string time = System.DateTime.UtcNow.ToLocalTime().ToString();
@@ -276,7 +279,7 @@ public class BaseDeDados : MonoBehaviour
         }
 
     }
-    #endregion
+#endregion
 
     public void onGameOver()
     {
@@ -334,7 +337,7 @@ public class BaseDeDados : MonoBehaviour
 
    
 
-    #region Controle dos dados
+#region Controle dos dados
 
     //dados a serem armazenados
     public class Dados
@@ -374,5 +377,5 @@ public class BaseDeDados : MonoBehaviour
         var collection = database.GetCollection<T>("dados");
         await collection.InsertOneAsync(record);
     }
-    #endregion
+#endregion
 }

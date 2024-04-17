@@ -32,40 +32,40 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Arquivo/Cenas/new_mechanics.unity
     guid: d17c4d62816cf9e42a22cb8df523b603
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cenas/Tutorial/Menu - PLACEHOLDER.unity
     guid: 554dedee15b85c24493b6bd5f49de9ed
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cenas/Tutorial/tutorial_1.unity
     guid: 80f78ef7c2a2c424b967bb1b2f6b67fe
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cenas/Tutorial/tutorial_2.unity
     guid: dfffd46d433c14144b63a5df3d9b4e4c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cenas/Tutorial/tutorial_3.unity
     guid: 922c4153e900d6041a5e79766fdb1a92
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cenas/Tutorial/tutorial_4.unity
     guid: a1311ce47bf5c274e92d4a34410274bd
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cenas/Tutorial/tutorial_5.unity
     guid: 5be19b7dfb92ea94b8cd478110edb437
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cenas/Tutorial/Associacao - Sons.unity
     guid: 9fabdd39d785b4d478974a213a9fd576
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cenas/Puzzles/1_1.unity
     guid: d13a2934f0b0d2f4199e9ba76ee763fd
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cenas/Puzzles/1_2.unity
     guid: 851551283dd7904488c8fe9ca90d5811
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cenas/Puzzles/1_3.unity
     guid: 04a1a7cdfdd10f544abeed2ed675ec81
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cenas/Puzzles/1_4.unity
     guid: 9e388b00652eb914f81ee7f0a3739ef0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cenas/Puzzles/1_5.unity
     guid: 0ee12faaaa50d8e48817d54299b39ded
   m_configObjects: {}
