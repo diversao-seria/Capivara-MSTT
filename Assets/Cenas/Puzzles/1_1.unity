@@ -323,18 +323,6 @@ PrefabInstance:
       propertyPath: grid
       value: 
       objectReference: {fileID: 867281122}
-    - target: {fileID: 7964565096403690910, guid: 6a2edae267d56744f94356f31b55d577, type: 3}
-      propertyPath: gridPosition.UseConstant
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7964565096403690910, guid: 6a2edae267d56744f94356f31b55d577, type: 3}
-      propertyPath: gridPosition.ConstantValue.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7964565096403690910, guid: 6a2edae267d56744f94356f31b55d577, type: 3}
-      propertyPath: gridPosition.ConstantValue.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a2edae267d56744f94356f31b55d577, type: 3}
 --- !u!1001 &438165896
