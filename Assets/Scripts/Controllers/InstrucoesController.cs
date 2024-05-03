@@ -45,18 +45,18 @@ public class InstrucoesController : MonoBehaviour
 
     public void ReproduzirSomBotao(char notaEvento)
     {
-        if (tocarInstrucoesBotoes)
+        if (tocarInstrucoesBotoes && !AudioController.instance.OneShotNivelTocando())
         {
             // para a explicação do nivel caso o jogador pise em um dos botoes
             InterrompeNarracao();
 
             if (notaEvento == 'O')
             {
-                AudioController.instance.tocarOneShot(FMODEvents.instance.feedbackBotaoFaseGrave);
+                AudioController.instance.tocarOneShotNivel(FMODEvents.instance.feedbackBotaoFaseGrave);
             }
             else if (notaEvento == 'I')
             {
-                AudioController.instance.tocarOneShot(FMODEvents.instance.feedbackBotaoFaseAgudo);
+                AudioController.instance.tocarOneShotNivel(FMODEvents.instance.feedbackBotaoFaseAgudo);
             }
         }
         

@@ -17,7 +17,7 @@ public class PlayerMovementController : MonoBehaviour
     public AnimationCurveReference animCurve;
 
     // altura do jogador em relação ao solo
-    [SerializeField] private float playerHeight = 3;
+    [SerializeField] private float playerHeight = 0.5f;
 
     // evento emitido ao mover o jogador
     public UnityEvent playerMoved;

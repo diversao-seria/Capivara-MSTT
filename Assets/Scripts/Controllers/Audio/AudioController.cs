@@ -13,7 +13,7 @@ using Unity.VisualScripting;
 public class AudioController : MonoBehaviour
 {
     public static AudioController instance { get; private set; }
-    private EventInstance musicaEventInstance, notaMSTTEventInstance, dialogueInstance;
+    private EventInstance musicaEventInstance, notaMSTTEventInstance, dialogueInstance, oneShotNivelInstance;
     FMOD.Studio.EVENT_CALLBACK dialogueCallback;
     
     void OnEnable()
@@ -76,6 +76,21 @@ public class AudioController : MonoBehaviour
     {
         RuntimeManager.PlayOneShot(eventReference);
     }
+
+    public void tocarOneShotNivel(EventReference eventReference)
+    {   
+        oneShotNivelInstance = CreateInstance(eventReference);
+        oneShotNivelInstance.start();
+        oneShotNivelInstance.release();
+    }
+
+    public bool OneShotNivelTocando()
+    {
+        FMOD.Studio.PLAYBACK_STATE state;
+        oneShotNivelInstance.getPlaybackState(out state);
+        return state != FMOD.Studio.PLAYBACK_STATE.STOPPED;
+    }
+
 
     public void tocarOneShotMSTT(EventReference eventReference)
     {
