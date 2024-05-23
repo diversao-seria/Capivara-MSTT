@@ -39,6 +39,9 @@ EditorBuildSettings:
     path: Assets/Cenas/Tutorial/Menu - PLACEHOLDER.unity
     guid: 554dedee15b85c24493b6bd5f49de9ed
   - enabled: 1
+    path: Assets/Cenas/HQ.unity
+    guid: 5db055c5feac5334fbe67d7aae72ded9
+  - enabled: 1
     path: Assets/Cenas/Tutorial/tutorial_1.unity
     guid: 80f78ef7c2a2c424b967bb1b2f6b67fe
   - enabled: 1

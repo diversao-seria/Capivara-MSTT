@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class CTR_QUADRINHOS : MonoBehaviour
@@ -13,15 +14,17 @@ public class CTR_QUADRINHOS : MonoBehaviour
         quadrinho = 1;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Next()
     {
-        quadrinho ++;
-        anim.SetInteger("Q", quadrinho);
+        if (quadrinho < 11)
+        {
+            quadrinho ++;
+            anim.SetInteger("Q", quadrinho);
+        }
+        else
+        {
+            SceneManager.LoadScene("Associacao - Sons");
+        }
+        
     }
 }
