@@ -7,10 +7,12 @@ using UnityEngine.UI;
 
 public class IntroducaoSonsController : MonoBehaviour
 {
-    [SerializeField] private Image imagemAgudo, imagemGrave;
+    [SerializeField] private Image imagemAgudo, imagemGrave;  
     [SerializeField] private Sprite imagemAgudoTocando, imagemAgudoPadrao, imagemGraveTocando, imagemGravePadrao;
     [SerializeField] private ParticleSystem particulasAgudo, particulasGrave;
     [SerializeField] private string falaInicio, falaGrave1, falaAgudo1, falaMeio, falaGrave2, falaAgudo2, falaFim;
+    [SerializeField] private AudioController audioController;
+    [SerializeField] private FMODEvents fmodEvents;
 
     void Start()
     {
@@ -19,68 +21,68 @@ public class IntroducaoSonsController : MonoBehaviour
 
     IEnumerator TocarSons()
     {
-        AudioController.instance.PlayDialogue(falaInicio);
-        yield return new WaitWhile (()=> AudioController.instance.IsDialoguePlaying());
+        audioController.PlayDialogue(falaInicio);
+        yield return new WaitWhile (()=> audioController.IsDialoguePlaying());
         yield return new WaitForSeconds(0.5f);
 
-        AudioController.instance.PlayDialogue(falaGrave1);
-        yield return new WaitWhile (()=> AudioController.instance.IsDialoguePlaying());
+        audioController.PlayDialogue(falaGrave1);
+        yield return new WaitWhile (()=> audioController.IsDialoguePlaying());
         yield return new WaitForSeconds(0.5f);
 
-        AudioController.instance.tocarOneShotMSTT(FMODEvents.instance.MSTTGrave);
+        audioController.tocarOneShotMSTT(fmodEvents.MSTTGrave);
         imagemGrave.sprite = imagemGraveTocando;
         particulasGrave.Play();
         yield return new WaitForSeconds(1f);
         particulasGrave.Stop();
-        AudioController.instance.pararOneShotMSTT();
+        audioController.pararOneShotMSTT();
         imagemGrave.sprite = imagemGravePadrao;
         yield return new WaitForSeconds(0.5f);
 
-        AudioController.instance.PlayDialogue(falaAgudo1);
-        yield return new WaitWhile (()=> AudioController.instance.IsDialoguePlaying());
+        audioController.PlayDialogue(falaAgudo1);
+        yield return new WaitWhile (()=> audioController.IsDialoguePlaying());
         yield return new WaitForSeconds(0.5f);
 
-        AudioController.instance.tocarOneShotMSTT(FMODEvents.instance.MSTTAgudo);
+        audioController.tocarOneShotMSTT(fmodEvents.MSTTAgudo);
         imagemAgudo.sprite = imagemAgudoTocando;
         particulasAgudo.Play();
         yield return new WaitForSeconds(1f);
         particulasAgudo.Stop();
-        AudioController.instance.pararOneShotMSTT();
+        audioController.pararOneShotMSTT();
         imagemAgudo.sprite = imagemAgudoPadrao;
         yield return new WaitForSeconds(0.5f);
 
-        AudioController.instance.PlayDialogue(falaMeio);
-        yield return new WaitWhile (()=> AudioController.instance.IsDialoguePlaying());
+        audioController.PlayDialogue(falaMeio);
+        yield return new WaitWhile (()=> audioController.IsDialoguePlaying());
         yield return new WaitForSeconds(0.5f);
 
-        AudioController.instance.PlayDialogue(falaGrave2);
-        yield return new WaitWhile (()=> AudioController.instance.IsDialoguePlaying());
+        audioController.PlayDialogue(falaGrave2);
+        yield return new WaitWhile (()=> audioController.IsDialoguePlaying());
         yield return new WaitForSeconds(0.5f);
 
-        AudioController.instance.tocarOneShotMSTT(FMODEvents.instance.MSTTGrave);
+        audioController.tocarOneShotMSTT(fmodEvents.MSTTGrave);
         imagemGrave.sprite = imagemGraveTocando;
         particulasGrave.Play();
         yield return new WaitForSeconds(1f);
         particulasGrave.Stop();
-        AudioController.instance.pararOneShotMSTT();
+        audioController.pararOneShotMSTT();
         imagemGrave.sprite = imagemGravePadrao;
         yield return new WaitForSeconds(0.5f);
 
-        AudioController.instance.PlayDialogue(falaAgudo2);
-        yield return new WaitWhile (()=> AudioController.instance.IsDialoguePlaying());
+        audioController.PlayDialogue(falaAgudo2);
+        yield return new WaitWhile (()=> audioController.IsDialoguePlaying());
         yield return new WaitForSeconds(0.5f);
 
-        AudioController.instance.tocarOneShotMSTT(FMODEvents.instance.MSTTAgudo);
+        audioController.tocarOneShotMSTT(fmodEvents.MSTTAgudo);
         imagemAgudo.sprite = imagemAgudoTocando;
         particulasAgudo.Play();
         yield return new WaitForSeconds(1f);
         particulasAgudo.Stop();
-        AudioController.instance.pararOneShotMSTT();
+        audioController.pararOneShotMSTT();
         imagemAgudo.sprite = imagemAgudoPadrao;
         yield return new WaitForSeconds(0.5f);
 
-        AudioController.instance.PlayDialogue(falaFim);
-        yield return new WaitWhile (()=> AudioController.instance.IsDialoguePlaying());
+        audioController.PlayDialogue(falaFim);
+        yield return new WaitWhile (()=> audioController.IsDialoguePlaying());
         yield return new WaitForSeconds(0.5f);
 
         SceneManager.LoadScene("tutorial_1");

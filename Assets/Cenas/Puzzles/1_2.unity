@@ -1078,6 +1078,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5095321937079793580, guid: 1074d20d600ca5f4eaca3c2cacc4de58, type: 3}
+      propertyPath: audioController
+      value: 
+      objectReference: {fileID: 11400000, guid: 479f340bb00e16d49bac19e53a28976d, type: 2}
+    - target: {fileID: 5095321937079793580, guid: 1074d20d600ca5f4eaca3c2cacc4de58, type: 3}
       propertyPath: coordenadasGrid.x
       value: 7
       objectReference: {fileID: 0}

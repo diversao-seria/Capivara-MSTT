@@ -2188,24 +2188,18 @@ MonoBehaviour:
         m_CallState: 2
   resposta: 
   textDisplay: {fileID: 6106047741568308181}
-  soundButton: {fileID: 6106047740301118827}
   oButton: {fileID: 6106047740916041668}
   iButton: {fileID: 6106047741606032667}
   confirmButton: {fileID: 6106047741874619888}
   deleteButton: {fileID: 9113244491291765600}
-  spriteAcerto: {fileID: 21300000, guid: 5eb32de33c36b4a4d8bb100473106e26, type: 3}
-  spriteErro: {fileID: 21300000, guid: ce10467ac8631014abdd73dd557a0a0b, type: 3}
-  spriteFeedback: {fileID: 438291678083624844}
   AmpulhetaPanel: {fileID: 5209819095482805162}
-  exit: {fileID: 6106047740710290228}
   MSTTAleatorio: 1
   testeInstruido: 0
   tocandoInstrucoes: 1
   sequenciasMSTT: []
   quantidadeTestes: 1
-  ultimoMSTT:
-    m_PersistentCalls:
-      m_Calls: []
+  audioController: {fileID: 11400000, guid: 479f340bb00e16d49bac19e53a28976d, type: 2}
+  fmodEvents: {fileID: 11400000, guid: b29507c1ba9199645bb0a246d236b1fb, type: 2}
   FimMSTTUN:
     m_PersistentCalls:
       m_Calls:
@@ -2263,7 +2257,8 @@ MonoBehaviour:
   - Feedbacks/feedback_03
   - Feedbacks/feedback_04
   - Feedbacks/feedback_10
-  fonteSom: {fileID: 0}
+  audioController: {fileID: 11400000, guid: 479f340bb00e16d49bac19e53a28976d, type: 2}
+  fmodEvents: {fileID: 11400000, guid: b29507c1ba9199645bb0a246d236b1fb, type: 2}
 --- !u!114 &8277949243103099605
 MonoBehaviour:
   m_ObjectHideFlags: 0

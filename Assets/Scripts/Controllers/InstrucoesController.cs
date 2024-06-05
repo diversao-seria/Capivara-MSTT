@@ -10,10 +10,12 @@ public class InstrucoesController : MonoBehaviour
 
     // essa vari�vel define a partir de qual tentativa as instru��es devem ser seguidas
     public int inicioDasInstrucoes = 1;
+    [SerializeField] private FMODEvents fmodEvents;
     
     [SerializeField] private bool tocarInstrucoesBotoes = true;
 
     [SerializeField] private string instrucao;
+    [SerializeField] private AudioController audioController;
     
     
     // Start is called before the first frame update
@@ -22,7 +24,7 @@ public class InstrucoesController : MonoBehaviour
         Debug.Log("tentativa" + tentativas.Value.ToString());
         if (tentativas.Value == inicioDasInstrucoes || (tentativas.Value % 3) == 0)
         {
-            AudioController.instance.PlayDialogue(instrucao);
+            audioController.PlayDialogue(instrucao);
         }    
     }
 
@@ -40,23 +42,23 @@ public class InstrucoesController : MonoBehaviour
     public void InterrompeNarracao()
     {
         // interrompe as instru��es caso o jogador chegue ao final do n�vel
-        AudioController.instance.StopDialogue();
+        audioController.StopDialogue();
     }
 
     public void ReproduzirSomBotao(char notaEvento)
     {
-        if (tocarInstrucoesBotoes && !AudioController.instance.OneShotNivelTocando())
+        if (tocarInstrucoesBotoes && !audioController.OneShotTocando())
         {
             // para a explicação do nivel caso o jogador pise em um dos botoes
             InterrompeNarracao();
 
             if (notaEvento == 'O')
             {
-                AudioController.instance.tocarOneShotNivel(FMODEvents.instance.feedbackBotaoFaseGrave);
+                audioController.trackableOneShot(fmodEvents.feedbackBotaoFaseGrave);
             }
             else if (notaEvento == 'I')
             {
-                AudioController.instance.tocarOneShotNivel(FMODEvents.instance.feedbackBotaoFaseAgudo);
+                audioController.trackableOneShot(fmodEvents.feedbackBotaoFaseAgudo);
             }
         }
         

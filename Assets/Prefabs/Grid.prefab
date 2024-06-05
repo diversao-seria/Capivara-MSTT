@@ -54,6 +54,8 @@ MonoBehaviour:
   gridOrigin: {fileID: 0}
   levelText: {fileID: 4900000, guid: 49c0bad6bdc17014c861281bde5ee03a, type: 3}
   emissorDeParticulasBotoes: {fileID: 35546096398958134, guid: c6e599be3e07fa34c9004a19e9e102af, type: 3}
+  fmodEvents: {fileID: 11400000, guid: b29507c1ba9199645bb0a246d236b1fb, type: 2}
+  audioController: {fileID: 11400000, guid: 479f340bb00e16d49bac19e53a28976d, type: 2}
   playerPos:
     UseConstant: 0
     ConstantValue: {x: 0, y: 0}

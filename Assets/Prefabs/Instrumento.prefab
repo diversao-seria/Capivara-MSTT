@@ -115,6 +115,7 @@ MonoBehaviour:
   coordenadasGrid: {x: 0, y: 0}
   nomeParametro: Instrumentos
   valorParametro: 2
+  audioController: {fileID: 11400000, guid: 479f340bb00e16d49bac19e53a28976d, type: 2}
   coordenadasJogador:
     UseConstant: 0
     ConstantValue: {x: 0, y: 0}

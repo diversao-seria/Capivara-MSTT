@@ -317,6 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imagemAgudo: {fileID: 1325487326}
   imagemGrave: {fileID: 314230729}
+  fmodEvents: {fileID: 11400000, guid: b29507c1ba9199645bb0a246d236b1fb, type: 2}
   imagemAgudoTocando: {fileID: 21300000, guid: 761082c56614a814c85e33c4bd78741c, type: 3}
   imagemAgudoPadrao: {fileID: 21300000, guid: 56030afd8d5e07644a0b20fdeb10959b, type: 3}
   imagemGraveTocando: {fileID: 21300000, guid: 99524632153ad2a4ab3d84087dc4e0b0, type: 3}
@@ -330,6 +331,7 @@ MonoBehaviour:
   falaGrave2: Introducao/intr_04
   falaAgudo2: Introducao/intr_05
   falaFim: Introducao/intr_06
+  audioController: {fileID: 11400000, guid: 479f340bb00e16d49bac19e53a28976d, type: 2}
 --- !u!1 &1095617562
 GameObject:
   m_ObjectHideFlags: 0

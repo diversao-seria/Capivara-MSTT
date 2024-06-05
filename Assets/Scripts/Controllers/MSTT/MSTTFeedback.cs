@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using FMODUnity;
 
 public class MSTTFeedback : MonoBehaviour
 {
     [SerializeField] private Image spriteFeedback;
     [SerializeField] private Sprite spriteAcerto, spriteErro;
     [SerializeField] private List<String> sonsFeedback;
+    [SerializeField] private AudioController audioController;
+    [SerializeField] private FMODEvents fmodEvents;
+    private EventReference efeito;
+    private string fala;
     public static event Action feedbackTerminou;
 
     void OnEnable()
@@ -27,42 +32,32 @@ public class MSTTFeedback : MonoBehaviour
     {
         switch (codigoErro)
         {
-            case 0:
+            case int n when (n >= 0 && n <=4):
                 spriteFeedback.sprite = spriteErro;
-                AudioController.instance.PlayDialogue(sonsFeedback[codigoErro]);
-                break;
-            case 1:
-                spriteFeedback.sprite = spriteErro; 
-                AudioController.instance.PlayDialogue(sonsFeedback[codigoErro]);
-                break;
-            case 2:
-                spriteFeedback.sprite = spriteErro;
-                AudioController.instance.PlayDialogue(sonsFeedback[codigoErro]);
-                break;
-            case 3:
-                spriteFeedback.sprite = spriteErro;
-                AudioController.instance.PlayDialogue(sonsFeedback[codigoErro]);
-                break;
-            case 4:
-                spriteFeedback.sprite = spriteErro;
-                AudioController.instance.PlayDialogue(sonsFeedback[codigoErro]);
+                fala = sonsFeedback[codigoErro];
+                efeito = fmodEvents.MSTTErro;
                 break;
             case 10:
-                AudioController.instance.PlayDialogue(sonsFeedback[5]);
+                fala = sonsFeedback[5];
+                efeito = fmodEvents.MSTTAcerto;
                 spriteFeedback.sprite = spriteAcerto;   
                 break; 
             default:
-                AudioController.instance.PlayDialogue(sonsFeedback[0]);
-                spriteFeedback.sprite = spriteErro;   
+                fala = sonsFeedback[0];
+                efeito = fmodEvents.MSTTErro;
+                spriteFeedback.sprite = spriteErro; 
                 break;           
         }
         StartCoroutine(SequenciaDeFeedback());
     }
 
     IEnumerator SequenciaDeFeedback()
-    {      
+    {   
         spriteFeedback.enabled = true;
-        yield return new WaitWhile (()=> AudioController.instance.IsDialoguePlaying());
+        audioController.trackableOneShot(efeito);
+        yield return new WaitWhile (()=> audioController.OneShotTocando());
+        audioController.PlayDialogue(fala);
+        yield return new WaitWhile (()=> audioController.IsDialoguePlaying());
         yield return new WaitForSeconds(0.5f);
         spriteFeedback.enabled = false;
         feedbackTerminou?.Invoke();

@@ -22,6 +22,8 @@ public class MSTTManager : MonoBehaviour
     [SerializeField] private List<string> sequenciasMSTT = new List<string>();
 
     [SerializeField] private int quantidadeTestes = 1;
+    [SerializeField] private AudioController audioController;
+    [SerializeField] private FMODEvents fmodEvents;
     
     public UnityEvent FimMSTTUN;
 
@@ -69,13 +71,13 @@ public class MSTTManager : MonoBehaviour
         MSTTFeedback.feedbackTerminou -= FimDoFeedback;
         playerInputActions.MSTT.InputI.performed -= IInput;
         playerInputActions.MSTT.InputO.performed -= OInput;
-        AudioController.instance.PausaMusica(false);
+       audioController.PausaMusica(false);
 
     }
 
     void Start()
     {          
-        AudioController.instance.PausaMusica(true);
+        audioController.PausaMusica(true);
         PlaySound();
     }
     
@@ -129,6 +131,7 @@ public class MSTTManager : MonoBehaviour
     public void Confirma()
     {
         respostaMSTT.Value = resposta;
+        AlterarEstadosBotoes(false);
         StartCoroutine(FeedbackCoroutine());
     }
 
@@ -163,14 +166,14 @@ public class MSTTManager : MonoBehaviour
         {
             if(s[i] == 'I')
             {
-                AudioController.instance.tocarOneShotMSTT(FMODEvents.instance.MSTTAgudo);
+                audioController.tocarOneShotMSTT(fmodEvents.MSTTAgudo);
             }
             else
             {
-                AudioController.instance.tocarOneShotMSTT(FMODEvents.instance.MSTTGrave);
+                audioController.tocarOneShotMSTT(fmodEvents.MSTTGrave);
             }
             yield return new WaitForSeconds(0.682f);
-            AudioController.instance.pararOneShotMSTT();
+            audioController.pararOneShotMSTT();
         }
 
         AmpulhetaPanel.SetActive(true);
@@ -190,7 +193,8 @@ public class MSTTManager : MonoBehaviour
     IEnumerator FeedbackCoroutine()
     {
         FimMSTTUN?.Invoke();
-
+        audioController.trackableOneShot(fmodEvents.MSTTConfirma);
+        yield return new WaitWhile(()=> audioController.OneShotTocando());
         // se o teste tiver instruções, emitir o evento de feedback
         if (testeInstruido)
         {
@@ -228,8 +232,10 @@ public class MSTTManager : MonoBehaviour
         }
         else
         {
+            audioController.trackableOneShot(fmodEvents.MSTTAcerto);
             if (quantidadeTestes <= 1)
             {
+                yield return new WaitWhile (()=> audioController.OneShotTocando());
                 msttSucesso?.Invoke();
                 yield break;
             }

@@ -11,7 +11,7 @@ public class fluteController : MonoBehaviour
     [Header("Mudanca de Parametro")]
     [SerializeField] private string nomeParametro;
     [SerializeField] private float valorParametro;
-
+    [SerializeField] private AudioController audioController;
     public Vector2Reference coordenadasJogador;
 
     void Start()
@@ -25,7 +25,7 @@ public class fluteController : MonoBehaviour
         // Semp�re que o jogador se move, checa se as coordenadas atuais do jogador s�o iguais �s coordenadas atuais da flauta. Se for true, ativa a hud e dest�i o objeto flauta.
         if (coordenadasJogador.Value == coordenadasGrid)
         {
-            AudioController.instance.DefinirParametrosMusica(nomeParametro, valorParametro);
+            audioController.DefinirParametrosMusica(nomeParametro, valorParametro);
             Destroy(this.gameObject);
         }
     }

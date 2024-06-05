@@ -7,6 +7,7 @@ using FMOD.Studio;
 public class MSTTAudioController : MonoBehaviour
 {
     private EventInstance notaEventInstance;
+    [SerializeField] private FMODEvents fmodEvents;
     public static MSTTAudioController instance { get; private set; }
 
     private void Awake()
@@ -36,11 +37,11 @@ public class MSTTAudioController : MonoBehaviour
     {
         if (nota == 'O')
         {
-            tocarOneShot(FMODEvents.instance.MSTTGrave);
+            tocarOneShot(fmodEvents.MSTTGrave);
         }
         else if (nota == 'I')
         {
-            tocarOneShot(FMODEvents.instance.MSTTAgudo);
+            tocarOneShot(fmodEvents.MSTTAgudo);
         }
     }
 

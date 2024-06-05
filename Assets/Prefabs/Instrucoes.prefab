@@ -92,8 +92,10 @@ MonoBehaviour:
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 104cb587df66d1841b8ceb97700d839c, type: 2}
   inicioDasInstrucoes: 1
+  fmodEvents: {fileID: 11400000, guid: b29507c1ba9199645bb0a246d236b1fb, type: 2}
   tocarInstrucoesBotoes: 1
   instrucao: 
+  audioController: {fileID: 11400000, guid: 479f340bb00e16d49bac19e53a28976d, type: 2}
 --- !u!114 &5278669403908863436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +140,7 @@ MonoBehaviour:
         m_CallState: 2
   audioPreSom: 
   audioPosSom: 
+  audioController: {fileID: 11400000, guid: 479f340bb00e16d49bac19e53a28976d, type: 2}
 --- !u!114 &7037773658780903654
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -89,7 +89,7 @@ public class CursorTutorialController : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
     }
-
+    
     public void Reset()
     {
         StopCoroutine(piscarCursor);
@@ -97,10 +97,5 @@ public class CursorTutorialController : MonoBehaviour
         componenteImagem.enabled = false;
         posicaoAtual = 0;
         Debug.Log(posicaoAtual);
-    }
-
-    public void Teste(Button botao)
-    {
-        Debug.Log(botao.gameObject.name);
     }
 }

@@ -14,6 +14,8 @@ public class GridController : MonoBehaviour
     [SerializeField] private Transform gridOrigin;
     [SerializeField] private TextAsset levelText;
     [SerializeField] private GameObject emissorDeParticulasBotoes;
+    [SerializeField] private FMODEvents fmodEvents;
+    [SerializeField] private AudioController audioController;
     private GameObject instanciaPrefabEmissor;
 
     private Vector2Int portaCoords = new Vector2Int();
@@ -152,12 +154,16 @@ public class GridController : MonoBehaviour
                 passouNaPorta?.Invoke();
                 break;
             case 3:
-                // emite o evento de mudar as plataformas de cor rosa de lugar
+                audioController.tocarOneShot(fmodEvents.MSTTAgudo);
+                audioController.DefinirParametrosMusica("Ambiente", 1f);
+                // emite o evento de mudar as plataformas de cor azul de lugar
                 NotePlayed?.Invoke('I');
                 Debug.Log("I");
                 break;
             case 4:
-                // emite o evento de mudar as plataformas de cor azul de lugar
+                audioController.tocarOneShot(fmodEvents.MSTTGrave);
+                audioController.DefinirParametrosMusica("Ambiente", 0f);
+                // emite o evento de mudar as plataformas de cor rosa de lugar
                 NotePlayed?.Invoke('O');
                 Debug.Log("O");
                 break;

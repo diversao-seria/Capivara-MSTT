@@ -10,12 +10,15 @@ using UnityEngine.UIElements;
 using System;
 using Unity.VisualScripting;
 
-public class AudioController : MonoBehaviour
+[CreateAssetMenu]
+public class AudioController : ScriptableObject
 {
-    public static AudioController instance { get; private set; }
+    // public static AudioController instance { get; private set; }
     private EventInstance musicaEventInstance, notaMSTTEventInstance, dialogueInstance, oneShotNivelInstance;
+    [SerializeField] private FMODEvents fmodEvents;
     FMOD.Studio.EVENT_CALLBACK dialogueCallback;
     
+    /*
     void OnEnable()
     {
         GridController.NotePlayed += ouvirNotaMSTT;
@@ -37,11 +40,16 @@ public class AudioController : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
         
-    }
+    }*/
 
-    void Start()
+    /*void Start()
     {
         dialogueCallback = new FMOD.Studio.EVENT_CALLBACK(DialogueEventCallback);
+    }*/
+    public void criarDialogueCallback()
+    {
+        dialogueCallback = new FMOD.Studio.EVENT_CALLBACK(DialogueEventCallback);
+        // testeFunc += 1;
     }
 
     public void PlayMusic(EventReference musicaEventReference)
@@ -77,14 +85,14 @@ public class AudioController : MonoBehaviour
         RuntimeManager.PlayOneShot(eventReference);
     }
 
-    public void tocarOneShotNivel(EventReference eventReference)
+    public void trackableOneShot(EventReference eventReference)
     {   
         oneShotNivelInstance = CreateInstance(eventReference);
         oneShotNivelInstance.start();
         oneShotNivelInstance.release();
     }
 
-    public bool OneShotNivelTocando()
+    public bool OneShotTocando()
     {
         FMOD.Studio.PLAYBACK_STATE state;
         oneShotNivelInstance.getPlaybackState(out state);
@@ -107,15 +115,17 @@ public class AudioController : MonoBehaviour
     // inicia o audio da narracao (funcao utilizada para as instrucoes e narracoes, com excecao dos botoes agudo/grave das fases)
     public void PlayDialogue(string key)
     {
-        dialogueInstance = FMODUnity.RuntimeManager.CreateInstance(FMODEvents.instance.fala);
+        // Debug.Log(testeFunc);
+        dialogueInstance = FMODUnity.RuntimeManager.CreateInstance(fmodEvents.fala);
 
         // Pin the key string in memory and pass a pointer through the user data
         GCHandle stringHandle = GCHandle.Alloc(key);
+        // GCHandle stringHandle = GCHandle.Alloc("Assets/Instrucoes/Mundo/01_Grave");
         dialogueInstance.setUserData(GCHandle.ToIntPtr(stringHandle));
 
         dialogueInstance.setCallback(dialogueCallback);
         dialogueInstance.start();
-        dialogueInstance.release();
+        // dialogueInstance.release();
     }
 
     // interrompe o dialogo
@@ -202,6 +212,7 @@ public class AudioController : MonoBehaviour
         return FMOD.RESULT.OK;
     }
 
+    /*
     public void ouvirNotaMSTT(char nota)
     {
         if (nota == 'O')
@@ -214,7 +225,7 @@ public class AudioController : MonoBehaviour
             tocarOneShot(FMODEvents.instance.MSTTAgudo);
             DefinirParametrosMusica("Ambiente", 1f);
         }
-    }
+    } */
 
     public EventInstance CreateInstance(EventReference eventReference)
     {

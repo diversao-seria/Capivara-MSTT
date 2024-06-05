@@ -8,17 +8,15 @@ public class BotaoMenuStartController : MonoBehaviour
 {
     [SerializeField] private  GameObject mensagemAudio;
     [SerializeField] private Button botaoStart;
+    [SerializeField] private AudioController audioController;
 
     void Start()
     {
-        // para a música caso esteja tocando
-        if (AudioController.instance != null) 
-        {
-            AudioController.instance.PararMusica(true);
-        }
+        audioController.PararMusica(true);
     }
     public void IniciarTutorial()
     {
+        audioController.criarDialogueCallback();
         StartCoroutine(MensagemAudio());
         botaoStart.interactable = false;
     }
