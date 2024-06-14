@@ -10,5 +10,12 @@ public class InicializarMusica : MonoBehaviour
     void Start()
     {
         audioController.PlayMusic(fmodEvents.musica);
+        audioController.Setup();
     }
+#if UNITY_EDITOR
+    void OnGUI()
+    {
+        GUILayout.Box($"Current Beat = {audioController.timelineInfo.currentBeat}");
+    }
+#endif
 }
