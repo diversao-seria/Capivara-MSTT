@@ -2059,6 +2059,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FMODBankLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 8087029238149239884, guid: b5f70517f392a384bb893fad247b50a3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8087029238149239886, guid: b5f70517f392a384bb893fad247b50a3, type: 3}
       propertyPath: m_RootOrder
       value: 10
