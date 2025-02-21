@@ -178,7 +178,6 @@ public class PlayerMovementController : MonoBehaviour
 
     private async Task MovedorPlayer(Vector3 posicaoAntes, Vector3 posicaoDepois, float tempoDeAnimacao, bool plataforma, CancellationToken token)
     {
-        Debug.Log("oi");
         movendo = true;
         float t = 0;
         float tempoPassado = 0;
