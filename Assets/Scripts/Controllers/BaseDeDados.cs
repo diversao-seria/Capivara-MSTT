@@ -335,9 +335,30 @@ public class BaseDeDados : MonoBehaviour
         PausarCronometroMSTT();
     }
 
-   
+    #region Chave primaria
+    //essa funcao gera uma chave primaria unica
+    private string GeraChavePrimaria()
+    {
+        //lista de possiveis caracteres
+        char[] letrasNumeros = "ABCDEFGHJKLMNPQRSTUVWXYZ1234567890".ToCharArray();
+        //lista de chars onde sera criada a chave primaria
+        char[] chavePrimaria = new char[7];
+        //instaciacao da classe Random
+        var rand = new System.Random();
+        for (int i = 0; i < 6; i++)
+        {
+            chavePrimaria[i] = letrasNumeros[rand.Next(34)]; //numero sorteado
+        }
+        //define o identificador
+        chavePrimaria[6] = 'o';
+        string teste = new string(chavePrimaria);
+        Debug.Log(teste);
+        return "oi";
+    }
 
-#region Controle dos dados
+#endregion
+
+    #region Controle dos dados
 
     //dados a serem armazenados
     public class Dados
