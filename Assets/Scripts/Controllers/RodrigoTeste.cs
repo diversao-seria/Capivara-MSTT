@@ -1,14 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+using UnityEngine.Events;
+
 
 public class RodrigoTeste : MonoBehaviour
 {
+
+    [SerializeField]
+    private StringVariable codigoSessao;
+
+    public static event Action NovoCodigoSessao;
     // Start is called before the first frame update
     void Start()
     {
-        GeraChavePrimaria();
+        codigoSessao.Value = GeraChavePrimaria();
+        NovoCodigoSessao?.Invoke();
     }
 
     // Update is called once per frame
@@ -33,13 +41,13 @@ public class RodrigoTeste : MonoBehaviour
         //define o identificador
         chavePrimaria[6] = GeraCheckDigit(chavePrimaria);
         string chaveString = new string(chavePrimaria);
-        //Debug.Log(chaveString);
+        Debug.Log(chaveString);
 
         return chaveString;
     }
 
 
-    //essa funcao gera um digito de confirmacao para a parte aleatoria da chave, usando o algoritmo de Luhn ajustado para comportar letras tambem
+    //essa funcao gera um digito de confirmacao para a parte aleatoria da chave, usando o algoritmo de Luhn ajustado para comportar letras
     private char GeraCheckDigit(char[] chave)
     {
         int count = 0;
@@ -76,5 +84,10 @@ public class RodrigoTeste : MonoBehaviour
         {
             throw new ArgumentException("Valores tem que ser letra maiuscula ou numero");
         }
+    }
+
+    public void OnCodigoCriado()
+    {
+        Debug.Log("O codigo foi criado");
     }
 }
