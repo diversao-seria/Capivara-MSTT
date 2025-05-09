@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 using System;
 using Unity.VisualScripting;
+using UnityEditor.Overlays;
 
 [CreateAssetMenu]
 public class AudioController : ScriptableObject
@@ -17,35 +18,10 @@ public class AudioController : ScriptableObject
     private EventInstance musicaEventInstance, notaMSTTEventInstance, dialogueInstance, oneShotNivelInstance;
     [SerializeField] private FMODEvents fmodEvents;
     FMOD.Studio.EVENT_CALLBACK dialogueCallback;
-    
-    /*
-    void OnEnable()
-    {
-        GridController.NotePlayed += ouvirNotaMSTT;
-    }
-    void OnDisable()
-    {
-        GridController.NotePlayed -= ouvirNotaMSTT;
-    }
+    public TimelineInfo timelineInfo = null;
+    private GCHandle timelineHandle;
+    private FMOD.Studio.EVENT_CALLBACK beatCallback;
 
-    private void Awake()
-    {
-        if (instance != null)
-        {
-            Debug.LogError("Mais de um Audio Controller na cena.");
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        
-    }*/
-
-    /*void Start()
-    {
-        dialogueCallback = new FMOD.Studio.EVENT_CALLBACK(DialogueEventCallback);
-    }*/
     public void criarDialogueCallback()
     {
         dialogueCallback = new FMOD.Studio.EVENT_CALLBACK(DialogueEventCallback);
@@ -115,17 +91,15 @@ public class AudioController : ScriptableObject
     // inicia o audio da narracao (funcao utilizada para as instrucoes e narracoes, com excecao dos botoes agudo/grave das fases)
     public void PlayDialogue(string key)
     {
-        // Debug.Log(testeFunc);
         dialogueInstance = FMODUnity.RuntimeManager.CreateInstance(fmodEvents.fala);
 
         // Pin the key string in memory and pass a pointer through the user data
         GCHandle stringHandle = GCHandle.Alloc(key);
-        // GCHandle stringHandle = GCHandle.Alloc("Assets/Instrucoes/Mundo/01_Grave");
         dialogueInstance.setUserData(GCHandle.ToIntPtr(stringHandle));
 
         dialogueInstance.setCallback(dialogueCallback);
         dialogueInstance.start();
-        // dialogueInstance.release();
+        dialogueInstance.release();
     }
 
     // interrompe o dialogo
@@ -212,26 +186,57 @@ public class AudioController : ScriptableObject
         return FMOD.RESULT.OK;
     }
 
-    /*
-    public void ouvirNotaMSTT(char nota)
-    {
-        if (nota == 'O')
-        {
-            tocarOneShot(FMODEvents.instance.MSTTGrave);
-            DefinirParametrosMusica("Ambiente", 0f);
-        }
-        else if (nota == 'I')
-        {
-            tocarOneShot(FMODEvents.instance.MSTTAgudo);
-            DefinirParametrosMusica("Ambiente", 1f);
-        }
-    } */
-
     public EventInstance CreateInstance(EventReference eventReference)
     {
         EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
         return eventInstance;
     }
+
+    public void Setup()
+    {
+        timelineInfo = new TimelineInfo();
+        beatCallback = new FMOD.Studio.EVENT_CALLBACK(BeatEventCallback);
+        timelineHandle = GCHandle.Alloc(timelineInfo, GCHandleType.Pinned);
+        musicaEventInstance.setUserData(GCHandle.ToIntPtr(timelineHandle));
+        musicaEventInstance.setCallback(beatCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public class TimelineInfo
+    {
+        public int currentBeat = 0;
+    }
+
+    [AOT.MonoPInvokeCallback(typeof(FMOD.Studio.EVENT_CALLBACK))]
+    static FMOD.RESULT BeatEventCallback(FMOD.Studio.EVENT_CALLBACK_TYPE type, IntPtr instancePtr, IntPtr parameterPtr)
+    {
+        FMOD.Studio.EventInstance instance = new FMOD.Studio.EventInstance(instancePtr);
+
+        IntPtr timelineInfoPtr;
+        FMOD.RESULT result = instance.getUserData(out timelineInfoPtr);
+
+        if (result != FMOD.RESULT.OK)
+        {
+            Debug.LogError("Erro no Timeline Callback: " + result);
+        }
+        else if (timelineInfoPtr != IntPtr.Zero)
+        {
+            GCHandle timelineHandle = GCHandle.FromIntPtr(timelineInfoPtr);
+            TimelineInfo timelineInfo = (TimelineInfo)timelineHandle.Target;
+
+            var parameter = (FMOD.Studio.TIMELINE_BEAT_PROPERTIES)Marshal.PtrToStructure(parameterPtr, typeof(FMOD.Studio.TIMELINE_BEAT_PROPERTIES));
+            timelineInfo.currentBeat = parameter.beat;
+
+        }
+        return FMOD.RESULT.OK;
+    }
+
+    private void OnDestroy() 
+    {
+        musicaEventInstance.release();
+        timelineHandle.Free();
+    }
+
 
     
 }
