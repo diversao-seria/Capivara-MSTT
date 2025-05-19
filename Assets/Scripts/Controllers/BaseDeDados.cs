@@ -6,7 +6,7 @@ using MongoDB.Bson;
 using System;
 using UnityEngine.SceneManagement;
 
-// Desabilitamos essa biblioteca por causar erros na build. Habilitar caso dê problemas.
+// Desabilitamos essa biblioteca por causar erros na build. Habilitar caso dï¿½ problemas.
 // using UnityEditor.SearchService;
 
 
@@ -17,6 +17,10 @@ public class BaseDeDados : MonoBehaviour
     //banco de dados
     MongoClient client = new MongoClient("mongodb+srv://userDS:DScapivara2023@cluster0.s7umrfl.mongodb.net/login?retryWrites=true&w=majority");
     
+    [SerializeField]
+    private StringVariable codigoSessao; //SO para a chavePrimaria.
+
+    public static event Action NovoCodigoSessao; //Evento para informar que uma nova chave primaria foi criada.
     
     IMongoDatabase database;    
 
@@ -66,6 +70,11 @@ public class BaseDeDados : MonoBehaviour
         database = client.GetDatabase("capivara");
         AtivarCronometro();        
         nomeCenaAnterior = SceneManager.GetActiveScene().name;
+        
+        //geram uma chave primaria e passam essa informacao pra um SO para ser acessivel a todas as senas.
+        codigoSessao.Value = GeraChavePrimaria();
+        Debug.Log(codigoSessao.Value);
+        NovoCodigoSessao?.Invoke();
     }
 
     public void Awake()
@@ -335,25 +344,46 @@ public class BaseDeDados : MonoBehaviour
         PausarCronometroMSTT();
     }
 
-    #region Chave primaria
+    //essa funcao retorna o documento que tem o {nome} no {campo} use coll = "dados"
+    public T CarregarRecordByName<T>(string nome, string campo ,string coll)
+    {
+    var collection = database.GetCollection<T>(coll);
+    var filter = Builders<T>.Filter.Eq(campo, nome);
+    return collection.Find(filter).First();
+ 
+    }
+
+    #region Chave 
     //essa funcao gera uma chave primaria
     private string GeraChavePrimaria()
     {
-        //lista de possiveis caracteres (I e O foram retirados para evitar confusão com os numeros 1 e 0)
-        char[] letrasNumeros = "ABCDEFGHJKLMNPQRSTUVWXYZ1234567890".ToCharArray();
-        //lista de chars onde sera criada a chave primaria
-        char[] chavePrimaria = new char[7];
-        //instaciacao da classe Random
-        var rand = new System.Random();
-        for (int i = 0; i < 6; i++)
+        bool chaveUnica = false;
+        string chaveString = "";
+        while (!chaveUnica)
         {
-            chavePrimaria[i] = letrasNumeros[rand.Next(34)]; //aleatoriamente sorteia um  letrasNumeros
-        }
-        //define o identificador
-        chavePrimaria[6] = GeraCheckDigit(chavePrimaria);
-        string chaveString = new string(chavePrimaria);
-        //Debug.Log(chaveString);
+            //lista de possiveis caracteres (I e O foram retirados para evitar confusao com os numeros 1 e 0)
+            char[] letrasNumeros = "ABCDEFGHJKLMNPQRSTUVWXYZ1234567890".ToCharArray();
+            //lista de chars onde sera criada a chave primaria
+            char[] chavePrimaria = new char[7];
+            //instaciacao da classe Random
+            var rand = new System.Random();
+            for (int i = 0; i < 6; i++)
+            {
+                chavePrimaria[i] = letrasNumeros[rand.Next(34)]; //aleatoriamente sorteia um  letrasNumeros
+            }
+            //define o identificador
+            chavePrimaria[6] = GeraCheckDigit(chavePrimaria);
+            chaveString = new string(chavePrimaria);
+            //Debug.Log(chaveString);
 
+            try{
+                var nome = CarregarRecordByName<Dados>(chaveString, "chavePrimaria" ,"dados");
+                Debug.Log("chave ja existente criada");
+            }
+            catch{
+                chaveUnica = true;
+            }
+        }
         return chaveString;
     }
     #region Check Digit
@@ -404,7 +434,8 @@ public class BaseDeDados : MonoBehaviour
     //dados a serem armazenados
     public class Dados
     {
-        public ObjectId _id { get; set; }      
+        public ObjectId _id { get; set; }  
+        public string chavePrimaria { get; set; }    
         public List<string> InfoMSTT { get; set; }        
         public List<string> InfoFase { get; set; }        
         public string TempoDeJogo { get; set; }   
@@ -414,9 +445,9 @@ public class BaseDeDados : MonoBehaviour
     private void SalvarDadosMongo()
     {
        // string time = System.DateTime.UtcNow.ToLocalTime().ToString();
-
+        string chaveP = codigoSessao.Value;
         //dados a serem armazenados = dados coletados
-        var dados = new Dados { InfoMSTT = InfoMSTT_jogo, InfoFase = InfoFase_jogo, TempoDeJogo = TempoTotal_jogo };
+        var dados = new Dados { InfoMSTT = InfoMSTT_jogo, chavePrimaria = chaveP, InfoFase = InfoFase_jogo, TempoDeJogo = TempoTotal_jogo };
 
         inserirRecord(dados);
         print("dados salvos");

@@ -18,12 +18,12 @@ public class ShowSessionCodeController : MonoBehaviour
 
     private void OnEnable()
     {
-        RodrigoTeste.NovoCodigoSessao += OnSessionChange;
+        BaseDeDados.NovoCodigoSessao += OnSessionChange;
     }
 
     private void OnDisable()
     {
-        RodrigoTeste.NovoCodigoSessao -= OnSessionChange;
+        BaseDeDados.NovoCodigoSessao -= OnSessionChange;
     }
     void OnSessionChange()
     {
