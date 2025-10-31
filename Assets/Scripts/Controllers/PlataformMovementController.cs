@@ -20,10 +20,10 @@ public class PlataformMovementController : MonoBehaviour
     // coordenadas que a plataforma pode assumir em relacao ao grid 
     // A formatacao que TEM QUE SER SEGUIDA e (eliminando os +): posicaoInicialX+,+posicaoInicialY+ +posicaoDepoisDoMovimento1X+,+posicaoDepoisDoMovimento1Y+ +posicaoDepoisDoMovimento2X+,+posicaoDepoisDoMovimento2Y+#  
     //O '#' e necessario e indica o fim da string
-    [SerializeField] private string posicoesDaPlataforma = "1,1 1,9";
+    public string posicoesDaPlataforma = "1,1 1,9";
 
     //quantidade de diferentes posicoes que a plataforma pode ocupar
-    [SerializeField] private int quantidadePosicoes = 2;
+    public int quantidadePosicoes = 2;
 
     // mostra qual das posicoes possiveis a plataforma esta ocupando
     [SerializeField] private int posicaoAtual = 0;
