@@ -41,10 +41,10 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    - _PortalPower: -0.5
-    - _Scale: -20
+    - _PortalPower: 100
+    - _Scale: 10
     - _Speed: 0.1
-    - _TwirlStrenght: 20
+    - _TwirlStrenght: 10
     m_Colors:
-    - _PortalColor: {r: 6.0339756, g: 15.230529, b: 67.793495, a: 0}
+    - _PortalColor: {r: 13.115115, g: 3.0169878, b: 33.896748, a: 0}
   m_BuildTextureStacks: []
