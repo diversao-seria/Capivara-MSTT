@@ -107,8 +107,6 @@ public class PlayerMovementController : MonoBehaviour
     {
         Vector2Int vetorMovimentacao = Vector2Int.RoundToInt(context.ReadValue<Vector2>());
 
-        animator.SetBool("isMoving", true);
-
 
         // Calcula a rotação do jogador baseado no input inserido e no input anterior e rotaciona a capivara de acordo
         if (!movendo)
@@ -144,7 +142,6 @@ public class PlayerMovementController : MonoBehaviour
                 movePlayer(new Vector2Int(gridPosition.Value.x + vetorMovimentacao.x, gridPosition.Value.y + vetorMovimentacao.y), 0.5f, false);
             }
         }
-        StartCoroutine(VoltarIdle(animTimer));
     }
     
     private void OnPlataformMoved(int gridXAntigaPlataforma, int gridYAntigaPlataforma, int gridXNovaPlataforma, int gridYNovaPlataforma)
@@ -263,10 +260,5 @@ public class PlayerMovementController : MonoBehaviour
             return vetor.x;
         }
         return vetor.y;
-    }
-    private IEnumerator VoltarIdle(float animTimer)
-    {
-        yield return new WaitForSeconds(animTimer);
-        animator.SetBool("isMoving", false);
     }
 }
