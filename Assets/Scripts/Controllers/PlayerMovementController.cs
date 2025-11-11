@@ -52,10 +52,16 @@ public class PlayerMovementController : MonoBehaviour
     // angulo de rotação da capivara
     float angulo = 0f;
 
+    private int currentWalkAnim = 0;
+
+    public Animator animator;
+
+    public float animTimer = 0.2f;
     private void Awake()
     {
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
+        
     }
 
     void OnEnable()
@@ -74,6 +80,7 @@ public class PlayerMovementController : MonoBehaviour
 
     void Start()
     {
+        //animator = GetComponent<Animator>();
         gridPosition.UseConstant = true;
         gridPosition.Value = new Vector2Int(gridPosition.Value.x, gridPosition.Value.y);
         transform.position = grid.getWorldPosition(gridPosition.Value.x, gridPosition.Value.y) + Vector3.up * playerHeight;
@@ -85,7 +92,6 @@ public class PlayerMovementController : MonoBehaviour
     {
         gameOver?.Invoke();
     }
-
     public void FimDeJogo()
     {
         // Cancela a função async MovedorPlayer
@@ -100,6 +106,7 @@ public class PlayerMovementController : MonoBehaviour
     public void MoverJogador(InputAction.CallbackContext context)
     {
         Vector2Int vetorMovimentacao = Vector2Int.RoundToInt(context.ReadValue<Vector2>());
+
 
         // Calcula a rotação do jogador baseado no input inserido e no input anterior e rotaciona a capivara de acordo
         if (!movendo)
@@ -117,16 +124,24 @@ public class PlayerMovementController : MonoBehaviour
 
         if (movendo)
         {
+            //Debug.Log("Jogador está se movendo, adicionando input ao buffer");
+            
             if (casa != -1 && casa != 2)
             {
                 AdicionarInput(vetorMovimentacao);
             }
         }
-        else if (casa != -1)
+        else
         {
-            AdicionarInput(vetorMovimentacao);
-            movePlayer((new Vector2Int(gridPosition.Value.x + vetorMovimentacao.x, gridPosition.Value.y + vetorMovimentacao.y)), 0.5f, false);
-        }               
+          //Debug.Log("Jogador não está se movendo, tentando mover");
+            
+
+            if (casa != -1)
+            {
+                AdicionarInput(vetorMovimentacao);
+                movePlayer(new Vector2Int(gridPosition.Value.x + vetorMovimentacao.x, gridPosition.Value.y + vetorMovimentacao.y), 0.5f, false);
+            }
+        }
     }
     
     private void OnPlataformMoved(int gridXAntigaPlataforma, int gridYAntigaPlataforma, int gridXNovaPlataforma, int gridYNovaPlataforma)
@@ -178,10 +193,21 @@ public class PlayerMovementController : MonoBehaviour
 
     private async Task MovedorPlayer(Vector3 posicaoAntes, Vector3 posicaoDepois, float tempoDeAnimacao, bool plataforma, CancellationToken token)
     {
+        if (!plataforma)
+        {
+            currentWalkAnim = 1 - currentWalkAnim;
+            animator.SetInteger("walkAnim", currentWalkAnim);
+            animator.SetBool("isMoving", true);
+            animator.speed = 1f / tempoDeAnimacao;
+        }
         movendo = true;
         float t = 0;
         float tempoPassado = 0;
         Vector3 posicaoIntermediaria = new Vector3(0, 0, 0);
+
+        transform.position = posicaoAntes;
+
+
         while (tempoPassado <= tempoDeAnimacao)
         {
             t = tempoPassado / tempoDeAnimacao;
@@ -196,7 +222,14 @@ public class PlayerMovementController : MonoBehaviour
                 return;
             }
         }
-        transform.position = posicaoDepois; 
+
+        transform.position = posicaoDepois;
+
+        await Task.Yield();
+
+        transform.position = posicaoDepois;
+        animator.speed = 1f;
+        animator.SetBool("isMoving", false);
     }
 
     private void AdicionarInput(Vector2Int input)
