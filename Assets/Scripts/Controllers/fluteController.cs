@@ -17,12 +17,12 @@ public class fluteController : MonoBehaviour
     [SerializeField] private AnimationCurveReference animCurve;
     [SerializeField] private Vector3 posicaoCamera;
     [SerializeField] private float distanciaCamera = 2f;
-    [SerializeField] private Animator canvasAnimator;
-    private Animator animator;
+    [SerializeField] private GameObject canvas;
+    private Animator animator, canvasAnimator;
     private Camera cam;
     public Vector2Reference coordenadasJogador;
-
     public UnityEvent instrumentoColetado, fimColetaInstrumento;
+    private Vector3 posicaoInicial;
 
     void Start()
     {
@@ -30,6 +30,8 @@ public class fluteController : MonoBehaviour
         transform.position = grid.getWorldPosition(coordenadasGrid.x, coordenadasGrid.y);
         animator = GetComponent<Animator>();
         cam = Camera.main;
+        posicaoInicial = transform.position;
+        canvasAnimator = canvas.GetComponent<Animator>();
     }
 
     public void jogadorMoveu()
@@ -67,7 +69,11 @@ public class fluteController : MonoBehaviour
             transform.position = posicaoIntermediaria;
             tempoPassado += Time.deltaTime;
             yield return null;
-        }
+        }      
+    }
+
+    public void fimColeta()
+    {
         canvasAnimator.SetTrigger("OnScreen");
         // toca efeito sonoro do instrumento em si
     }
@@ -75,9 +81,11 @@ public class fluteController : MonoBehaviour
     public void fimVisualizacao()
     {
         canvasAnimator.SetTrigger("Saida");
+        posicaoInicial.y = 0.5f;
+        StartCoroutine(move(posicaoInicial));
     }
 
-    public void fimColeta()
+    public void fimAnimacao()
     {
         // adiciona objeto na musica
         audioController.DefinirParametrosMusica(nomeParametro, valorParametro);
