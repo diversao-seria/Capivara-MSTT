@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class fluteController : MonoBehaviour
 {
@@ -16,11 +17,12 @@ public class fluteController : MonoBehaviour
     [SerializeField] private AnimationCurveReference animCurve;
     [SerializeField] private Vector3 posicaoCamera;
     [SerializeField] private float distanciaCamera = 2f;
+    [SerializeField] private Animator canvasAnimator;
     private Animator animator;
     private Camera cam;
     public Vector2Reference coordenadasJogador;
 
-    public UnityEvent instrumentoColetado;
+    public UnityEvent instrumentoColetado, fimColetaInstrumento;
 
     void Start()
     {
@@ -41,6 +43,7 @@ public class fluteController : MonoBehaviour
 
             // toca animacao de coleta
             animator.SetTrigger("Coleta");
+            canvasAnimator.SetTrigger("Coleta");
             Vector3 posicaoFinal = new Vector3();
             posicaoFinal = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth / 2, cam.pixelHeight / 2, distanciaCamera));
             instrumentoColetado?.Invoke();
@@ -65,8 +68,13 @@ public class fluteController : MonoBehaviour
             tempoPassado += Time.deltaTime;
             yield return null;
         }
-
+        canvasAnimator.SetTrigger("OnScreen");
         // toca efeito sonoro do instrumento em si
+    }
+
+    public void fimVisualizacao()
+    {
+        canvasAnimator.SetTrigger("Saida");
     }
 
     public void fimColeta()
@@ -77,6 +85,7 @@ public class fluteController : MonoBehaviour
         // fade in na musica
         //TODO
 
+        fimColetaInstrumento?.Invoke();
         Destroy(this.gameObject);
     }
 }

@@ -186,9 +186,14 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
-    public void PassouNaPorta()
+    public void DesligaInputMovimentacao()
     {
         playerInputActions.Player.Disable();
+    }
+
+    public void LigaInputMovimentacao()
+    {
+        playerInputActions.Player.Enable();
     }
 
     private async Task MovedorPlayer(Vector3 posicaoAntes, Vector3 posicaoDepois, float tempoDeAnimacao, bool plataforma, CancellationToken token)
