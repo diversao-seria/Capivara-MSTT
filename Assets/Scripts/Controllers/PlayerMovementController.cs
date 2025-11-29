@@ -123,18 +123,14 @@ public class PlayerMovementController : MonoBehaviour
         int? casa = moveAttempt?.Invoke(gridPosition.Value.x + somaListaInputs.x, gridPosition.Value.y + somaListaInputs.y);
 
         if (movendo)
-        {
-            //Debug.Log("Jogador está se movendo, adicionando input ao buffer");
-            
+        {            
             if (casa != -1 && casa != 2)
             {
                 AdicionarInput(vetorMovimentacao);
             }
         }
         else
-        {
-          //Debug.Log("Jogador não está se movendo, tentando mover");
-            
+        {   
 
             if (casa != -1)
             {
