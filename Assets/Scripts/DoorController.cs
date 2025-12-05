@@ -4,7 +4,7 @@ public class DoorController : MonoBehaviour
 {
     private Animator anim;
 
-    private string parametroAnimator = "OpenDoor";
+    //private string parametroAnimator = "OpenDoor";
 
     private void Awake()
     {
@@ -25,16 +25,16 @@ public class DoorController : MonoBehaviour
         if (nota == 'I')
         {
             Debug.Log("DoorController: Nota I detectada");
-            AlternarPorta();
+            AlternarPorta("DoorHigh");
         }
         else if (nota == 'O')
         {
             Debug.Log("DoorController: Nota O detectada");
-            AlternarPorta();
+            AlternarPorta("DoorLow");
         }
     }
 
-    public void AlternarPorta()
+    public void AlternarPorta(string parametroAnimator)
     {
         Debug.Log("DoorController: Alternando estado da porta");
 
