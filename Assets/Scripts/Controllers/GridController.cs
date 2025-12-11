@@ -18,7 +18,7 @@ public class GridController : MonoBehaviour
     [SerializeField] private AudioController audioController;
     private GameObject instanciaPrefabEmissor;
 
-    private Vector2Int portaCoords = new Vector2Int();
+    public Vector2Int portaCoords = new Vector2Int();
 
     public Vector2Reference playerPos;
 
@@ -101,6 +101,14 @@ public class GridController : MonoBehaviour
                         controller = instanciaPrefabEmissor.GetComponent<EmissorParticulasBotoesController>();
                         controller.posicao = new Vector2(j, i);
                         controller.notaMexe = 'O';
+
+                        break;
+                    case 6:
+                        grid.setValue(j, i, 6); // salva na grid
+                        Debug.Log($"FLAG criada na posição ({j}, {i})");
+
+                        // Se quiser instanciar o prefab da Flag no mundo:
+                        //Instantiate(flagPrefab, getWorldPosition(j, i), Quaternion.identity);
 
                         break;
                 }

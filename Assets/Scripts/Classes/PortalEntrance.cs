@@ -11,15 +11,23 @@ public class PortalEntrance : MonoBehaviour
 
     public GameObject player;
 
+    public string cenaParaCarregar;
     private bool animating = false;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && !animating)
-            StartCoroutine(EntrarNoPortal(player.transform));
+            StartCoroutine(EntrarNoPortalCoroutine(player.transform));
     }
-
-    IEnumerator EntrarNoPortal(Transform player)
+    public void EntrarNoPortalComCena(string cena)
+    {
+        if (!animating)
+        {
+            cenaParaCarregar = cena;
+            StartCoroutine(EntrarNoPortalCoroutine(player.transform));
+        }
+    }
+    IEnumerator EntrarNoPortalCoroutine(Transform player)
     {
         animating = true;
 
@@ -72,5 +80,7 @@ public class PortalEntrance : MonoBehaviour
         this.player.SetActive(false);
 
         animating = false;
+
+        TransitionManager.Instance.StartTransition(cenaParaCarregar);
     }
 }
