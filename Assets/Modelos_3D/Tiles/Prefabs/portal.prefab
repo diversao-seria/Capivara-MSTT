@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2216233667388242880}
   - component: {fileID: 1822583159913848243}
+  - component: {fileID: 556760297}
   m_Layer: 0
   m_Name: portal
   m_TagString: Untagged
@@ -109,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 1552181028139803002}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.40583712, y: 0.40583712, z: 0.40583712}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1822583160790259285}
@@ -143,6 +144,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &556760297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552181028139803002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7af17096b979e1143b7e125b6ebff7e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enterDuration: 0.5
+  jumpHeight: 1.2
+  shrinkDuration: 0.4
+  stretchAmount: 1.2
+  spinSpeed: 360
+  player: {fileID: 0}
 --- !u!1 &1822583159150228335
 GameObject:
   m_ObjectHideFlags: 0
@@ -10181,7 +10200,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2216233667388242880}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 97.333015, z: 0}
 --- !u!33 &1075971302896506562
 MeshFilter:
   m_ObjectHideFlags: 0
