@@ -18,7 +18,7 @@ public class GridController : MonoBehaviour
     [SerializeField] private AudioController audioController;
     private GameObject instanciaPrefabEmissor;
 
-    public Vector2Int portaCoords = new Vector2Int();
+    private Vector2Int portaCoords = new Vector2Int();
 
     public Vector2Reference playerPos;
 
