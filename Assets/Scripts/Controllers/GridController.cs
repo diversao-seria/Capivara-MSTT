@@ -103,15 +103,6 @@ public class GridController : MonoBehaviour
                         controller.notaMexe = 'O';
 
                         break;
-                    case 6:
-                        grid.setValue(j, i, 6); // salva na grid
-                        Debug.Log($"FLAG criada na posição ({j}, {i})");
-
-                        // Se quiser instanciar o prefab da Flag no mundo:
-                        //Instantiate(flagPrefab, getWorldPosition(j, i), Quaternion.identity);
-
-                        break;
-                }
                 ID++;
             }
         }
