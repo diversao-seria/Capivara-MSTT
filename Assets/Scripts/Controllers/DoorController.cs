@@ -4,8 +4,6 @@ public class DoorController : MonoBehaviour
 {
     private Animator anim;
 
-    //private string parametroAnimator = "OpenDoor";
-
     private void Awake()
     {
         anim = GetComponent<Animator>();
