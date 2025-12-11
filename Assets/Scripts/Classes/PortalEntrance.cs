@@ -11,7 +11,7 @@ public class PortalEntrance : MonoBehaviour
 
     public GameObject player;
 
-    public string cenaParaCarregar;
+    private string cenaParaCarregar;
     private bool animating = false;
 
     public void EntrarNoPortalComCena(string cena)
