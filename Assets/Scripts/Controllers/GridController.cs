@@ -71,7 +71,7 @@ public class GridController : MonoBehaviour
             for (int j = 0; j < level.layers[0].width; j++)
             {
                 // converte o ID dos tiles do tiled nos números a serem usados dentro do jogo
-                switch(level.layers[0].data[ID])
+                switch (level.layers[0].data[ID])
                 {
                     case 1:
                         grid.setValue(j, i, 0);
@@ -103,6 +103,7 @@ public class GridController : MonoBehaviour
                         controller.notaMexe = 'O';
 
                         break;
+                }
                 ID++;
             }
         }
