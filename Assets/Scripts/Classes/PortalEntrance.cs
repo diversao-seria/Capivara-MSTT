@@ -14,11 +14,6 @@ public class PortalEntrance : MonoBehaviour
     public string cenaParaCarregar;
     private bool animating = false;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && !animating)
-            StartCoroutine(EntrarNoPortalCoroutine(player.transform));
-    }
     public void EntrarNoPortalComCena(string cena)
     {
         if (!animating)

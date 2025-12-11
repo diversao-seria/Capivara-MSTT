@@ -7,10 +7,6 @@ public class TransitionManager : MonoBehaviour
 {
     public static TransitionManager Instance;
 
-    [Header("Bind para teste")]
-    public KeyCode triggerKey = KeyCode.E;
-    public string sceneToLoad = "Level2";
-
     [Header("Canvas de Transição")]
     public Canvas transitionCanvas;
     public Image fadeImage;
@@ -38,13 +34,6 @@ public class TransitionManager : MonoBehaviour
             transitionCanvas.enabled = false;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(triggerKey) && !isBusy)
-        {
-            StartTransition(sceneToLoad);
-        }
-    }
 
     public void StartTransition(string sceneName)
     {
