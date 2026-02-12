@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class CTR_QUADRINHOS : MonoBehaviour
 {
     public int quadrinho;
+    public int quadrinhoFinal;
     public Animator anim;
     public Button botao;
 
@@ -18,7 +19,7 @@ public class CTR_QUADRINHOS : MonoBehaviour
 
     public void Next()
     {
-        if (quadrinho < 10)
+        if (quadrinho < quadrinhoFinal)
         {
             quadrinho ++;
             StartCoroutine(CooldownBotao(botao.GetComponent<Button>()));
