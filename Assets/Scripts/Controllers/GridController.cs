@@ -137,6 +137,18 @@ public class GridController : MonoBehaviour
         }
     }
 
+    public void OnDoorSwitch(Vector2Int doorPosition)
+    {
+        if(returnValue(doorPosition.x, doorPosition.y) == -1)
+        {
+            grid.setValue(doorPosition.x, doorPosition.y, 0);
+        }
+        else if (returnValue(doorPosition.x, doorPosition.y) == 0)
+        {
+            grid.setValue(doorPosition.x, doorPosition.y, -1);
+        }
+    }
+
     // Altera o valor das casa do grid ocupadas pela porta, permitindo que o jogador chegue no fim do nivel 
     public void OnDoorUnlocked()
     {

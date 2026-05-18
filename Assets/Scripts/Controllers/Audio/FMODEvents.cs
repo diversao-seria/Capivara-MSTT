@@ -29,6 +29,12 @@ public class FMODEvents : ScriptableObject
     [field: SerializeField] public EventReference plataforma_grave { get; private set; }
     [field: SerializeField] public EventReference plataforma_agudo { get; private set; }
 
+    [field: Header("Porta")]
+    [field: SerializeField] public EventReference porta_abre_agudo { get; private set; }
+    [field: SerializeField] public EventReference porta_abre_grave { get; private set; }
+    [field: SerializeField] public EventReference porta_fecha_grave { get; private set; }
+    [field: SerializeField] public EventReference porta_fecha_agudo { get; private set; }
+
     [field: Header("Narrações")]
     [field: SerializeField] public EventReference feedbackBotaoFaseGrave { get; private set; }
     [field: SerializeField] public EventReference feedbackBotaoFaseAgudo { get; private set; }

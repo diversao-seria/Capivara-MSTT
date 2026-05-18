@@ -39,9 +39,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3934372414098290786}
     m_Modifications:
+    - target: {fileID: -9191679234606856587, guid: 412ea0d1d393f4dfe9aa6de93edcb787, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 02b02ffbb9e929140bcbd3d4878b5cba, type: 2}
     - target: {fileID: -8679921383154817045, guid: 412ea0d1d393f4dfe9aa6de93edcb787, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 412ea0d1d393f4dfe9aa6de93edcb787, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 412ea0d1d393f4dfe9aa6de93edcb787, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 412ea0d1d393f4dfe9aa6de93edcb787, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 412ea0d1d393f4dfe9aa6de93edcb787, type: 3}
       propertyPath: m_LocalPosition.x
@@ -83,10 +99,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1767837418983876911, guid: 412ea0d1d393f4dfe9aa6de93edcb787, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e1149cd5df0526c41a3d886d429b051f, type: 2}
     - target: {fileID: 919132149155446097, guid: 412ea0d1d393f4dfe9aa6de93edcb787, type: 3}
       propertyPath: m_Name
       value: door_high
       objectReference: {fileID: 0}
+    - target: {fileID: 4890960508637996780, guid: 412ea0d1d393f4dfe9aa6de93edcb787, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0b64d53b6ea727845a0b1d1c22b8f5d9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 412ea0d1d393f4dfe9aa6de93edcb787, type: 3}
 --- !u!4 &2684789337210182852 stripped
@@ -132,3 +156,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e200fa8500843bc9ce1eacf279a558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grid: {fileID: 0}
+  posicao: {x: 0, y: 0}
+  notaMexe: 0
+  aberta: 0
+  vertical: 0
+  audioController: {fileID: 11400000, guid: 479f340bb00e16d49bac19e53a28976d, type: 2}
+  fmodEvents: {fileID: 11400000, guid: b29507c1ba9199645bb0a246d236b1fb, type: 2}

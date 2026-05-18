@@ -96,6 +96,34 @@ MonoBehaviour:
       Data3: -1627294059
       Data4: -841324625
     Path: event:/efeitos_sonoros/plataforma_agudo
+  <porta_abre_agudo>k__BackingField:
+    Guid:
+      Data1: -855494132
+      Data2: 1301006305
+      Data3: 844649352
+      Data4: -1448914740
+    Path: event:/efeitos_sonoros/porta_abre_agudo
+  <porta_abre_grave>k__BackingField:
+    Guid:
+      Data1: 36476110
+      Data2: 1303970813
+      Data3: 121156518
+      Data4: 1776353317
+    Path: event:/efeitos_sonoros/porta_abre_grave
+  <porta_fecha_grave>k__BackingField:
+    Guid:
+      Data1: 256197653
+      Data2: 1194509844
+      Data3: 1702926507
+      Data4: 2019639556
+    Path: event:/efeitos_sonoros/porta_fecha_grave
+  <porta_fecha_agudo>k__BackingField:
+    Guid:
+      Data1: 1636313986
+      Data2: 1134431199
+      Data3: 1168752286
+      Data4: -1623198737
+    Path: event:/efeitos_sonoros/porta_fecha_agudo
   <feedbackBotaoFaseGrave>k__BackingField:
     Guid:
       Data1: 930119843
