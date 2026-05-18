@@ -8,6 +8,8 @@ public class CarregadorDeNiveis : MonoBehaviour
     public GameObject MSTT;
     public string proximaCena;
 
+    public PortalEntrance portalEntrance;
+
     public void jogadorPassouNaPorta()
     {
         if (MSTT != null)
@@ -22,7 +24,7 @@ public class CarregadorDeNiveis : MonoBehaviour
 
     public void carregarProximaCena()
     {
-        SceneManager.LoadScene(proximaCena);
+        portalEntrance.EntrarNoPortalComCena(proximaCena);
     }
 
     IEnumerator Espera(int tempo)

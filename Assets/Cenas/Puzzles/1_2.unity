@@ -659,6 +659,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonI
       objectReference: {fileID: 0}
+    - target: {fileID: 1709359865182194142, guid: 58b37641ebcc16e40818cef548cbfbe2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 96e9093dd5f27694789832fd42606d1a, type: 2}
     - target: {fileID: 4064656171687558098, guid: 58b37641ebcc16e40818cef548cbfbe2, type: 3}
       propertyPath: m_RootOrder
       value: 16
