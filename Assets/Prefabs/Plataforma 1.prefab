@@ -118,6 +118,8 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: {x: 0, y: 0}
     Variable: {fileID: 11400000, guid: fa895b1f7dc8cee4387ddceac019519b, type: 2}
+  audioController: {fileID: 11400000, guid: 479f340bb00e16d49bac19e53a28976d, type: 2}
+  fmodEvents: {fileID: 11400000, guid: b29507c1ba9199645bb0a246d236b1fb, type: 2}
 --- !u!114 &4775897723864475484
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -149,6 +149,8 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: fa895b1f7dc8cee4387ddceac019519b, type: 2}
   grid: {fileID: 0}
   animator: {fileID: 423229557}
+  audioController: {fileID: 11400000, guid: 479f340bb00e16d49bac19e53a28976d, type: 2}
+  fmodEvents: {fileID: 11400000, guid: b29507c1ba9199645bb0a246d236b1fb, type: 2}
   animTimer: 0.6
 --- !u!114 &6681209715618041031
 MonoBehaviour:

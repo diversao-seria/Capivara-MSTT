@@ -19,6 +19,16 @@ public class FMODEvents : ScriptableObject
     [field: SerializeField] public EventReference MSTTAcerto { get; private set; }
     [field: SerializeField] public EventReference MSTTConfirma { get; private set; }
 
+    [field: Header("Player")]
+    [field: SerializeField] public EventReference anda_bloqueado { get; private set; }
+    [field: SerializeField] public EventReference anda_grama { get; private set; }
+    [field: SerializeField] public EventReference anda_plataforma_agudo { get; private set; }
+    [field: SerializeField] public EventReference anda_plataforma_grave { get; private set; }
+
+    [field: Header("Plataforma")]
+    [field: SerializeField] public EventReference plataforma_grave { get; private set; }
+    [field: SerializeField] public EventReference plataforma_agudo { get; private set; }
+
     [field: Header("Narrações")]
     [field: SerializeField] public EventReference feedbackBotaoFaseGrave { get; private set; }
     [field: SerializeField] public EventReference feedbackBotaoFaseAgudo { get; private set; }

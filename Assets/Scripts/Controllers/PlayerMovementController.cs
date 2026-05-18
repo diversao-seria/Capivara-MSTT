@@ -10,6 +10,8 @@ using UnityEngine.InputSystem;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Threading;
+using FMODUnity;
+using FMOD.Studio;
 
 public class PlayerMovementController : MonoBehaviour
 {
@@ -55,6 +57,10 @@ public class PlayerMovementController : MonoBehaviour
     private int currentWalkAnim = 0;
 
     public Animator animator;
+
+    [SerializeField] private AudioController audioController;
+    [SerializeField] private FMODEvents fmodEvents;
+    private EventReference somPasso;
 
     public float animTimer = 0.2f;
     private void Awake()
@@ -136,6 +142,18 @@ public class PlayerMovementController : MonoBehaviour
             {
                 AdicionarInput(vetorMovimentacao);
                 movePlayer(new Vector2Int(gridPosition.Value.x + vetorMovimentacao.x, gridPosition.Value.y + vetorMovimentacao.y), 0.5f, false);
+                if (casa == 2)
+                {
+                    somPasso = fmodEvents.anda_plataforma_grave;
+                }
+                else
+                {
+                    somPasso = fmodEvents.anda_grama;
+                }
+            }
+            else
+            {
+                audioController.tocarOneShot(fmodEvents.anda_bloqueado);
             }
         }
     }
@@ -222,6 +240,11 @@ public class PlayerMovementController : MonoBehaviour
             {
                 return;
             }
+        }
+
+        if (!plataforma)
+        {
+            audioController.tocarOneShot(somPasso);
         }
 
         transform.position = posicaoDepois;

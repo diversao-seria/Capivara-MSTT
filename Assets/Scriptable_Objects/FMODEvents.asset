@@ -14,25 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <musica>k__BackingField:
     Guid:
-      Data1: 1869547450
-      Data2: 1182002043
-      Data3: 1870822050
-      Data4: -767442493
+      Data1: -242383725
+      Data2: 1088817900
+      Data3: -1253991750
+      Data4: -770543176
     Path: event:/Musica/Musica
   <MSTTGrave>k__BackingField:
     Guid:
-      Data1: 919025988
-      Data2: 1097333236
-      Data3: -1055723865
-      Data4: -926718738
-    Path: event:/MSTT/MSTTGrave
+      Data1: -1902027061
+      Data2: 1191496791
+      Data3: -1639304004
+      Data4: -1339157429
+    Path: event:/MSTT/MSTT_grave
   <MSTTAgudo>k__BackingField:
     Guid:
-      Data1: -422478742
-      Data2: 1082431136
-      Data3: -1602053196
-      Data4: 1579608969
-    Path: event:/MSTT/MSTTAgudo
+      Data1: -1509000088
+      Data2: 1157289453
+      Data3: 1431037825
+      Data4: 722308122
+    Path: event:/MSTT/MSTT_agudo
   <MSTTErro>k__BackingField:
     Guid:
       Data1: -1127706728
@@ -54,24 +54,66 @@ MonoBehaviour:
       Data3: -2018091617
       Data4: 1370878414
     Path: event:/MSTT/MSTTConfirma
+  <anda_bloqueado>k__BackingField:
+    Guid:
+      Data1: -683805331
+      Data2: 1338887844
+      Data3: -598406236
+      Data4: -710571267
+    Path: event:/efeitos_sonoros/anda_bloqueado
+  <anda_grama>k__BackingField:
+    Guid:
+      Data1: 1719534308
+      Data2: 1195751265
+      Data3: 1972648869
+      Data4: 771054562
+    Path: event:/efeitos_sonoros/anda_grama
+  <anda_plataforma_agudo>k__BackingField:
+    Guid:
+      Data1: 1040022899
+      Data2: 1213908866
+      Data3: 1567843475
+      Data4: 2000929815
+    Path: event:/efeitos_sonoros/anda_plataforma_agudo
+  <anda_plataforma_grave>k__BackingField:
+    Guid:
+      Data1: -160897778
+      Data2: 1148618594
+      Data3: -270903385
+      Data4: -362295768
+    Path: event:/efeitos_sonoros/anda_plataforma_grave
+  <plataforma_grave>k__BackingField:
+    Guid:
+      Data1: 1671634959
+      Data2: 1139674918
+      Data3: 1145021337
+      Data4: 2084740315
+    Path: event:/efeitos_sonoros/plataforma_grave
+  <plataforma_agudo>k__BackingField:
+    Guid:
+      Data1: 1554880364
+      Data2: 1159534701
+      Data3: -1627294059
+      Data4: -841324625
+    Path: event:/efeitos_sonoros/plataforma_agudo
   <feedbackBotaoFaseGrave>k__BackingField:
     Guid:
-      Data1: -1533299008
-      Data2: 1100424328
-      Data3: 1870165380
-      Data4: -1509967166
-    Path: event:/Instrucoes/SonsGraves/SomGraveNivel
+      Data1: 930119843
+      Data2: 1300908628
+      Data3: 1902448014
+      Data4: -1051027339
+    Path: event:/Instrucoes/Mundo/SomGraveNivel
   <feedbackBotaoFaseAgudo>k__BackingField:
     Guid:
-      Data1: -930955940
-      Data2: 1148682299
-      Data3: 572485021
-      Data4: 389550933
-    Path: event:/Instrucoes/SonsAgudos/SomAgudoNivel
+      Data1: -76695802
+      Data2: 1318672828
+      Data3: 647853952
+      Data4: 467436761
+    Path: event:/Instrucoes/Mundo/SomAgudoNivel
   <fala>k__BackingField:
     Guid:
-      Data1: 1091937285
-      Data2: 1157782003
-      Data3: -296799575
-      Data4: 1833389731
+      Data1: -1392145617
+      Data2: 1108708647
+      Data3: 130142888
+      Data4: -1495792745
     Path: event:/Instrucoes/Instrucao

@@ -5,6 +5,8 @@ using UnityEngine.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using FMODUnity;
+using FMOD.Studio;
 
 public class PlataformMovementController : MonoBehaviour
 {
@@ -43,6 +45,10 @@ public class PlataformMovementController : MonoBehaviour
     // evento emitido ao mover a plataforma, passando as coordenadas antigas e novas no grid como parametro <posicaoXantiga, posicaoYantiga, posicaoXnova, posicaoYnova>
     public static event Action<int, int, int, int> PlataformMoved;
 
+    [SerializeField] private AudioController audioController;
+    [SerializeField] private FMODEvents fmodEvents;
+    private EventReference somMexe;
+
     void OnEnable()
     {
         GridController.NotePlayed += OnNotePlayed;
@@ -66,7 +72,15 @@ public class PlataformMovementController : MonoBehaviour
         // isso corrige um Bug que inpedia o jogador de ir para uma plataforma que estava fora da area normalmente andavel no primeiro movimento
         PlataformMoved?.Invoke(gridX, gridY, gridX, gridY);
 
-
+        if (notaMexe == 'O')
+        {
+            somMexe = fmodEvents.plataforma_grave;
+        }
+        else if (notaMexe == 'I')
+        {
+            somMexe = fmodEvents.plataforma_agudo;
+        }
+         
 
          //Se inscreve ao evento (action) NotePlayed, essa action passa como parametro um char indicando o tipo de nota tocada
     }
@@ -96,6 +110,8 @@ public class PlataformMovementController : MonoBehaviour
 
             //Emite o sinal que a plataforma se moveu, passanda as coordenadas do grid que ela agora ocupa
             PlataformMoved?.Invoke(gridXantiga, gridYantiga, gridX, gridY);
+
+            audioController.tocarOneShot(somMexe);
         }
     }
 

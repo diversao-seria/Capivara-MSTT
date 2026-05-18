@@ -323,7 +323,7 @@ MonoBehaviour:
   imagemGravePadrao: {fileID: 21300000, guid: 1b34603b29c766d44a1d4c123cd428f0, type: 3}
   particulasAgudo: {fileID: 1758632338}
   particulasGrave: {fileID: 1710737860}
-  falaInicio: Introducao/intr_00
+  falaInicio: Introducao/intr_00.mp3
   falaGrave1: Introducao/intr_01
   falaAgudo1: Introducao/intr_02
   falaMeio: Introducao/intr_03
