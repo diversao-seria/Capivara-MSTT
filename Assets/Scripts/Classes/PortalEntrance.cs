@@ -8,6 +8,7 @@ public class PortalEntrance : MonoBehaviour
     public float shrinkDuration = 0.4f;  // tempo para sumir
     public float stretchAmount = 1.2f;   // esticada inicial
     public float spinSpeed = 360f;       // giro opcional
+    public GameObject referencia;
 
     public GameObject player;
 
@@ -27,7 +28,7 @@ public class PortalEntrance : MonoBehaviour
         animating = true;
 
         Vector3 startPos = player.position;
-        Vector3 portalPos = transform.position;
+        Vector3 portalPos = referencia.transform.position;
         Vector3 originalScale = player.localScale;
 
         float t = 0;
