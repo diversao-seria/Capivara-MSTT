@@ -124,6 +124,41 @@ MonoBehaviour:
       Data3: 1168752286
       Data4: -1623198737
     Path: event:/efeitos_sonoros/porta_fecha_agudo
+  <coleta_violao>k__BackingField:
+    Guid:
+      Data1: 870667359
+      Data2: 1174662423
+      Data3: -1736114556
+      Data4: 777442434
+    Path: event:/efeitos_sonoros/coleta_violao
+  <coleta_flauta>k__BackingField:
+    Guid:
+      Data1: -1076727574
+      Data2: 1183917423
+      Data3: -1027379793
+      Data4: -148838132
+    Path: event:/efeitos_sonoros/coleta_flauta
+  <coleta_teclado>k__BackingField:
+    Guid:
+      Data1: -1889991439
+      Data2: 1092223361
+      Data3: 585565324
+      Data4: -344512349
+    Path: event:/efeitos_sonoros/coleta_teclado
+  <coleta_baixo>k__BackingField:
+    Guid:
+      Data1: -5182472
+      Data2: 1143081730
+      Data3: 1793664954
+      Data4: -395793593
+    Path: event:/efeitos_sonoros/coleta_baixo
+  <coleta_bateria>k__BackingField:
+    Guid:
+      Data1: -1698726926
+      Data2: 1095153412
+      Data3: 2603961
+      Data4: 532580146
+    Path: event:/efeitos_sonoros/coleta_bateria
   <feedbackBotaoFaseGrave>k__BackingField:
     Guid:
       Data1: 930119843

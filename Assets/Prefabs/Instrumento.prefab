@@ -620,6 +620,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6821630722106388085}
     - target: {fileID: 5095321937079793580, guid: 1074d20d600ca5f4eaca3c2cacc4de58, type: 3}
+      propertyPath: fmodEvents
+      value: 
+      objectReference: {fileID: 11400000, guid: b29507c1ba9199645bb0a246d236b1fb, type: 2}
+    - target: {fileID: 5095321937079793580, guid: 1074d20d600ca5f4eaca3c2cacc4de58, type: 3}
       propertyPath: canvasAnimator
       value: 
       objectReference: {fileID: 6821630722823490544}

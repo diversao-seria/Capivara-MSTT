@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
 using UnityEngine.UI;
+using FMODUnity;
+using FMOD.Studio;
 
 public class fluteController : MonoBehaviour
 {
@@ -23,6 +25,8 @@ public class fluteController : MonoBehaviour
     public Vector2Reference coordenadasJogador;
     public UnityEvent instrumentoColetado, fimColetaInstrumento;
     private Vector3 posicaoInicial;
+    [SerializeField] private FMODEvents fmodEvents;
+    private EventReference somColeta;
 
     void Start()
     {
@@ -32,6 +36,24 @@ public class fluteController : MonoBehaviour
         cam = Camera.main;
         posicaoInicial = transform.position;
         canvasAnimator = canvas.GetComponent<Animator>();
+        switch (valorParametro)
+        {
+            case 2:
+                somColeta = fmodEvents.coleta_violao;
+                break;
+            case 3:
+                somColeta = fmodEvents.coleta_baixo;
+                break;
+            case 4:
+                somColeta = fmodEvents.coleta_flauta;
+                break;
+            case 6:
+                somColeta = fmodEvents.coleta_teclado;
+                break;
+            case 7:
+                somColeta = fmodEvents.coleta_bateria;
+                break;
+        }
     }
 
     public void jogadorMoveu()
@@ -75,7 +97,7 @@ public class fluteController : MonoBehaviour
     public void fimColeta()
     {
         canvasAnimator.SetTrigger("OnScreen");
-        // toca efeito sonoro do instrumento em si
+        audioController.tocarOneShot(somColeta);
     }
 
     public void fimVisualizacao()

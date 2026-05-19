@@ -35,6 +35,13 @@ public class FMODEvents : ScriptableObject
     [field: SerializeField] public EventReference porta_fecha_grave { get; private set; }
     [field: SerializeField] public EventReference porta_fecha_agudo { get; private set; }
 
+    [field: Header("Instrumentos")]
+    [field: SerializeField] public EventReference coleta_violao { get; private set; }
+    [field: SerializeField] public EventReference coleta_flauta { get; private set; }
+    [field: SerializeField] public EventReference coleta_teclado { get; private set; }
+    [field: SerializeField] public EventReference coleta_baixo { get; private set; }
+    [field: SerializeField] public EventReference coleta_bateria { get; private set; }
+
     [field: Header("Narrações")]
     [field: SerializeField] public EventReference feedbackBotaoFaseGrave { get; private set; }
     [field: SerializeField] public EventReference feedbackBotaoFaseAgudo { get; private set; }
