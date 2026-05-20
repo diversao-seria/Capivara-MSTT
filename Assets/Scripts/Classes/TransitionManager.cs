@@ -15,6 +15,9 @@ public class TransitionManager : MonoBehaviour
     public float transitionDuration = 1.5f;
     private string cutoffProperty = "_Cutoff";
 
+    public float initialDistance = 0f;
+    public float finalDistance = 2.3f;
+
     private bool isBusy = false;
 
     private void Awake()
@@ -55,8 +58,11 @@ public class TransitionManager : MonoBehaviour
         while (timer < transitionDuration)
         {
             timer += Time.deltaTime;
-            float value = Mathf.Lerp(0f, 3.3f, timer / transitionDuration);
-            mat.SetFloat(cutoffProperty, value);
+            //float value = Mathf.Lerp(0f, 3.3f, timer / transitionDuration);
+            //mat.SetFloat(cutoffProperty, value);
+            float value = Mathf.Lerp(initialDistance, finalDistance, timer /transitionDuration);
+            Vector3 currentPosition = transitionCanvas.transform.localPosition;
+            transitionCanvas.transform.localPosition = new Vector3(currentPosition.x, currentPosition.y, value);
             yield return null;
         }
         mat.SetFloat(cutoffProperty, 3.3f);
@@ -71,14 +77,18 @@ public class TransitionManager : MonoBehaviour
         while (timer < transitionDuration)
         {
             timer += Time.deltaTime;
-            float value = Mathf.Lerp(3.3f, 0f, timer / transitionDuration);
-            mat.SetFloat(cutoffProperty, value);
+            //float value = Mathf.Lerp(3.3f, 0f, timer / transitionDuration);
+            //mat.SetFloat(cutoffProperty, value);
+            float value = Mathf.Lerp(finalDistance, initialDistance, timer /transitionDuration);
+            print(value);
+            Vector3 currentPosition = transitionCanvas.transform.localPosition;
+            transitionCanvas.transform.localPosition = new Vector3(currentPosition.x, currentPosition.y, value);
             yield return null;
         }
         mat.SetFloat(cutoffProperty, 0f);
 
         Destroy(transitionCanvas.gameObject);
-
+        
         Destroy(gameObject);
     }
 }
