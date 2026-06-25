@@ -72,8 +72,6 @@ public class DoorController : MonoBehaviour
 
         anim.SetBool(parametroAnimator, !estadoAtual);
 
-        grid.OnDoorSwitch(posicao);
-
         if (nota == notaMexe) 
         {
             if (estadoAtual)
@@ -84,6 +82,8 @@ public class DoorController : MonoBehaviour
             {
                 audioController.tocarOneShot(somAbre);
             }
+
+            grid.OnDoorSwitch(posicao);
         }
     }
 }
