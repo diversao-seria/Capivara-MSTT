@@ -19,6 +19,7 @@ public class CarregadorDeNiveis : MonoBehaviour
         else
         {
             carregarProximaCena();
+            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         }
     }
 
