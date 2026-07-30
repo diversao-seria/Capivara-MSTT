@@ -61,7 +61,8 @@ public class fluteController : MonoBehaviour
         // Semp�re que o jogador se move, checa se as coordenadas atuais do jogador s�o iguais �s coordenadas atuais da flauta. Se for true, ativa a hud e dest�i o objeto flauta.
         if (coordenadasJogador.Value == coordenadasGrid)
         {
-            // fade out na musica
+            // audioController.PausaMusica(true);
+            audioController.DefinirParametrosMusica("Instrumentos", 0);
 
             // toca efeito sonoro de coleta
 
@@ -112,7 +113,7 @@ public class fluteController : MonoBehaviour
         // adiciona objeto na musica
         audioController.DefinirParametrosMusica(nomeParametro, valorParametro);
 
-        // fade in na musica
+       // audioController.PausaMusica(false);
         //TODO
 
         fimColetaInstrumento?.Invoke();
