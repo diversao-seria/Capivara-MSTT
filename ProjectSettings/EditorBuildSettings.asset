@@ -8,25 +8,25 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Arquivo/Cenas/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cenas/TestePortal.unity
     guid: 1fc2d58099284634ba3c5c46eb7f9230
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cenas/MSTT.unity
     guid: f77e1e973dd3bc8459261237e83c69ae
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cenas/level1.unity
     guid: 830d204dbb8ec4c489af76229bf726c3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cenas/level3.unity
     guid: 6b1f9a272c4fa1642b6d8b2a1bd381da
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cenas/level4.unity
     guid: 222f99dc7633ac74089b2b99260f258d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cenas/level5.unity
     guid: 08736c321c56fde4d87927f7b65c94e0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cenas/level6.unity
     guid: 9b1ae60932f139c41914f47aebb73efb
   - enabled: 0
@@ -38,10 +38,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cenas/Menu - PLACEHOLDER.unity
     guid: 554dedee15b85c24493b6bd5f49de9ed
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cenas/HQ.unity
     guid: 5db055c5feac5334fbe67d7aae72ded9
   - enabled: 0

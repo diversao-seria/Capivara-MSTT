@@ -48,10 +48,10 @@ public class fluteController : MonoBehaviour
                 somColeta = fmodEvents.coleta_flauta;
                 break;
             case 6:
-                somColeta = fmodEvents.coleta_teclado;
+                somColeta = fmodEvents.coleta_bateria;
                 break;
             case 7:
-                somColeta = fmodEvents.coleta_bateria;
+                somColeta = fmodEvents.coleta_teclado;
                 break;
         }
     }

@@ -193,7 +193,7 @@ public class MSTTManager : MonoBehaviour
     IEnumerator FeedbackCoroutine()
     {
         FimMSTTUN?.Invoke();
-        audioController.trackableOneShot(fmodEvents.MSTTConfirma);
+       // audioController.trackableOneShot(fmodEvents.MSTTConfirma);
         yield return new WaitWhile(()=> audioController.OneShotTocando());
         // se o teste tiver instruções, emitir o evento de feedback
         if (testeInstruido)
@@ -232,7 +232,7 @@ public class MSTTManager : MonoBehaviour
         }
         else
         {
-            audioController.trackableOneShot(fmodEvents.MSTTAcerto);
+            // audioController.trackableOneShot(fmodEvents.MSTTAcerto);
             if (quantidadeTestes <= 1)
             {
                 yield return new WaitWhile (()=> audioController.OneShotTocando());

@@ -167,14 +167,14 @@ public class GridController : MonoBehaviour
                 break;
             case 3:
                 audioController.tocarOneShot(fmodEvents.MSTTAgudo);
-                audioController.DefinirParametrosMusica("Ambiente", 1f);
+                audioController.DefinirParametrosMusica("Ambiente", 0f);
                 // emite o evento de mudar as plataformas de cor azul de lugar
                 NotePlayed?.Invoke('I');
                 Debug.Log("I");
                 break;
             case 4:
                 audioController.tocarOneShot(fmodEvents.MSTTGrave);
-                audioController.DefinirParametrosMusica("Ambiente", 0f);
+                audioController.DefinirParametrosMusica("Ambiente", 1f);
                 // emite o evento de mudar as plataformas de cor rosa de lugar
                 NotePlayed?.Invoke('O');
                 Debug.Log("O");
