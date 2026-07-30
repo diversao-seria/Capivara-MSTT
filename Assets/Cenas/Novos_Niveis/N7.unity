@@ -2052,6 +2052,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1737673338952587743, guid: 46417f327706b9c4dac1561e1ca9f9f0, type: 3}
+      propertyPath: distanciaCamera
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1737673338952587743, guid: 46417f327706b9c4dac1561e1ca9f9f0, type: 3}
       propertyPath: coordenadasGrid.x
       value: 1
       objectReference: {fileID: 0}
@@ -2178,7 +2182,7 @@ PrefabInstance:
     - target: {fileID: 6821630722823490559, guid: 46417f327706b9c4dac1561e1ca9f9f0, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 829390300}
     - target: {fileID: 6821630722823490559, guid: 46417f327706b9c4dac1561e1ca9f9f0, type: 3}
       propertyPath: m_RenderMode
       value: 1
@@ -2329,6 +2333,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da853e381cd11de498cd65e6090a9b24, type: 3}
+--- !u!20 &829390300 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2385475791802351360, guid: dde2e6af90e7b6d4fbeac04f9b332048, type: 3}
+  m_PrefabInstance: {fileID: 2385475791996464359}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &862727407
 PrefabInstance:
   m_ObjectHideFlags: 0
