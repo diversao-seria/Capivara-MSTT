@@ -345,6 +345,34 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 392653479}
+    - target: {fileID: 556760297, guid: 4511f8ec5c7a5a94b95f740dfda3226f, type: 3}
+      propertyPath: salvarDados.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 556760297, guid: 4511f8ec5c7a5a94b95f740dfda3226f, type: 3}
+      propertyPath: salvarDados.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 556760297, guid: 4511f8ec5c7a5a94b95f740dfda3226f, type: 3}
+      propertyPath: salvarDados.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 435761b51ec8cde40b779c4a455e4927, type: 2}
+    - target: {fileID: 556760297, guid: 4511f8ec5c7a5a94b95f740dfda3226f, type: 3}
+      propertyPath: salvarDados.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 556760297, guid: 4511f8ec5c7a5a94b95f740dfda3226f, type: 3}
+      propertyPath: salvarDados.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Raise
+      objectReference: {fileID: 0}
+    - target: {fileID: 556760297, guid: 4511f8ec5c7a5a94b95f740dfda3226f, type: 3}
+      propertyPath: salvarDados.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameEvent, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 556760297, guid: 4511f8ec5c7a5a94b95f740dfda3226f, type: 3}
+      propertyPath: salvarDados.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1552181028139803002, guid: 4511f8ec5c7a5a94b95f740dfda3226f, type: 3}
       propertyPath: m_Name
       value: portal

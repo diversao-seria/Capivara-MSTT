@@ -4,6 +4,7 @@ using UnityEngine;
 using MongoDB.Driver;
 using MongoDB.Bson;
 using System;
+using System.IO;
 using UnityEngine.SceneManagement;
 
 // Desabilitamos essa biblioteca por causar erros na build. Habilitar caso d� problemas.
@@ -21,6 +22,7 @@ public class BaseDeDados : MonoBehaviour
     private StringVariable codigoSessao; //SO para a chavePrimaria.
 
     public static event Action NovoCodigoSessao; //Evento para informar que uma nova chave primaria foi criada.
+    public static event Action<Dados> DadosSessao;
     
     IMongoDatabase database;    
 
@@ -449,7 +451,10 @@ public class BaseDeDados : MonoBehaviour
         //dados a serem armazenados = dados coletados
         var dados = new Dados { InfoMSTT = InfoMSTT_jogo, chavePrimaria = chaveP, InfoFase = InfoFase_jogo, TempoDeJogo = TempoTotal_jogo };
 
+        GerarRelatorioFinal(dados);
+
         inserirRecord(dados);
+
         print("dados salvos");
         print("ID:"+ dados._id);
         Debug.Log("InfoMSTT: ");
@@ -469,6 +474,15 @@ public class BaseDeDados : MonoBehaviour
     {
         var collection = database.GetCollection<T>("dados");
         await collection.InsertOneAsync(record);
+    }
+
+    private void GerarRelatorioFinal(Dados dados)
+    {
+        Debug.Log("GerarRelatorio");
+        using (StreamWriter sw = new StreamWriter(Application.dataPath+ "/Relatorios/" + dados.chavePrimaria +".txt",true))
+        {
+            sw.WriteLine(dados.TempoDeJogo);
+        }
     }
 #endregion
 }
