@@ -1,9 +1,10 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PortalEntrance : MonoBehaviour
 {
-    public float enterDuration = 0.5f;   // tempo do salto até o portal
+    public float enterDuration = 0.5f;   // tempo do salto atï¿½ o portal
     public float jumpHeight = 1.2f;      // altura do salto
     public float shrinkDuration = 0.4f;  // tempo para sumir
     public float stretchAmount = 1.2f;   // esticada inicial
@@ -14,6 +15,8 @@ public class PortalEntrance : MonoBehaviour
 
     private string cenaParaCarregar;
     private bool animating = false;
+
+    public UnityEvent salvarDados;
 
     public void EntrarNoPortalComCena(string cena)
     {
@@ -77,6 +80,7 @@ public class PortalEntrance : MonoBehaviour
 
         animating = false;
 
+        salvarDados?.Invoke();
         TransitionManager.Instance.StartTransition(cenaParaCarregar);
     }
 }

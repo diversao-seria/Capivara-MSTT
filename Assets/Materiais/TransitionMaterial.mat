@@ -28,7 +28,7 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: -50
-    - _Cutoff: 3.3
+    - _Cutoff: 0
     m_Colors:
     - _MainColor: {r: 0.019607844, g: 0.019607844, b: 0.019607844, a: 1}
   m_BuildTextureStacks: []
